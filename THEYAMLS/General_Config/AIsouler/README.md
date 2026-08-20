@@ -19,7 +19,7 @@
 ## 📄 配置详情
 
 #### 📝 mihomoConfigLite.yaml
-- **路径**: `mihomoConfigLite.yaml` | **大小**: 16.4 KB | [查看源码](https://github.com/HenryChiao/MIHOMO_YAMLS/blob/main/THEYAMLS/General_Config/AIsouler/mihomoConfigLite.yaml)
+- **路径**: `mihomoConfigLite.yaml` | **大小**: 16.4 KB | [查看源码](https://github.com/zhangsan-nb/MIHOMO_YAMLS/blob/main/THEYAMLS/General_Config/AIsouler/mihomoConfigLite.yaml)
 - **模式**: rule | **TUN**: ✅ | **IPv6**: ✅
 <details>
 <summary>🔍 策略组 (25个)</summary>
@@ -50,7 +50,7 @@
 </details>
 
 #### 📝 mihomoconfig.yaml
-- **路径**: `mihomoconfig.yaml` | **大小**: 25.5 KB | [查看源码](https://github.com/HenryChiao/MIHOMO_YAMLS/blob/main/THEYAMLS/General_Config/AIsouler/mihomoconfig.yaml)
+- **路径**: `mihomoconfig.yaml` | **大小**: 25.5 KB | [查看源码](https://github.com/zhangsan-nb/MIHOMO_YAMLS/blob/main/THEYAMLS/General_Config/AIsouler/mihomoconfig.yaml)
 - **模式**: rule | **TUN**: ✅ | **IPv6**: ✅
 <details>
 <summary>🔍 策略组 (38个)</summary>
