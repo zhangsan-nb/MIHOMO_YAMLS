@@ -46,12 +46,12 @@ def build_message(rows: list[dict[str, str]]) -> tuple[str, str]:
     validated = len(new) + len(updated) + len(unchanged)
 
     subject = (
-        f"[OpenClash规则] {result} | 校验成功 {validated} | "
+        f"[MIHOMO YAMLS规则] {result} | 校验成功 {validated} | "
         f"变化 {len(changed)} | 失败 {len(failed)}"
     )
     china_time = datetime.now(timezone.utc).astimezone(timezone(timedelta(hours=8)))
     lines = [
-        f"OpenClash 规则镜像：{result}",
+        f"MIHOMO YAMLS规则镜像：{result}",
         f"北京时间：{china_time.strftime('%Y-%m-%d %H:%M:%S %z')}",
         f"校验成功：{validated}",
         f"变化：{len(changed)}（新增 {len(new)}，更新 {len(updated)}）",

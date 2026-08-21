@@ -174,7 +174,7 @@ if (( failed_count > 0 || success_count != expected_count )); then
 fi
 
 {
-  echo "# OpenClash 规则镜像报告"
+  echo "# MIHOMO YAMLS规则镜像报告"
   echo
   echo "- 结果：${overall_result}"
   echo "- 新增：${new_count}"
