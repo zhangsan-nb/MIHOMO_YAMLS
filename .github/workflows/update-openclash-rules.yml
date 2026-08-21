@@ -20,12 +20,33 @@ jobs:
       - name: Checkout workflow source
         uses: actions/checkout@v7
 
+      - name: Load previous rule manifest
+        env:
+          PREVIOUS_SOURCES: ${{ runner.temp }}/previous-SOURCES.tsv
+        run: |
+          if git fetch --no-tags --depth=1 origin openclash-rules; then
+            git show FETCH_HEAD:SOURCES.tsv > "${PREVIOUS_SOURCES}"
+          else
+            : > "${PREVIOUS_SOURCES}"
+          fi
+
       - name: Download and validate all providers
+        id: mirror
         env:
           OUTPUT_DIR: ${{ runner.temp }}/openclash-rules
-        run: bash .github/scripts/mirror-openclash-rules.sh "${OUTPUT_DIR}"
+          PREVIOUS_SOURCES: ${{ runner.temp }}/previous-SOURCES.tsv
+        run: |
+          set +e
+          bash .github/scripts/mirror-openclash-rules.sh "${OUTPUT_DIR}" "${PREVIOUS_SOURCES}"
+          status=$?
+          set -e
+          if [[ -f "${OUTPUT_DIR}/REPORT.md" ]]; then
+            cat "${OUTPUT_DIR}/REPORT.md" >> "${GITHUB_STEP_SUMMARY}"
+          fi
+          exit "${status}"
 
       - name: Publish atomically to openclash-rules branch
+        id: publish
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           OUTPUT_DIR: ${{ runner.temp }}/openclash-rules
@@ -41,14 +62,40 @@ jobs:
           git push --force origin HEAD:openclash-rules
 
       - name: Purge mirrored files from jsDelivr
+        id: purge
         if: success()
         env:
           OUTPUT_DIR: ${{ runner.temp }}/openclash-rules
         run: |
           cd "${OUTPUT_DIR}"
+          purge_failures=0
           while IFS= read -r -d '' file; do
             relative_path="${file#./}"
-            curl --fail --silent --show-error \
+            if ! curl --fail --silent --show-error \
               "https://purge.jsdelivr.net/gh/${GITHUB_REPOSITORY}@openclash-rules/${relative_path}" \
-              >/dev/null || echo "warning: jsDelivr purge failed for ${relative_path}"
+              >/dev/null; then
+              echo "jsDelivr purge failed for ${relative_path}" >&2
+              purge_failures=$((purge_failures + 1))
+            fi
           done < <(find . -type f -print0)
+          if (( purge_failures > 0 )); then
+            echo "jsDelivr purge failed for ${purge_failures} file(s)" >&2
+            exit 1
+          fi
+
+      - name: Email concise update report
+        if: always()
+        env:
+          RULE_EMAIL_TO: ${{ secrets.RULE_EMAIL_TO }}
+          RULE_EMAIL_FROM: ${{ secrets.RULE_EMAIL_FROM }}
+          RULE_EMAIL_SMTP_HOST: ${{ secrets.RULE_EMAIL_SMTP_HOST }}
+          RULE_EMAIL_SMTP_PORT: ${{ secrets.RULE_EMAIL_SMTP_PORT }}
+          RULE_EMAIL_SMTP_SECURITY: ${{ secrets.RULE_EMAIL_SMTP_SECURITY }}
+          RULE_EMAIL_SMTP_USERNAME: ${{ secrets.RULE_EMAIL_SMTP_USERNAME }}
+          RULE_EMAIL_SMTP_PASSWORD: ${{ secrets.RULE_EMAIL_SMTP_PASSWORD }}
+          MIRROR_OUTCOME: ${{ steps.mirror.outcome }}
+          PUBLISH_OUTCOME: ${{ steps.publish.outcome }}
+          PURGE_OUTCOME: ${{ steps.purge.outcome }}
+          RUN_URL: https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}
+          OUTPUT_DIR: ${{ runner.temp }}/openclash-rules
+        run: python .github/scripts/send-rule-report.py "${OUTPUT_DIR}/REPORT.tsv"
