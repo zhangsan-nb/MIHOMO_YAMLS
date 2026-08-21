@@ -1,0 +1,54 @@
+name: Update OpenClash Rule Mirror
+
+on:
+  workflow_dispatch:
+  schedule:
+    # Daily at 05:15 China Standard Time (UTC+8).
+    - cron: "15 21 * * *"
+
+permissions:
+  contents: write
+
+concurrency:
+  group: openclash-rule-mirror
+  cancel-in-progress: false
+
+jobs:
+  mirror:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout workflow source
+        uses: actions/checkout@v7
+
+      - name: Download and validate all providers
+        env:
+          OUTPUT_DIR: ${{ runner.temp }}/openclash-rules
+        run: bash .github/scripts/mirror-openclash-rules.sh "${OUTPUT_DIR}"
+
+      - name: Publish atomically to openclash-rules branch
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          OUTPUT_DIR: ${{ runner.temp }}/openclash-rules
+        run: |
+          cd "${OUTPUT_DIR}"
+          git init
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git checkout -b openclash-rules
+          git add -- domain ip classical yaml fakeip README.md SOURCES.tsv SHA256SUMS
+          git commit -m "Update OpenClash rules $(date -u +'%Y-%m-%d')"
+          git remote add origin "https://x-access-token:${GITHUB_TOKEN}@github.com/${GITHUB_REPOSITORY}.git"
+          git push --force origin HEAD:openclash-rules
+
+      - name: Purge mirrored files from jsDelivr
+        if: success()
+        env:
+          OUTPUT_DIR: ${{ runner.temp }}/openclash-rules
+        run: |
+          cd "${OUTPUT_DIR}"
+          while IFS= read -r -d '' file; do
+            relative_path="${file#./}"
+            curl --fail --silent --show-error \
+              "https://purge.jsdelivr.net/gh/${GITHUB_REPOSITORY}@openclash-rules/${relative_path}" \
+              >/dev/null || echo "warning: jsDelivr purge failed for ${relative_path}"
+          done < <(find . -type f -print0)
