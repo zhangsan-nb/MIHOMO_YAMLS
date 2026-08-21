@@ -50,10 +50,12 @@ fetch_rule() {
   local relative_path="$1"
   local source_url="$2"
   local minimum_bytes="$3"
+  local validator="${4:-}"
   local destination="${output_dir}/${relative_path}"
   local temporary="${destination}.download"
   local byte_count
   local checksum
+  local invalid_rule
   local previous_checksum
   local status
 
@@ -87,6 +89,40 @@ fetch_rule() {
     record_failure "${relative_path}" "疑似 HTTP 错误页"
     rm -f "${temporary}"
     return
+  fi
+
+  if [[ "${validator}" == "classical-yaml" ]]; then
+    if ! LC_ALL=C grep -Eq '^[[:space:]]*payload:[[:space:]]*$' "${temporary}"; then
+      record_failure "${relative_path}" "缺少 YAML payload 字段"
+      rm -f "${temporary}"
+      return
+    fi
+
+    invalid_rule="$(
+      LC_ALL=C awk '
+        /^[[:space:]]*-[[:space:]]*/ {
+          rule = $0
+          sub(/^[[:space:]]*-[[:space:]]*/, "", rule)
+          gsub(/^[\047\042]|[\047\042]$/, "", rule)
+          if (rule !~ /^[A-Z][A-Z0-9-]*,/) {
+            invalid = 1
+            print NR ":" rule
+            exit
+          }
+          count++
+        }
+        END {
+          if (count == 0 && !invalid) {
+            print "0:没有 classical 规则条目"
+          }
+        }
+      ' "${temporary}"
+    )"
+    if [[ -n "${invalid_rule}" ]]; then
+      record_failure "${relative_path}" "不是 classical YAML（${invalid_rule}）"
+      rm -f "${temporary}"
+      return
+    fi
   fi
 
   checksum="$(sha256sum "${temporary}" | awk '{print $1}')"
@@ -156,8 +192,9 @@ fetch_rule \
 
 fetch_rule \
   "yaml/GitHub.yaml" \
-  "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/github.yaml" \
-  16
+  "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/GitHub/GitHub.yaml" \
+  16 \
+  "classical-yaml"
 
 fetch_rule \
   "fakeip/fakeip-filter.mrs" \
