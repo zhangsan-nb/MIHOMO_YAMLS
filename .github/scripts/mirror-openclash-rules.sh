@@ -101,7 +101,7 @@ fetch_rule \
 
 fetch_rule \
   "yaml/GitHub.yaml" \
-  "https://rule.kelee.one/Clash/GitHub.yaml" \
+  "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/github.yaml" \
   16
 
 fetch_rule \
