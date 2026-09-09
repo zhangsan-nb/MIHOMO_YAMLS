@@ -55,7 +55,7 @@ jobs:
     
     steps:
       - name: Checkout主仓库（获取处理脚本）
-        uses: actions/checkout@v7
+        uses: actions/checkout@v4
 
       - name: Setup Go环境
         uses: actions/setup-go@v7

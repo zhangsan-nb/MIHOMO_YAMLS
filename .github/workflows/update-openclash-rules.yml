@@ -18,7 +18,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout workflow source
-        uses: actions/checkout@v7
+        uses: actions/checkout@v4
 
       - name: Load previous rule manifest
         env:
