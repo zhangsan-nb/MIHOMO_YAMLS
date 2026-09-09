@@ -4,8 +4,8 @@
 
 | 文件名 | proxy-providers | Raw 链接 |
 | :--- | :--- | :--- |
-| **Clash_Sample.yaml** | 机场名称1、机场名称2 | [下载/查看](https://raw.githubusercontent.com/HenryChiao/MIHOMO_YAMLS/main/Overwrite/THENEWOPENCLASH/General_Config/iKeLee/Clash_Sample.yaml) |
-| **backup.yaml** | 机场名称1、机场名称2 | [下载/查看](https://raw.githubusercontent.com/HenryChiao/MIHOMO_YAMLS/main/Overwrite/THENEWOPENCLASH/General_Config/iKeLee/backup.yaml) |
+| **Clash_Sample.yaml** | 机场名称1、机场名称2 | [下载/查看](https://raw.githubusercontent.com/zhangsan-nb/MIHOMO_YAMLS/main/Overwrite/THENEWOPENCLASH/General_Config/iKeLee/Clash_Sample.yaml) |
+| **backup.yaml** | 机场名称1、机场名称2 | [下载/查看](https://raw.githubusercontent.com/zhangsan-nb/MIHOMO_YAMLS/main/Overwrite/THENEWOPENCLASH/General_Config/iKeLee/backup.yaml) |
 
 ---
 [🔙 返回总览](../README.md)

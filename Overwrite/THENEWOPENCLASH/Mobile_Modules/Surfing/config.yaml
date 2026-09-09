@@ -1,6 +1,6 @@
 # OpenClash 覆写模块 - config.yaml
-# 生成日期：2026-07-21
-# 源文件：https://raw.githubusercontent.com/HenryChiao/MIHOMO_YAMLS/main/THEYAMLS/Mobile_Modules/Surfing/config.yaml
+# 生成日期：2026-09-09
+# 源文件：https://raw.githubusercontent.com/zhangsan-nb/MIHOMO_YAMLS/main/THEYAMLS/Mobile_Modules/Surfing/config.yaml
 # 格式：新版 OpenClash [YAML] 块覆写
 #
 # 本文件仅包含 [YAML] 块覆写内容，不含任何 [General] 插件设置。
@@ -322,7 +322,7 @@
 #   name: ALL·故障转移
 #   type: fallback
 #   use: *id002
-# - filter: ^(?=.*(日本|川日|东京|大阪|泉日|埼玉|沪日|深日|[^-]日|JP|Japan)).*$
+# - filter: (?i)(日本|川日|东京|大阪|泉日|埼玉|沪日|深日|[^-]日|jp|japan)
 #   icon: https://cdn.jsdelivr.net/gh/GitMetaio/Surfing@main/app/icon/JP.svg
 #   name: ALL·日本地区
 #   type: url-test
@@ -330,28 +330,29 @@
 #   - 1.主要地址
 #   - 2.备用地址
 #   - 3.额外地址
-# - filter: ^(?=.*(台|新北|彰化|TW|Taiwan|taipei)).*$
+# - filter: (?i)(台|新北|彰化|tw|taiwan|taipei)
 #   icon: https://cdn.jsdelivr.net/gh/GitMetaio/Surfing@main/app/icon/CN.svg
 #   name: ALL·中国台湾
 #   type: url-test
 #   use: *id003
-# - filter: ^(?=.*(港|HK|hk|Hong Kong|HongKong|hongkong)).*$
+# - filter: (?i)(港|hk|hong ?kong)
 #   icon: https://cdn.jsdelivr.net/gh/GitMetaio/Surfing@main/app/icon/HK.svg
 #   name: ALL·香港地区
 #   type: url-test
 #   use: *id003
-# - filter: ^(?=.*(美|波特兰|达拉斯|俄勒冈|凤凰城|费利蒙|硅谷|拉斯维加斯|洛杉矶|圣何塞|圣克拉拉|西雅图|芝加哥|US|United States)).*$
+# - filter: (?i)(美|波特兰|达拉斯|俄勒冈|凤凰城|费利蒙|硅谷|拉斯维加斯|洛杉矶|圣何塞|圣克拉拉|西雅图|芝加哥|us|united ?states)
 #   icon: https://cdn.jsdelivr.net/gh/GitMetaio/Surfing@main/app/icon/US.svg
 #   name: ALL·美国地区
 #   type: url-test
 #   use: *id003
-# - filter: ^(?=.*(新加坡|坡|狮城|SG|Singapore)).*$
+# - filter: (?i)(新加坡|坡|狮城|sg|singapore)
 #   icon: https://cdn.jsdelivr.net/gh/GitMetaio/Surfing@main/app/icon/Singapore.svg
 #   name: ALL·狮城地区
 #   type: url-test
 #   use: *id003
-# - filter: ^(?!.*(港|HK|hk|Hong Kong|HongKong|hongkong|日本|川日|东京|大阪|泉日|埼玉|沪日|深日|[^-]日|JP|Japan|美|波特兰|达拉斯|俄勒冈|凤凰城|费利蒙|硅谷|拉斯维加斯|洛杉矶|圣何塞|圣克拉拉|西雅图|芝加哥|US|United
-#     States|台|新北|彰化|TW|Taiwan|新加坡|坡|狮城|SG|Singapore|灾|网易|Netease|套餐|重置|剩余|到期|订阅|群|账户|流量|有效期|时间|官网|拒绝|DNS|Ch|网址|售|防失)).*$
+# - exclude-filter: (?i)(港|hk|hong ?kong|日本|川日|东京|大阪|泉日|埼玉|沪日|深日|[^-]日|jp|japan|美|波特兰|达拉斯|俄勒冈|凤凰城|费利蒙|硅谷|拉斯维加斯|洛杉矶|圣何塞|圣克拉拉|西雅图|芝加哥|us|united
+#     ?states|台|新北|彰化|tw|taiwan|taipei|新加坡|坡|狮城|sg|singapore|灾|网易|netease|套餐|重置|剩余|到期|订阅|群|账户|流量|有效期|时间|官网|拒绝|dns|ch|网址|售|防失)
+#   filter: .*
 #   icon: https://cdn.jsdelivr.net/gh/GitMetaio/Surfing@main/app/icon/Globe.svg
 #   name: ALL·其它地区
 #   type: url-test

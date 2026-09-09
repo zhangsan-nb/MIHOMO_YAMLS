@@ -1,6 +1,6 @@
 # OpenClash 覆写模块 - mihomo.yaml
-# 生成日期：2026-07-21
-# 源文件：https://raw.githubusercontent.com/HenryChiao/MIHOMO_YAMLS/main/THEYAMLS/General_Config/sfssup/mihomo.yaml
+# 生成日期：2026-09-09
+# 源文件：https://raw.githubusercontent.com/zhangsan-nb/MIHOMO_YAMLS/main/THEYAMLS/General_Config/sfssup/mihomo.yaml
 # 格式：新版 OpenClash [YAML] 块覆写
 #
 # 本文件仅包含 [YAML] 块覆写内容，不含任何 [General] 插件设置。
@@ -88,7 +88,8 @@
 #     exclude-type: http|ss
 #     health-check: &id001
 #       enable: true
-#       interval: 3600
+#       interval: 1800
+#       lazy: true
 #       timeout: 3000
 #       url: https://www.gstatic.com/generate_204
 #     interval: 86400
@@ -976,11 +977,11 @@
 # dns:
 #   cache-algorithm: arc
 #   default-nameserver:
-#   - https://223.5.5.5/dns-query
-#   - https://119.29.29.29/dns-query
+#   - 223.5.5.5
+#   - 120.53.53.53
 #   direct-nameserver:
 #   - https://223.5.5.5/dns-query
-#   - https://1.12.12.12/dns-query
+#   - https://119.29.29.29/dns-query
 #   direct-nameserver-follow-policy: false
 #   disable-qtype-65: true
 #   enable: true
@@ -990,12 +991,13 @@
 #   - DOMAIN-SUFFIX,lan,real-ip
 #   - DOMAIN-SUFFIX,local,real-ip
 #   - RULE-SET,private,real-ip
+#   - RULE-SET,googlefcm,real-ip
 #   - RULE-SET,cn,real-ip
 #   - MATCH,fake-ip
 #   fake-ip-filter-mode: rule
 #   fake-ip-range: 198.18.0.0/15
 #   fake-ip-range6: fc00::/18
-#   fake-ip-ttl: 60
+#   fake-ip-ttl: 10
 #   ipv6: false
 #   ipv6-timeout: 3000
 #   listen: 0.0.0.0:1053
@@ -1003,11 +1005,11 @@
 #   - https://8.8.8.8/dns-query
 #   - https://1.1.1.1/dns-query
 #   nameserver-policy:
-#     +.arpa: 10.0.0.1
+#     rule-set:httpdns,ads,AWAvenue: rcode://success
 #   prefer-h3: false
 #   proxy-server-nameserver:
 #   - https://223.6.6.6/dns-query
-#   - https://120.53.53.53/dns-query
+#   - https://1.12.12.12/dns-query
 #   respect-rules: true
 #   use-hosts: true
 #   use-system-hosts: true

@@ -1,6 +1,6 @@
 # OpenClash 覆写模块 - Clashmi.yaml
-# 生成日期：2026-07-21
-# 源文件：https://raw.githubusercontent.com/HenryChiao/MIHOMO_YAMLS/main/THEYAMLS/General_Config/bgpeer/Clashmi.yaml
+# 生成日期：2026-09-09
+# 源文件：https://raw.githubusercontent.com/zhangsan-nb/MIHOMO_YAMLS/main/THEYAMLS/General_Config/bgpeer/Clashmi.yaml
 # 格式：新版 OpenClash [YAML] 块覆写
 #
 # 本文件仅包含 [YAML] 块覆写内容，不含任何 [General] 插件设置。
@@ -418,17 +418,17 @@
 #
 # rule-providers:
 #   Alibaba:
-#     behavior: classical
-#     format: yaml
-#     interval: 86400
-#     type: http
-#     url: https://gh-proxy.com/https://raw.githubusercontent.com/bgpeer/rules/main/geo/geosite/alibaba.yaml
-#   Apple:
 #     behavior: domain
 #     format: mrs
 #     interval: 86400
 #     type: http
-#     url: https://gh-proxy.com/https://raw.githubusercontent.com/bgpeer/rules/main/geo/geosite/apple.mrs
+#     url: https://gh-proxy.com/https://raw.githubusercontent.com/bgpeer/rules/main/geo/geosite/alibaba.mrs
+#   Apple:
+#     behavior: classical
+#     format: yaml
+#     interval: 86400
+#     type: http
+#     url: https://gh-proxy.com/https://raw.githubusercontent.com/bgpeer/rules/main/geo/geosite/apple.yaml
 #   Claude-zj:
 #     behavior: classical
 #     format: yaml
@@ -454,11 +454,11 @@
 #     type: http
 #     url: https://gh-proxy.com/https://raw.githubusercontent.com/bgpeer/rules/main/geo/geosite/github.mrs
 #   Google-zj:
-#     behavior: classical
-#     format: yaml
+#     behavior: domain
+#     format: mrs
 #     interval: 86400
 #     type: http
-#     url: https://gh-proxy.com/https://raw.githubusercontent.com/bgpeer/rules/main/geo/geosite/google.yaml
+#     url: https://gh-proxy.com/https://raw.githubusercontent.com/bgpeer/rules/main/geo/geosite/google.mrs
 #   Microsoft:
 #     behavior: domain
 #     format: mrs
@@ -490,17 +490,17 @@
 #     type: http
 #     url: https://gh-proxy.com/https://raw.githubusercontent.com/bgpeer/rules/main/geo/geosite/telegram.yaml
 #   Tencent:
-#     behavior: classical
-#     format: yaml
+#     behavior: domain
+#     format: mrs
 #     interval: 86400
 #     type: http
-#     url: https://gh-proxy.com/https://raw.githubusercontent.com/bgpeer/rules/main/geo/geosite/tencent.yaml
+#     url: https://gh-proxy.com/https://raw.githubusercontent.com/bgpeer/rules/main/geo/geosite/tencent.mrs
 #   TikTok-zj:
-#     behavior: classical
-#     format: yaml
+#     behavior: domain
+#     format: mrs
 #     interval: 86400
 #     type: http
-#     url: https://gh-proxy.com/https://raw.githubusercontent.com/bgpeer/rules/main/geo/geosite/tiktok.yaml
+#     url: https://gh-proxy.com/https://raw.githubusercontent.com/bgpeer/rules/main/geo/geosite/tiktok.mrs
 #   bilibili:
 #     behavior: domain
 #     format: mrs
@@ -532,11 +532,11 @@
 #     type: http
 #     url: https://gh-proxy.com/https://raw.githubusercontent.com/bgpeer/rules/main/geo/geoip/cn.mrs
 #   douyin-zj:
-#     behavior: classical
-#     format: yaml
+#     behavior: domain
+#     format: mrs
 #     interval: 86400
 #     type: http
-#     url: https://gh-proxy.com/https://raw.githubusercontent.com/bgpeer/rules/main/geo/geosite/bytedance.yaml
+#     url: https://gh-proxy.com/https://raw.githubusercontent.com/bgpeer/rules/main/geo/geosite/bytedance.mrs
 #   fastly-ip:
 #     behavior: ipcidr
 #     format: mrs
@@ -676,8 +676,6 @@
 #   default-nameserver:
 #   - 223.5.5.5
 #   - 119.29.29.29
-#   - 114.114.114.114
-#   - 180.76.76.76
 #   direct-nameserver:
 #   - system
 #   direct-nameserver-follow-policy: true
@@ -699,18 +697,18 @@
 #   - rule-set:private
 #   fake-ip-filter-mode: blacklist
 #   fake-ip-range: 198.18.0.0/16
+#   fake-ip-range6: fc00::/18
 #   fake-ip-ttl: 60
 #   ipv6: true
 #   listen: 0.0.0.0:1053
 #   nameserver:
-#   - https://dns.alidns.com/dns-query
-#   - https://1.1.1.1/dns-query
+#   - https://223.5.5.5/dns-query
 #   - https://doh.pub/dns-query
-#   - https://dns.google/dns-query
-#   - https://dns.quad9.net/dns-query
-#   - https://dns.adguard.com/dns-query
-#   - tls://cloudflare-dns.com:853
-#   - tls://dns.google:853
+#   - https://1.1.1.1/dns-query
+#   - https://8.8.8.8/dns-query
+#   - https://9.9.9.9/dns-query
+#   - tls://1.1.1.1:853
+#   - tls://8.8.8.8:853
 #   nameserver-policy:
 #     rule-set:Alibaba: &id002
 #     - https://dns.alidns.com/dns-query
@@ -742,7 +740,8 @@
 #     rule-set:gfw: *id001
 #     rule-set:greatfire: *id001
 #     rule-set:icloud: *id001
-#     rule-set:private: *id002
+#     rule-set:private:
+#     - system
 #     rule-set:reject:
 #     - https://dns.adguard.com/dns-query
 #     rule-set:twitter: *id001
@@ -750,13 +749,8 @@
 #   prefer-h3: true
 #   proxy-server-nameserver:
 #   - https://1.1.1.1/dns-query
-#   - https://dns.google/dns-query
-#   - https://cloudflare-dns.com/dns-query
-#   - https://dns.quad9.net/dns-query
-#   - https://dns.adguard.com/dns-query
-#   - https://public.dns.iij.jp/dns-query
-#   - tls://cloudflare-dns.com:853
-#   - tls://dns.google:853
+#   - https://8.8.8.8/dns-query
+#   - https://9.9.9.9/dns-query
 #   respect-rules: true
 #   use-hosts: true
 #   use-system-hosts: true
