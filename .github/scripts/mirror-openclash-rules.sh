@@ -237,6 +237,21 @@ if (( failed_count > 0 || success_count != expected_count )); then
   exit 1
 fi
 
+# Back-compat alias: older OpenClash configs referenced ip/ChinaIP.mrs while
+# the upstream (666OS/rules) publishes the same China GeoIP set as ip/China.mrs.
+# Publish a byte-identical copy under the legacy name.
+if [[ -f "${output_dir}/ip/China.mrs" ]]; then
+  cp "${output_dir}/ip/China.mrs" "${output_dir}/ip/ChinaIP.mrs"
+  legacy_checksum="$(sha256sum "${output_dir}/ip/ChinaIP.mrs" | awk '{print $1}')"
+  legacy_bytes="$(wc -c < "${output_dir}/ip/ChinaIP.mrs")"
+  printf '%s\t%s\t%s\t%s\n' \
+    "ip/ChinaIP.mrs" \
+    "https://raw.githubusercontent.com/666OS/rules/release/mihomo/ip/China.mrs" \
+    "${legacy_bytes}" \
+    "${legacy_checksum}" >> "${sources_file}"
+  echo "alias ip/ChinaIP.mrs -> ip/China.mrs (${legacy_bytes} bytes)"
+fi
+
 cat > "${output_dir}/README.md" <<'EOF'
 # OpenClash rule mirror
 
