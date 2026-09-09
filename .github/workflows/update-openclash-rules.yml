@@ -24,9 +24,11 @@ jobs:
         env:
           PREVIOUS_SOURCES: ${{ runner.temp }}/previous-SOURCES.tsv
         run: |
-          if git fetch --no-tags --depth=1 origin openclash-rules; then
-            git show FETCH_HEAD:SOURCES.tsv > "${PREVIOUS_SOURCES}"
+          if git fetch --no-tags --depth=1 origin openclash-rules \
+            && git show FETCH_HEAD:SOURCES.tsv > "${PREVIOUS_SOURCES}"; then
+            :
           else
+            echo "no usable previous SOURCES.tsv; starting from empty manifest" >&2
             : > "${PREVIOUS_SOURCES}"
           fi
 
@@ -59,7 +61,16 @@ jobs:
           git add -- domain ip classical yaml fakeip README.md SOURCES.tsv SHA256SUMS
           git commit -m "Update OpenClash rules $(date -u +'%Y-%m-%d')"
           git remote add origin "https://x-access-token:${GITHUB_TOKEN}@github.com/${GITHUB_REPOSITORY}.git"
-          git push --force origin HEAD:openclash-rules
+          attempt=0
+          until git push --force origin HEAD:openclash-rules; do
+            attempt=$((attempt + 1))
+            if (( attempt >= 3 )); then
+              echo "push to openclash-rules failed after ${attempt} attempts" >&2
+              exit 1
+            fi
+            echo "push attempt ${attempt} failed; retrying in 15s" >&2
+            sleep 15
+          done
 
       - name: Purge mirrored files from jsDelivr
         id: purge
