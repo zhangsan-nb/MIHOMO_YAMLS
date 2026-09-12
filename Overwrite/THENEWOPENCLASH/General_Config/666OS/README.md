@@ -4,8 +4,8 @@
 
 | 文件名 | proxy-providers | Raw 链接 |
 | :--- | :--- | :--- |
-| **MihomoPro_Config.yaml** | 优质服务商、备用服务商 | [下载/查看](https://raw.githubusercontent.com/HenryChiao/MIHOMO_YAMLS/main/Overwrite/THENEWOPENCLASH/General_Config/666OS/MihomoPro_Config.yaml) |
-| **OneTouch_Config.yaml** | 优质服务商、备用服务商 | [下载/查看](https://raw.githubusercontent.com/HenryChiao/MIHOMO_YAMLS/main/Overwrite/THENEWOPENCLASH/General_Config/666OS/OneTouch_Config.yaml) |
+| **MihomoPro_Config.yaml** | 优质服务商、备用服务商 | [下载/查看](https://raw.githubusercontent.com/zhangsan-nb/MIHOMO_YAMLS/main/Overwrite/THENEWOPENCLASH/General_Config/666OS/MihomoPro_Config.yaml) |
+| **OneTouch_Config.yaml** | 优质服务商、备用服务商 | [下载/查看](https://raw.githubusercontent.com/zhangsan-nb/MIHOMO_YAMLS/main/Overwrite/THENEWOPENCLASH/General_Config/666OS/OneTouch_Config.yaml) |
 
 ---
 [🔙 返回总览](../README.md)

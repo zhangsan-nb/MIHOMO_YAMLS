@@ -1,6 +1,6 @@
 # OpenClash 覆写模块 - config.yaml
-# 生成日期：2026-07-21
-# 源文件：https://raw.githubusercontent.com/HenryChiao/MIHOMO_YAMLS/main/THEYAMLS/Mobile_Modules/AkashaProxy/config.yaml
+# 生成日期：2026-09-12
+# 源文件：https://raw.githubusercontent.com/zhangsan-nb/MIHOMO_YAMLS/main/THEYAMLS/Mobile_Modules/AkashaProxy/config.yaml
 # 格式：新版 OpenClash [YAML] 块覆写
 #
 # 本文件仅包含 [YAML] 块覆写内容，不含任何 [General] 插件设置。
@@ -84,13 +84,15 @@
 #
 # proxy-providers:
 #   机场1:
+#     exclude-filter: (?i)(群|邀请|返利|循环|官网|客服|网站|网址|获取|订阅|流量|到期|机场|下次|版本|官址|备用|过期|已用|联系|邮箱|工单|贩卖|通知|倒卖|防止|重置|剩余|地址|频道|无法|说明|使用|提示|特别|访问|支持|教程|关注|更新|作者|加入|USED|TOTAL|EXPIRE|EMAIL|Panel|Channel|Author)
 #     health-check:
 #       enable: true
 #       interval: 300
 #       lazy: true
-#       timeout: 1500
+#       timeout: 3000
 #       url: https://www.gstatic.com/generate_204
-#     interval: 3600
+#     interval: 86400
+#     proxy: DIRECT
 #     type: http
 #     url: https://example.com/airport
 
@@ -103,174 +105,485 @@
 # ==========================================================
 #
 # proxy-groups:
-# - name: 代理设置
+# - icon: https://gcore.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/Global.png
+#   name: 全局代理
 #   proxies:
-#   - 国内分流
+#   - 故障转移
 #   - 香港
 #   - 台湾
 #   - 日本
+#   - 韩国
 #   - 新加坡
 #   - 美国
-#   - 全部节点
+#   - 英国
+#   - 欧洲
+#   - 其他地区
+#   - 手动选择
+#   - 直接连接
 #   type: select
-# - name: 国内分流
-#   proxies:
-#   - DIRECT
-#   - 中国
-#   type: select
-# - name: 屏蔽
-#   proxies:
-#   - REJECT-DROP
-#   - REJECT
-#   - DIRECT
-#   type: select
-# - name: AI分流
-#   proxies:
-#   - 代理设置
+# - icon: https://gcore.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/Final.png
+#   name: 兜底流量
+#   proxies: &id001
+#   - 全局代理
+#   - 故障转移
 #   - 香港
 #   - 台湾
 #   - 日本
+#   - 韩国
+#   - 新加坡
+#   - 美国
+#   - 英国
+#   - 欧洲
+#   - 其他地区
+#   - 手动选择
+#   - 直接连接
+#   type: select
+# - icon: https://gcore.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/China.png
+#   name: 国内直连
+#   proxies: &id002
+#   - 直接连接
+#   - 全局代理
+#   - 故障转移
+#   - 香港
+#   - 台湾
+#   - 日本
+#   - 韩国
+#   - 新加坡
+#   - 美国
+#   - 英国
+#   - 欧洲
+#   - 其他地区
+#   - 手动选择
+#   type: select
+# - icon: https://gcore.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/ULB.png
+#   interval: 300
+#   lazy: true
+#   name: 故障转移
+#   proxies:
+#   - 香港
+#   - 台湾
+#   - 日本
+#   - 韩国
+#   - 新加坡
+#   - 美国
+#   - 英国
+#   - 欧洲
+#   - 其他地区
+#   type: fallback
+#   url: https://www.gstatic.com/generate_204
+# - filter: ^(?!.*(?i)(直连|群|邀请|返利|循环|官网|客服|网站|网址|获取|订阅|流量|到期|机场|下次|版本|官址|备用|过期|已用|联系|邮箱|工单|贩卖|通知|倒卖|防止|重置|剩余|地址|频道|无法|说明|使用|提示|特别|访问|支持|教程|关注|更新|作者|加入|(?<![a-z])(?:direct|reject|used|total|expire|email|panel|channel|author)(?![a-z]))).*$
+#   icon: https://gcore.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/Static.png
+#   include-all: true
+#   name: 手动选择
+#   type: select
+# - icon: https://gcore.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/Advertising.png
+#   name: 广告拦截
+#   proxies:
+#   - REJECT
+#   - REJECT-DROP
+#   - DIRECT
+#   type: select
+# - hidden: true
+#   icon: https://gcore.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/Direct.png
+#   name: 直接连接
+#   proxies:
+#   - DIRECT
+#   type: select
+# - icon: https://gcore.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/AI.png
+#   name: 人工智能
+#   proxies:
+#   - 美国
+#   - 全局代理
+#   - 故障转移
+#   - 香港
+#   - 台湾
+#   - 日本
+#   - 韩国
 #   - 新加坡
 #   - 英国
-#   - 美国
-#   - 全部节点
+#   - 欧洲
+#   - 其他地区
+#   - 手动选择
+#   - 直接连接
 #   type: select
-# - exclude-filter: (?i)(台湾|tw|taiwan|TW)
-#   filter: (?i)(🇨🇳|中国|cn|china|CN)
-#   health-check: &id001
-#     enable: true
-#     interval: 300
-#     timeout: 3000
-#     url: https://www.gstatic.com/generate_204
-#   include-all: true
-#   interval: 3600
-#   name: 中国
+# - icon: https://gcore.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/X.png
+#   name: 海外社交
+#   proxies: *id001
+#   type: select
+# - icon: https://gcore.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/DomesticMedia.png
+#   name: 国内社交
+#   proxies: *id002
+#   type: select
+# - icon: https://gcore.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/ForeignMedia.png
+#   name: 国际媒体
+#   proxies: *id001
+#   type: select
+# - icon: https://gcore.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/Google_Search.png
+#   name: 谷歌服务
+#   proxies: *id001
+#   type: select
+# - icon: https://gcore.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/Microsoft.png
+#   name: 微软服务
+#   proxies: *id001
+#   type: select
+# - icon: https://gcore.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/Cryptocurrency.png
+#   name: 金融平台
 #   proxies:
-#   - 中国自动选择
+#   - 新加坡
+#   - 全局代理
+#   - 故障转移
+#   - 香港
+#   - 台湾
+#   - 日本
+#   - 韩国
+#   - 美国
+#   - 英国
+#   - 欧洲
+#   - 其他地区
+#   - 手动选择
+#   - 直接连接
 #   type: select
-# - filter: (?i)(🇭🇰|香港|hk|hongkong|hong kong|HK)
-#   health-check: *id001
+# - icon: https://gcore.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/Game.png
+#   name: 游戏平台
+#   proxies:
+#   - 香港
+#   - 全局代理
+#   - 故障转移
+#   - 台湾
+#   - 日本
+#   - 韩国
+#   - 新加坡
+#   - 美国
+#   - 英国
+#   - 欧洲
+#   - 其他地区
+#   - 手动选择
+#   - 直接连接
+#   type: select
+# - filter: ^(?=.*(?i)(香港|沪港|滬港|广港|廣港|深港|京港|🇭🇰|(?<![a-z])(?:hk|hkg|hongkong|hong\s?kong)(?![a-z])))(?!.*(?i)(台湾|臺灣|🇹🇼)).*$
+#   icon: https://gcore.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/Hong_Kong.png
 #   include-all: true
-#   interval: 3600
 #   name: 香港
 #   proxies:
-#   - 香港自动选择
+#   - 香港自动
+#   - 香港均衡-散列
+#   - 香港均衡-轮询
 #   type: select
-# - filter: (?i)(台湾|tw|taiwan|TW)
-#   health-check: *id001
+# - filter: ^(?=.*(?i)(台湾|臺灣|台北|臺北|台中|臺中|台南|臺南|沪台|滬台|广台|廣台|深台|🇹🇼|(?<![a-z])(?:tw|twn|taiwan|tpe|khh)(?![a-z]))).*$
+#   icon: https://gcore.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/Taiwan.png
 #   include-all: true
-#   interval: 3600
 #   name: 台湾
 #   proxies:
-#   - 台湾自动选择
+#   - 台湾自动
+#   - 台湾均衡-散列
+#   - 台湾均衡-轮询
 #   type: select
-# - filter: (?i)(🇯🇵|日|jp|japan|JP)
-#   health-check: *id001
+# - filter: ^(?=.*(?i)(日本|東京|东京|大阪|埼玉|名古屋|福冈|福岡|沪日|滬日|广日|廣日|深日|川日|泉日|🇯🇵|(?<![a-z])(?:jp|jpn|japan|nrt|hnd|kix|itm|tyo)(?![a-z]))).*$
+#   icon: https://gcore.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/Japan.png
 #   include-all: true
-#   interval: 3600
 #   name: 日本
 #   proxies:
-#   - 日本自动选择
+#   - 日本自动
+#   - 日本均衡-散列
+#   - 日本均衡-轮询
 #   type: select
-# - filter: (?i)(🇺🇸|美|us|unitedstates|united states|US)
-#   health-check: *id001
+# - filter: ^(?=.*(?i)(韩国|韓國|首尔|首爾|沪韩|滬韩|广韩|廣韓|深韩|🇰🇷|(?<![a-z])(?:kr|kor|korea|icn|gmp)(?![a-z]))).*$
+#   icon: https://gcore.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/Korea.png
 #   include-all: true
-#   interval: 3600
-#   name: 美国
+#   name: 韩国
 #   proxies:
-#   - 美国自动选择
+#   - 韩国自动
+#   - 韩国均衡-散列
+#   - 韩国均衡-轮询
 #   type: select
-# - filter: (?i)(🇬🇧|英国|uk|英国|England|UK)
-#   health-check: *id001
+# - filter: ^(?=.*(?i)(新加坡|狮城|獅城|沪新|滬新|广新|廣新|深新|🇸🇬|(?<![a-z])(?:sg|sgp|singapore|sin)(?![a-z]))).*$
+#   icon: https://gcore.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/Singapore.png
 #   include-all: true
-#   interval: 3600
-#   name: 英国
-#   proxies:
-#   - 英国自动选择
-#   type: select
-# - filter: (?i)(🇸🇬|新加坡|sg|singapore|SG)
-#   health-check: *id001
-#   include-all: true
-#   interval: 3600
 #   name: 新加坡
 #   proxies:
-#   - 新加坡自动选择
+#   - 新加坡自动
+#   - 新加坡均衡-散列
+#   - 新加坡均衡-轮询
 #   type: select
-# - health-check: *id001
+# - filter: ^(?=.*(?i)(美国|美國|美西|美东|美東|洛杉矶|洛杉磯|圣何塞|聖何塞|硅谷|凤凰城|鳳凰城|达拉斯|達拉斯|西雅图|西雅圖|纽约|紐約|沪美|滬美|广美|廣美|深美|🇺🇸|(?<![a-z])(?:us|usa|united\s?states|lax|sjc|jfk|ord|sea|iad|dfw|mia)(?![a-z])))(?!.*(?i)(🇦🇺|澳大利亚|澳洲|(?<![a-z])(?:au|aus|australia)(?![a-z]))).*$
+#   icon: https://gcore.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/United_States.png
 #   include-all: true
-#   interval: 3600
-#   name: 全部节点
+#   name: 美国
 #   proxies:
-#   - 自动选择
+#   - 美国自动
+#   - 美国均衡-散列
+#   - 美国均衡-轮询
 #   type: select
-# - exclude-filter: (?i)(台湾|tw|taiwan|TW)
-#   filter: (?i)(🇨🇳|中国|cn|china|CN)
-#   health-check: &id002
-#     enable: true
-#     interval: 120
-#     timeout: 3000
-#     url: https://www.gstatic.com/generate_204
+# - filter: ^(?=.*(?i)(英国|英國|伦敦|倫敦|🇬🇧|(?<![a-z])(?:uk|gbr|london|kingdom|lhr|lgw)(?![a-z]))).*$
+#   icon: https://gcore.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/United_Kingdom.png
+#   include-all: true
+#   name: 英国
+#   proxies:
+#   - 英国自动
+#   - 英国均衡-散列
+#   - 英国均衡-轮询
+#   type: select
+# - filter: ^(?=.*(?i)(德国|德國|法国|法國|荷兰|荷蘭|瑞典|瑞士|意大利|義大利|西班牙|葡萄牙|波兰|波蘭|奥地利|奧地利|比利时|比利時|捷克|丹麦|丹麥|芬兰|芬蘭|爱尔兰|愛爾蘭|挪威|匈牙利|罗马尼亚|羅馬尼亞|希腊|希臘|土耳其|俄罗斯|俄羅斯|莫斯科|法兰克福|法蘭克福|阿姆斯特丹|苏黎世|蘇黎世|🇩🇪|🇫🇷|🇳🇱|🇸🇪|🇨🇭|🇮🇹|🇪🇸|🇵🇹|🇵🇱|🇦🇹|🇧🇪|🇨🇿|🇩🇰|🇫🇮|🇮🇪|🇳🇴|🇭🇺|🇷🇴|🇬🇷|🇹🇷|🇷🇺|(?<![a-z])(?:de|deu|fr|fra|nl|nld|se|swe|ch|che|it|ita|es|esp|pt|prt|pl|pol|aut|austria|bel|belgium|cz|cze|dk|dnk|fi|fin|ie|irl|nor|norway|hu|hun|ro|rou|gr|grc|ru|rus|tr|tur|cdg|ams|arn|mad|lis|vie|waw|zrh|bru)(?![a-z])))(?!.*(?i)(英国|英國|伦敦|倫敦|🇬🇧|(?<![a-z])(?:uk|london)(?![a-z]))).*$
+#   icon: https://gcore.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/European_Union.png
+#   include-all: true
+#   name: 欧洲
+#   proxies:
+#   - 欧洲自动
+#   - 欧洲均衡-散列
+#   - 欧洲均衡-轮询
+#   type: select
+# - filter: ^(?!.*(?i)(香港|沪港|滬港|广港|廣港|深港|京港|台湾|臺灣|台北|臺北|台中|臺中|台南|臺南|沪台|滬台|广台|廣台|深台|日本|東京|东京|大阪|埼玉|名古屋|福冈|福岡|沪日|滬日|广日|廣日|深日|川日|泉日|韩国|韓國|首尔|首爾|沪韩|滬韩|广韩|廣韓|深韩|新加坡|狮城|獅城|沪新|滬新|广新|廣新|深新|美国|美國|美西|美东|美東|洛杉矶|洛杉磯|圣何塞|聖何塞|硅谷|凤凰城|鳳凰城|达拉斯|達拉斯|西雅图|西雅圖|纽约|紐約|沪美|滬美|广美|廣美|深美|英国|英國|伦敦|倫敦|德国|德國|法国|法國|荷兰|荷蘭|瑞典|瑞士|意大利|義大利|西班牙|葡萄牙|波兰|波蘭|奥地利|奧地利|比利时|比利時|捷克|丹麦|丹麥|芬兰|芬蘭|爱尔兰|愛爾蘭|挪威|匈牙利|罗马尼亚|羅馬尼亞|希腊|希臘|土耳其|俄罗斯|俄羅斯|莫斯科|法兰克福|法蘭克福|阿姆斯特丹|苏黎世|蘇黎世|🇭🇰|🇹🇼|🇯🇵|🇰🇷|🇸🇬|🇺🇸|🇬🇧|🇩🇪|🇫🇷|🇳🇱|🇸🇪|🇨🇭|🇮🇹|🇪🇸|🇵🇹|🇵🇱|🇦🇹|🇧🇪|🇨🇿|🇩🇰|🇫🇮|🇮🇪|🇳🇴|🇭🇺|🇷🇴|🇬🇷|🇹🇷|🇷🇺|群|邀请|返利|循环|官网|客服|网站|网址|获取|订阅|流量|到期|机场|下次|版本|官址|备用|过期|已用|联系|邮箱|工单|贩卖|通知|倒卖|防止|重置|剩余|地址|频道|无法|说明|使用|提示|特别|访问|支持|教程|关注|更新|作者|加入|(?<![a-z])(?:direct|reject|hk|hkg|hongkong|tw|twn|taiwan|tpe|khh|jp|jpn|japan|nrt|hnd|kix|itm|tyo|kr|kor|korea|icn|gmp|sg|sgp|singapore|sin|us|usa|lax|sjc|jfk|ord|sea|iad|dfw|mia|uk|gbr|london|kingdom|lhr|lgw|de|deu|fr|fra|nl|nld|se|swe|ch|che|it|ita|es|esp|pt|prt|pl|pol|aut|bel|cz|cze|dk|dnk|fi|fin|ie|irl|nor|hu|hun|ro|rou|gr|grc|ru|rus|tr|tur|cdg|ams|arn|mad|lis|vie|waw|zrh|bru|used|total|expire|email|panel|channel|author)(?![a-z]))).*$
+#   icon: https://gcore.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/World_Map.png
+#   include-all: true
+#   name: 其他地区
+#   proxies:
+#   - 其他自动
+#   - 其他均衡-散列
+#   - 其他均衡-轮询
+#   type: select
+# - filter: ^(?=.*(?i)(香港|沪港|滬港|广港|廣港|深港|京港|🇭🇰|(?<![a-z])(?:hk|hkg|hongkong|hong\s?kong)(?![a-z])))(?!.*(?i)(台湾|臺灣|🇹🇼)).*$
 #   hidden: true
 #   include-all: true
 #   interval: 300
-#   name: 中国自动选择
-#   tolerance: 100
+#   lazy: true
+#   name: 香港自动
+#   tolerance: 50
 #   type: url-test
-# - filter: (?i)(🇭🇰|香港|hk|hongkong|hong kong|HK)
-#   health-check: *id002
+#   url: https://www.gstatic.com/generate_204
+# - filter: ^(?=.*(?i)(台湾|臺灣|台北|臺北|台中|臺中|台南|臺南|沪台|滬台|广台|廣台|深台|🇹🇼|(?<![a-z])(?:tw|twn|taiwan|tpe|khh)(?![a-z]))).*$
 #   hidden: true
 #   include-all: true
 #   interval: 300
-#   name: 香港自动选择
-#   tolerance: 100
+#   lazy: true
+#   name: 台湾自动
+#   tolerance: 50
 #   type: url-test
-# - filter: (?i)(台湾|tw|taiwan|TW)
-#   health-check: *id002
+#   url: https://www.gstatic.com/generate_204
+# - filter: ^(?=.*(?i)(日本|東京|东京|大阪|埼玉|名古屋|福冈|福岡|沪日|滬日|广日|廣日|深日|川日|泉日|🇯🇵|(?<![a-z])(?:jp|jpn|japan|nrt|hnd|kix|itm|tyo)(?![a-z]))).*$
 #   hidden: true
 #   include-all: true
 #   interval: 300
-#   name: 台湾自动选择
-#   tolerance: 100
+#   lazy: true
+#   name: 日本自动
+#   tolerance: 50
 #   type: url-test
-# - filter: (?i)(🇯🇵|日|jp|japan|JP)
-#   health-check: *id002
+#   url: https://www.gstatic.com/generate_204
+# - filter: ^(?=.*(?i)(韩国|韓國|首尔|首爾|沪韩|滬韩|广韩|廣韓|深韩|🇰🇷|(?<![a-z])(?:kr|kor|korea|icn|gmp)(?![a-z]))).*$
 #   hidden: true
 #   include-all: true
 #   interval: 300
-#   name: 日本自动选择
-#   tolerance: 100
+#   lazy: true
+#   name: 韩国自动
+#   tolerance: 50
 #   type: url-test
-# - filter: (?i)(🇺🇸|美|us|unitedstates|united states|US)
-#   health-check: *id002
+#   url: https://www.gstatic.com/generate_204
+# - filter: ^(?=.*(?i)(新加坡|狮城|獅城|沪新|滬新|广新|廣新|深新|🇸🇬|(?<![a-z])(?:sg|sgp|singapore|sin)(?![a-z]))).*$
 #   hidden: true
 #   include-all: true
 #   interval: 300
-#   name: 美国自动选择
-#   tolerance: 100
+#   lazy: true
+#   name: 新加坡自动
+#   tolerance: 50
 #   type: url-test
-# - filter: (?i)(🇬🇧|英国|uk|英国|England|UK)
-#   health-check: *id002
+#   url: https://www.gstatic.com/generate_204
+# - filter: ^(?=.*(?i)(美国|美國|美西|美东|美東|洛杉矶|洛杉磯|圣何塞|聖何塞|硅谷|凤凰城|鳳凰城|达拉斯|達拉斯|西雅图|西雅圖|纽约|紐約|沪美|滬美|广美|廣美|深美|🇺🇸|(?<![a-z])(?:us|usa|united\s?states|lax|sjc|jfk|ord|sea|iad|dfw|mia)(?![a-z])))(?!.*(?i)(🇦🇺|澳大利亚|澳洲|(?<![a-z])(?:au|aus|australia)(?![a-z]))).*$
 #   hidden: true
 #   include-all: true
 #   interval: 300
-#   name: 英国自动选择
-#   tolerance: 100
+#   lazy: true
+#   name: 美国自动
+#   tolerance: 50
 #   type: url-test
-# - filter: (?i)(🇸🇬|新加坡|sg|singapore|SG)
-#   health-check: *id002
+#   url: https://www.gstatic.com/generate_204
+# - filter: ^(?=.*(?i)(英国|英國|伦敦|倫敦|🇬🇧|(?<![a-z])(?:uk|gbr|london|kingdom|lhr|lgw)(?![a-z]))).*$
 #   hidden: true
 #   include-all: true
 #   interval: 300
-#   name: 新加坡自动选择
-#   tolerance: 100
+#   lazy: true
+#   name: 英国自动
+#   tolerance: 50
 #   type: url-test
-# - health-check: *id002
+#   url: https://www.gstatic.com/generate_204
+# - filter: ^(?=.*(?i)(德国|德國|法国|法國|荷兰|荷蘭|瑞典|瑞士|意大利|義大利|西班牙|葡萄牙|波兰|波蘭|奥地利|奧地利|比利时|比利時|捷克|丹麦|丹麥|芬兰|芬蘭|爱尔兰|愛爾蘭|挪威|匈牙利|罗马尼亚|羅馬尼亞|希腊|希臘|土耳其|俄罗斯|俄羅斯|莫斯科|法兰克福|法蘭克福|阿姆斯特丹|苏黎世|蘇黎世|🇩🇪|🇫🇷|🇳🇱|🇸🇪|🇨🇭|🇮🇹|🇪🇸|🇵🇹|🇵🇱|🇦🇹|🇧🇪|🇨🇿|🇩🇰|🇫🇮|🇮🇪|🇳🇴|🇭🇺|🇷🇴|🇬🇷|🇹🇷|🇷🇺|(?<![a-z])(?:de|deu|fr|fra|nl|nld|se|swe|ch|che|it|ita|es|esp|pt|prt|pl|pol|aut|austria|bel|belgium|cz|cze|dk|dnk|fi|fin|ie|irl|nor|norway|hu|hun|ro|rou|gr|grc|ru|rus|tr|tur|cdg|ams|arn|mad|lis|vie|waw|zrh|bru)(?![a-z])))(?!.*(?i)(英国|英國|伦敦|倫敦|🇬🇧|(?<![a-z])(?:uk|london)(?![a-z]))).*$
 #   hidden: true
 #   include-all: true
 #   interval: 300
-#   name: 自动选择
-#   tolerance: 100
+#   lazy: true
+#   name: 欧洲自动
+#   tolerance: 50
 #   type: url-test
+#   url: https://www.gstatic.com/generate_204
+# - filter: ^(?!.*(?i)(香港|沪港|滬港|广港|廣港|深港|京港|台湾|臺灣|台北|臺北|台中|臺中|台南|臺南|沪台|滬台|广台|廣台|深台|日本|東京|东京|大阪|埼玉|名古屋|福冈|福岡|沪日|滬日|广日|廣日|深日|川日|泉日|韩国|韓國|首尔|首爾|沪韩|滬韩|广韩|廣韓|深韩|新加坡|狮城|獅城|沪新|滬新|广新|廣新|深新|美国|美國|美西|美东|美東|洛杉矶|洛杉磯|圣何塞|聖何塞|硅谷|凤凰城|鳳凰城|达拉斯|達拉斯|西雅图|西雅圖|纽约|紐約|沪美|滬美|广美|廣美|深美|英国|英國|伦敦|倫敦|德国|德國|法国|法國|荷兰|荷蘭|瑞典|瑞士|意大利|義大利|西班牙|葡萄牙|波兰|波蘭|奥地利|奧地利|比利时|比利時|捷克|丹麦|丹麥|芬兰|芬蘭|爱尔兰|愛爾蘭|挪威|匈牙利|罗马尼亚|羅馬尼亞|希腊|希臘|土耳其|俄罗斯|俄羅斯|莫斯科|法兰克福|法蘭克福|阿姆斯特丹|苏黎世|蘇黎世|🇭🇰|🇹🇼|🇯🇵|🇰🇷|🇸🇬|🇺🇸|🇬🇧|🇩🇪|🇫🇷|🇳🇱|🇸🇪|🇨🇭|🇮🇹|🇪🇸|🇵🇹|🇵🇱|🇦🇹|🇧🇪|🇨🇿|🇩🇰|🇫🇮|🇮🇪|🇳🇴|🇭🇺|🇷🇴|🇬🇷|🇹🇷|🇷🇺|群|邀请|返利|循环|官网|客服|网站|网址|获取|订阅|流量|到期|机场|下次|版本|官址|备用|过期|已用|联系|邮箱|工单|贩卖|通知|倒卖|防止|重置|剩余|地址|频道|无法|说明|使用|提示|特别|访问|支持|教程|关注|更新|作者|加入|(?<![a-z])(?:direct|reject|hk|hkg|hongkong|tw|twn|taiwan|tpe|khh|jp|jpn|japan|nrt|hnd|kix|itm|tyo|kr|kor|korea|icn|gmp|sg|sgp|singapore|sin|us|usa|lax|sjc|jfk|ord|sea|iad|dfw|mia|uk|gbr|london|kingdom|lhr|lgw|de|deu|fr|fra|nl|nld|se|swe|ch|che|it|ita|es|esp|pt|prt|pl|pol|aut|bel|cz|cze|dk|dnk|fi|fin|ie|irl|nor|hu|hun|ro|rou|gr|grc|ru|rus|tr|tur|cdg|ams|arn|mad|lis|vie|waw|zrh|bru|used|total|expire|email|panel|channel|author)(?![a-z]))).*$
+#   hidden: true
+#   include-all: true
+#   interval: 300
+#   lazy: true
+#   name: 其他自动
+#   tolerance: 50
+#   type: url-test
+#   url: https://www.gstatic.com/generate_204
+# - filter: ^(?=.*(?i)(香港|沪港|滬港|广港|廣港|深港|京港|🇭🇰|(?<![a-z])(?:hk|hkg|hongkong|hong\s?kong)(?![a-z])))(?!.*(?i)(台湾|臺灣|🇹🇼)).*$
+#   hidden: true
+#   include-all: true
+#   interval: 300
+#   lazy: true
+#   name: 香港均衡-散列
+#   strategy: consistent-hashing
+#   type: load-balance
+#   url: https://www.gstatic.com/generate_204
+# - filter: ^(?=.*(?i)(台湾|臺灣|台北|臺北|台中|臺中|台南|臺南|沪台|滬台|广台|廣台|深台|🇹🇼|(?<![a-z])(?:tw|twn|taiwan|tpe|khh)(?![a-z]))).*$
+#   hidden: true
+#   include-all: true
+#   interval: 300
+#   lazy: true
+#   name: 台湾均衡-散列
+#   strategy: consistent-hashing
+#   type: load-balance
+#   url: https://www.gstatic.com/generate_204
+# - filter: ^(?=.*(?i)(日本|東京|东京|大阪|埼玉|名古屋|福冈|福岡|沪日|滬日|广日|廣日|深日|川日|泉日|🇯🇵|(?<![a-z])(?:jp|jpn|japan|nrt|hnd|kix|itm|tyo)(?![a-z]))).*$
+#   hidden: true
+#   include-all: true
+#   interval: 300
+#   lazy: true
+#   name: 日本均衡-散列
+#   strategy: consistent-hashing
+#   type: load-balance
+#   url: https://www.gstatic.com/generate_204
+# - filter: ^(?=.*(?i)(韩国|韓國|首尔|首爾|沪韩|滬韩|广韩|廣韓|深韩|🇰🇷|(?<![a-z])(?:kr|kor|korea|icn|gmp)(?![a-z]))).*$
+#   hidden: true
+#   include-all: true
+#   interval: 300
+#   lazy: true
+#   name: 韩国均衡-散列
+#   strategy: consistent-hashing
+#   type: load-balance
+#   url: https://www.gstatic.com/generate_204
+# - filter: ^(?=.*(?i)(新加坡|狮城|獅城|沪新|滬新|广新|廣新|深新|🇸🇬|(?<![a-z])(?:sg|sgp|singapore|sin)(?![a-z]))).*$
+#   hidden: true
+#   include-all: true
+#   interval: 300
+#   lazy: true
+#   name: 新加坡均衡-散列
+#   strategy: consistent-hashing
+#   type: load-balance
+#   url: https://www.gstatic.com/generate_204
+# - filter: ^(?=.*(?i)(美国|美國|美西|美东|美東|洛杉矶|洛杉磯|圣何塞|聖何塞|硅谷|凤凰城|鳳凰城|达拉斯|達拉斯|西雅图|西雅圖|纽约|紐約|沪美|滬美|广美|廣美|深美|🇺🇸|(?<![a-z])(?:us|usa|united\s?states|lax|sjc|jfk|ord|sea|iad|dfw|mia)(?![a-z])))(?!.*(?i)(🇦🇺|澳大利亚|澳洲|(?<![a-z])(?:au|aus|australia)(?![a-z]))).*$
+#   hidden: true
+#   include-all: true
+#   interval: 300
+#   lazy: true
+#   name: 美国均衡-散列
+#   strategy: consistent-hashing
+#   type: load-balance
+#   url: https://www.gstatic.com/generate_204
+# - filter: ^(?=.*(?i)(英国|英國|伦敦|倫敦|🇬🇧|(?<![a-z])(?:uk|gbr|london|kingdom|lhr|lgw)(?![a-z]))).*$
+#   hidden: true
+#   include-all: true
+#   interval: 300
+#   lazy: true
+#   name: 英国均衡-散列
+#   strategy: consistent-hashing
+#   type: load-balance
+#   url: https://www.gstatic.com/generate_204
+# - filter: ^(?=.*(?i)(德国|德國|法国|法國|荷兰|荷蘭|瑞典|瑞士|意大利|義大利|西班牙|葡萄牙|波兰|波蘭|奥地利|奧地利|比利时|比利時|捷克|丹麦|丹麥|芬兰|芬蘭|爱尔兰|愛爾蘭|挪威|匈牙利|罗马尼亚|羅馬尼亞|希腊|希臘|土耳其|俄罗斯|俄羅斯|莫斯科|法兰克福|法蘭克福|阿姆斯特丹|苏黎世|蘇黎世|🇩🇪|🇫🇷|🇳🇱|🇸🇪|🇨🇭|🇮🇹|🇪🇸|🇵🇹|🇵🇱|🇦🇹|🇧🇪|🇨🇿|🇩🇰|🇫🇮|🇮🇪|🇳🇴|🇭🇺|🇷🇴|🇬🇷|🇹🇷|🇷🇺|(?<![a-z])(?:de|deu|fr|fra|nl|nld|se|swe|ch|che|it|ita|es|esp|pt|prt|pl|pol|aut|austria|bel|belgium|cz|cze|dk|dnk|fi|fin|ie|irl|nor|norway|hu|hun|ro|rou|gr|grc|ru|rus|tr|tur|cdg|ams|arn|mad|lis|vie|waw|zrh|bru)(?![a-z])))(?!.*(?i)(英国|英國|伦敦|倫敦|🇬🇧|(?<![a-z])(?:uk|london)(?![a-z]))).*$
+#   hidden: true
+#   include-all: true
+#   interval: 300
+#   lazy: true
+#   name: 欧洲均衡-散列
+#   strategy: consistent-hashing
+#   type: load-balance
+#   url: https://www.gstatic.com/generate_204
+# - filter: ^(?!.*(?i)(香港|沪港|滬港|广港|廣港|深港|京港|台湾|臺灣|台北|臺北|台中|臺中|台南|臺南|沪台|滬台|广台|廣台|深台|日本|東京|东京|大阪|埼玉|名古屋|福冈|福岡|沪日|滬日|广日|廣日|深日|川日|泉日|韩国|韓國|首尔|首爾|沪韩|滬韩|广韩|廣韓|深韩|新加坡|狮城|獅城|沪新|滬新|广新|廣新|深新|美国|美國|美西|美东|美東|洛杉矶|洛杉磯|圣何塞|聖何塞|硅谷|凤凰城|鳳凰城|达拉斯|達拉斯|西雅图|西雅圖|纽约|紐約|沪美|滬美|广美|廣美|深美|英国|英國|伦敦|倫敦|德国|德國|法国|法國|荷兰|荷蘭|瑞典|瑞士|意大利|義大利|西班牙|葡萄牙|波兰|波蘭|奥地利|奧地利|比利时|比利時|捷克|丹麦|丹麥|芬兰|芬蘭|爱尔兰|愛爾蘭|挪威|匈牙利|罗马尼亚|羅馬尼亞|希腊|希臘|土耳其|俄罗斯|俄羅斯|莫斯科|法兰克福|法蘭克福|阿姆斯特丹|苏黎世|蘇黎世|🇭🇰|🇹🇼|🇯🇵|🇰🇷|🇸🇬|🇺🇸|🇬🇧|🇩🇪|🇫🇷|🇳🇱|🇸🇪|🇨🇭|🇮🇹|🇪🇸|🇵🇹|🇵🇱|🇦🇹|🇧🇪|🇨🇿|🇩🇰|🇫🇮|🇮🇪|🇳🇴|🇭🇺|🇷🇴|🇬🇷|🇹🇷|🇷🇺|群|邀请|返利|循环|官网|客服|网站|网址|获取|订阅|流量|到期|机场|下次|版本|官址|备用|过期|已用|联系|邮箱|工单|贩卖|通知|倒卖|防止|重置|剩余|地址|频道|无法|说明|使用|提示|特别|访问|支持|教程|关注|更新|作者|加入|(?<![a-z])(?:direct|reject|hk|hkg|hongkong|tw|twn|taiwan|tpe|khh|jp|jpn|japan|nrt|hnd|kix|itm|tyo|kr|kor|korea|icn|gmp|sg|sgp|singapore|sin|us|usa|lax|sjc|jfk|ord|sea|iad|dfw|mia|uk|gbr|london|kingdom|lhr|lgw|de|deu|fr|fra|nl|nld|se|swe|ch|che|it|ita|es|esp|pt|prt|pl|pol|aut|bel|cz|cze|dk|dnk|fi|fin|ie|irl|nor|hu|hun|ro|rou|gr|grc|ru|rus|tr|tur|cdg|ams|arn|mad|lis|vie|waw|zrh|bru|used|total|expire|email|panel|channel|author)(?![a-z]))).*$
+#   hidden: true
+#   include-all: true
+#   interval: 300
+#   lazy: true
+#   name: 其他均衡-散列
+#   strategy: consistent-hashing
+#   type: load-balance
+#   url: https://www.gstatic.com/generate_204
+# - filter: ^(?=.*(?i)(香港|沪港|滬港|广港|廣港|深港|京港|🇭🇰|(?<![a-z])(?:hk|hkg|hongkong|hong\s?kong)(?![a-z])))(?!.*(?i)(台湾|臺灣|🇹🇼)).*$
+#   hidden: true
+#   include-all: true
+#   interval: 300
+#   lazy: true
+#   name: 香港均衡-轮询
+#   strategy: round-robin
+#   type: load-balance
+#   url: https://www.gstatic.com/generate_204
+# - filter: ^(?=.*(?i)(台湾|臺灣|台北|臺北|台中|臺中|台南|臺南|沪台|滬台|广台|廣台|深台|🇹🇼|(?<![a-z])(?:tw|twn|taiwan|tpe|khh)(?![a-z]))).*$
+#   hidden: true
+#   include-all: true
+#   interval: 300
+#   lazy: true
+#   name: 台湾均衡-轮询
+#   strategy: round-robin
+#   type: load-balance
+#   url: https://www.gstatic.com/generate_204
+# - filter: ^(?=.*(?i)(日本|東京|东京|大阪|埼玉|名古屋|福冈|福岡|沪日|滬日|广日|廣日|深日|川日|泉日|🇯🇵|(?<![a-z])(?:jp|jpn|japan|nrt|hnd|kix|itm|tyo)(?![a-z]))).*$
+#   hidden: true
+#   include-all: true
+#   interval: 300
+#   lazy: true
+#   name: 日本均衡-轮询
+#   strategy: round-robin
+#   type: load-balance
+#   url: https://www.gstatic.com/generate_204
+# - filter: ^(?=.*(?i)(韩国|韓國|首尔|首爾|沪韩|滬韩|广韩|廣韓|深韩|🇰🇷|(?<![a-z])(?:kr|kor|korea|icn|gmp)(?![a-z]))).*$
+#   hidden: true
+#   include-all: true
+#   interval: 300
+#   lazy: true
+#   name: 韩国均衡-轮询
+#   strategy: round-robin
+#   type: load-balance
+#   url: https://www.gstatic.com/generate_204
+# - filter: ^(?=.*(?i)(新加坡|狮城|獅城|沪新|滬新|广新|廣新|深新|🇸🇬|(?<![a-z])(?:sg|sgp|singapore|sin)(?![a-z]))).*$
+#   hidden: true
+#   include-all: true
+#   interval: 300
+#   lazy: true
+#   name: 新加坡均衡-轮询
+#   strategy: round-robin
+#   type: load-balance
+#   url: https://www.gstatic.com/generate_204
+# - filter: ^(?=.*(?i)(美国|美國|美西|美东|美東|洛杉矶|洛杉磯|圣何塞|聖何塞|硅谷|凤凰城|鳳凰城|达拉斯|達拉斯|西雅图|西雅圖|纽约|紐約|沪美|滬美|广美|廣美|深美|🇺🇸|(?<![a-z])(?:us|usa|united\s?states|lax|sjc|jfk|ord|sea|iad|dfw|mia)(?![a-z])))(?!.*(?i)(🇦🇺|澳大利亚|澳洲|(?<![a-z])(?:au|aus|australia)(?![a-z]))).*$
+#   hidden: true
+#   include-all: true
+#   interval: 300
+#   lazy: true
+#   name: 美国均衡-轮询
+#   strategy: round-robin
+#   type: load-balance
+#   url: https://www.gstatic.com/generate_204
+# - filter: ^(?=.*(?i)(英国|英國|伦敦|倫敦|🇬🇧|(?<![a-z])(?:uk|gbr|london|kingdom|lhr|lgw)(?![a-z]))).*$
+#   hidden: true
+#   include-all: true
+#   interval: 300
+#   lazy: true
+#   name: 英国均衡-轮询
+#   strategy: round-robin
+#   type: load-balance
+#   url: https://www.gstatic.com/generate_204
+# - filter: ^(?=.*(?i)(德国|德國|法国|法國|荷兰|荷蘭|瑞典|瑞士|意大利|義大利|西班牙|葡萄牙|波兰|波蘭|奥地利|奧地利|比利时|比利時|捷克|丹麦|丹麥|芬兰|芬蘭|爱尔兰|愛爾蘭|挪威|匈牙利|罗马尼亚|羅馬尼亞|希腊|希臘|土耳其|俄罗斯|俄羅斯|莫斯科|法兰克福|法蘭克福|阿姆斯特丹|苏黎世|蘇黎世|🇩🇪|🇫🇷|🇳🇱|🇸🇪|🇨🇭|🇮🇹|🇪🇸|🇵🇹|🇵🇱|🇦🇹|🇧🇪|🇨🇿|🇩🇰|🇫🇮|🇮🇪|🇳🇴|🇭🇺|🇷🇴|🇬🇷|🇹🇷|🇷🇺|(?<![a-z])(?:de|deu|fr|fra|nl|nld|se|swe|ch|che|it|ita|es|esp|pt|prt|pl|pol|aut|austria|bel|belgium|cz|cze|dk|dnk|fi|fin|ie|irl|nor|norway|hu|hun|ro|rou|gr|grc|ru|rus|tr|tur|cdg|ams|arn|mad|lis|vie|waw|zrh|bru)(?![a-z])))(?!.*(?i)(英国|英國|伦敦|倫敦|🇬🇧|(?<![a-z])(?:uk|london)(?![a-z]))).*$
+#   hidden: true
+#   include-all: true
+#   interval: 300
+#   lazy: true
+#   name: 欧洲均衡-轮询
+#   strategy: round-robin
+#   type: load-balance
+#   url: https://www.gstatic.com/generate_204
+# - filter: ^(?!.*(?i)(香港|沪港|滬港|广港|廣港|深港|京港|台湾|臺灣|台北|臺北|台中|臺中|台南|臺南|沪台|滬台|广台|廣台|深台|日本|東京|东京|大阪|埼玉|名古屋|福冈|福岡|沪日|滬日|广日|廣日|深日|川日|泉日|韩国|韓國|首尔|首爾|沪韩|滬韩|广韩|廣韓|深韩|新加坡|狮城|獅城|沪新|滬新|广新|廣新|深新|美国|美國|美西|美东|美東|洛杉矶|洛杉磯|圣何塞|聖何塞|硅谷|凤凰城|鳳凰城|达拉斯|達拉斯|西雅图|西雅圖|纽约|紐約|沪美|滬美|广美|廣美|深美|英国|英國|伦敦|倫敦|德国|德國|法国|法國|荷兰|荷蘭|瑞典|瑞士|意大利|義大利|西班牙|葡萄牙|波兰|波蘭|奥地利|奧地利|比利时|比利時|捷克|丹麦|丹麥|芬兰|芬蘭|爱尔兰|愛爾蘭|挪威|匈牙利|罗马尼亚|羅馬尼亞|希腊|希臘|土耳其|俄罗斯|俄羅斯|莫斯科|法兰克福|法蘭克福|阿姆斯特丹|苏黎世|蘇黎世|🇭🇰|🇹🇼|🇯🇵|🇰🇷|🇸🇬|🇺🇸|🇬🇧|🇩🇪|🇫🇷|🇳🇱|🇸🇪|🇨🇭|🇮🇹|🇪🇸|🇵🇹|🇵🇱|🇦🇹|🇧🇪|🇨🇿|🇩🇰|🇫🇮|🇮🇪|🇳🇴|🇭🇺|🇷🇴|🇬🇷|🇹🇷|🇷🇺|群|邀请|返利|循环|官网|客服|网站|网址|获取|订阅|流量|到期|机场|下次|版本|官址|备用|过期|已用|联系|邮箱|工单|贩卖|通知|倒卖|防止|重置|剩余|地址|频道|无法|说明|使用|提示|特别|访问|支持|教程|关注|更新|作者|加入|(?<![a-z])(?:direct|reject|hk|hkg|hongkong|tw|twn|taiwan|tpe|khh|jp|jpn|japan|nrt|hnd|kix|itm|tyo|kr|kor|korea|icn|gmp|sg|sgp|singapore|sin|us|usa|lax|sjc|jfk|ord|sea|iad|dfw|mia|uk|gbr|london|kingdom|lhr|lgw|de|deu|fr|fra|nl|nld|se|swe|ch|che|it|ita|es|esp|pt|prt|pl|pol|aut|bel|cz|cze|dk|dnk|fi|fin|ie|irl|nor|hu|hun|ro|rou|gr|grc|ru|rus|tr|tur|cdg|ams|arn|mad|lis|vie|waw|zrh|bru|used|total|expire|email|panel|channel|author)(?![a-z]))).*$
+#   hidden: true
+#   include-all: true
+#   interval: 300
+#   lazy: true
+#   name: 其他均衡-轮询
+#   strategy: round-robin
+#   type: load-balance
+#   url: https://www.gstatic.com/generate_204
 
 # ==========================================================
 # rule-providers（从源文件直接提取）
@@ -280,13 +593,287 @@
 # ==========================================================
 #
 # rule-providers:
-#   AWAvenue:
-#     behavior: classical
-#     format: yaml
-#     interval: 60480
-#     path: ./rule_providers/AWAvenue-Ads-Rule-Clash.yaml
+#   AI:
+#     behavior: domain
+#     format: mrs
+#     interval: 86400
+#     proxy: DIRECT
 #     type: http
-#     url: https://gcore.jsdelivr.net/gh/TG-Twilight/AWAvenue-Ads-Rule@main/Filters/AWAvenue-Ads-Rule-Clash-Classical.yaml
+#     url: https://gcore.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@meta/geo/geosite/category-ai-!cn.mrs
+#   AWAvenue:
+#     behavior: domain
+#     format: mrs
+#     interval: 86400
+#     path: ./rule_providers/AWAvenue-Ads-Rule-Clash.mrs
+#     proxy: DIRECT
+#     type: http
+#     url: https://gcore.jsdelivr.net/gh/TG-Twilight/AWAvenue-Ads-Rule@main/Filters/AWAvenue-Ads-Rule-Clash.mrs
+#   Anthropic:
+#     behavior: domain
+#     format: mrs
+#     interval: 86400
+#     proxy: DIRECT
+#     type: http
+#     url: https://gcore.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@meta/geo/geosite/anthropic.mrs
+#   Copilot:
+#     behavior: domain
+#     format: mrs
+#     interval: 86400
+#     proxy: DIRECT
+#     type: http
+#     url: https://gcore.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@meta/geo/geosite/github-copilot.mrs
+#   Crypto:
+#     behavior: domain
+#     format: mrs
+#     interval: 86400
+#     proxy: DIRECT
+#     type: http
+#     url: https://gcore.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@meta/geo/geosite/category-cryptocurrency.mrs
+#   Disney:
+#     behavior: domain
+#     format: mrs
+#     interval: 86400
+#     proxy: DIRECT
+#     type: http
+#     url: https://gcore.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@meta/geo/geosite/disney.mrs
+#   Douyin:
+#     behavior: domain
+#     format: mrs
+#     interval: 86400
+#     proxy: DIRECT
+#     type: http
+#     url: https://gcore.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@meta/geo/geosite/douyin.mrs
+#   Entertainment:
+#     behavior: domain
+#     format: mrs
+#     interval: 86400
+#     proxy: DIRECT
+#     type: http
+#     url: https://gcore.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@meta/geo/geosite/category-entertainment.mrs
+#   Epic:
+#     behavior: domain
+#     format: mrs
+#     interval: 86400
+#     proxy: DIRECT
+#     type: http
+#     url: https://gcore.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@meta/geo/geosite/epicgames.mrs
+#   FacebookIP:
+#     behavior: ipcidr
+#     format: mrs
+#     interval: 86400
+#     proxy: DIRECT
+#     type: http
+#     url: https://gcore.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@meta/geo/geoip/facebook.mrs
+#   Finance:
+#     behavior: domain
+#     format: mrs
+#     interval: 86400
+#     proxy: DIRECT
+#     type: http
+#     url: https://gcore.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@meta/geo/geosite/category-finance.mrs
+#   GameDownload:
+#     behavior: domain
+#     format: mrs
+#     interval: 86400
+#     proxy: DIRECT
+#     type: http
+#     url: https://gcore.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@meta/geo/geosite/category-game-platforms-download.mrs
+#   Games:
+#     behavior: domain
+#     format: mrs
+#     interval: 86400
+#     proxy: DIRECT
+#     type: http
+#     url: https://gcore.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@meta/geo/geosite/category-games-!cn.mrs
+#   Gemini:
+#     behavior: domain
+#     format: mrs
+#     interval: 86400
+#     proxy: DIRECT
+#     type: http
+#     url: https://gcore.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@meta/geo/geosite/google-gemini.mrs
+#   Google:
+#     behavior: domain
+#     format: mrs
+#     interval: 86400
+#     proxy: DIRECT
+#     type: http
+#     url: https://gcore.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@meta/geo/geosite/google.mrs
+#   GoogleIP:
+#     behavior: ipcidr
+#     format: mrs
+#     interval: 86400
+#     proxy: DIRECT
+#     type: http
+#     url: https://gcore.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@meta/geo/geoip/google.mrs
+#   Mastercard:
+#     behavior: domain
+#     format: mrs
+#     interval: 86400
+#     proxy: DIRECT
+#     type: http
+#     url: https://gcore.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@meta/geo/geosite/mastercard.mrs
+#   Microsoft:
+#     behavior: domain
+#     format: mrs
+#     interval: 86400
+#     proxy: DIRECT
+#     type: http
+#     url: https://gcore.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@meta/geo/geosite/microsoft.mrs
+#   Netflix:
+#     behavior: domain
+#     format: mrs
+#     interval: 86400
+#     proxy: DIRECT
+#     type: http
+#     url: https://gcore.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@meta/geo/geosite/netflix.mrs
+#   NetflixIP:
+#     behavior: ipcidr
+#     format: mrs
+#     interval: 86400
+#     proxy: DIRECT
+#     type: http
+#     url: https://gcore.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@meta/geo/geoip/netflix.mrs
+#   Nintendo:
+#     behavior: domain
+#     format: mrs
+#     interval: 86400
+#     proxy: DIRECT
+#     type: http
+#     url: https://gcore.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@meta/geo/geosite/nintendo.mrs
+#   OpenAI:
+#     behavior: domain
+#     format: mrs
+#     interval: 86400
+#     proxy: DIRECT
+#     type: http
+#     url: https://gcore.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@meta/geo/geosite/openai.mrs
+#   PayPal:
+#     behavior: domain
+#     format: mrs
+#     interval: 86400
+#     proxy: DIRECT
+#     type: http
+#     url: https://gcore.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@meta/geo/geosite/paypal.mrs
+#   Perplexity:
+#     behavior: domain
+#     format: mrs
+#     interval: 86400
+#     proxy: DIRECT
+#     type: http
+#     url: https://gcore.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@meta/geo/geosite/perplexity.mrs
+#   PlayStation:
+#     behavior: domain
+#     format: mrs
+#     interval: 86400
+#     proxy: DIRECT
+#     type: http
+#     url: https://gcore.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@meta/geo/geosite/playstation.mrs
+#   SocialCN:
+#     behavior: domain
+#     format: mrs
+#     interval: 86400
+#     proxy: DIRECT
+#     type: http
+#     url: https://gcore.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@meta/geo/geosite/category-social-media-cn.mrs
+#   SocialOversea:
+#     behavior: domain
+#     format: mrs
+#     interval: 86400
+#     proxy: DIRECT
+#     type: http
+#     url: https://gcore.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@meta/geo/geosite/category-social-media-!cn.mrs
+#   Spotify:
+#     behavior: domain
+#     format: mrs
+#     interval: 86400
+#     proxy: DIRECT
+#     type: http
+#     url: https://gcore.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@meta/geo/geosite/spotify.mrs
+#   Steam:
+#     behavior: domain
+#     format: mrs
+#     interval: 86400
+#     proxy: DIRECT
+#     type: http
+#     url: https://gcore.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@meta/geo/geosite/steam.mrs
+#   Telegram:
+#     behavior: domain
+#     format: mrs
+#     interval: 86400
+#     proxy: DIRECT
+#     type: http
+#     url: https://gcore.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@meta/geo/geosite/telegram.mrs
+#   TelegramIP:
+#     behavior: ipcidr
+#     format: mrs
+#     interval: 86400
+#     proxy: DIRECT
+#     type: http
+#     url: https://gcore.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@meta/geo/geoip/telegram.mrs
+#   TikTok:
+#     behavior: domain
+#     format: mrs
+#     interval: 86400
+#     proxy: DIRECT
+#     type: http
+#     url: https://gcore.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@meta/geo/geosite/tiktok.mrs
+#   Twitter:
+#     behavior: domain
+#     format: mrs
+#     interval: 86400
+#     proxy: DIRECT
+#     type: http
+#     url: https://gcore.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@meta/geo/geosite/twitter.mrs
+#   TwitterIP:
+#     behavior: ipcidr
+#     format: mrs
+#     interval: 86400
+#     proxy: DIRECT
+#     type: http
+#     url: https://gcore.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@meta/geo/geoip/twitter.mrs
+#   Visa:
+#     behavior: domain
+#     format: mrs
+#     interval: 86400
+#     proxy: DIRECT
+#     type: http
+#     url: https://gcore.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@meta/geo/geosite/visa.mrs
+#   Xbox:
+#     behavior: domain
+#     format: mrs
+#     interval: 86400
+#     proxy: DIRECT
+#     type: http
+#     url: https://gcore.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@meta/geo/geosite/xbox.mrs
+#   Xiaoheihe:
+#     behavior: domain
+#     format: mrs
+#     interval: 86400
+#     proxy: DIRECT
+#     type: http
+#     url: https://gcore.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@meta/geo/geosite/xiaoheihe.mrs
+#   Xiaohongshu:
+#     behavior: domain
+#     format: mrs
+#     interval: 86400
+#     proxy: DIRECT
+#     type: http
+#     url: https://gcore.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@meta/geo/geosite/xiaohongshu.mrs
+#   YouTube:
+#     behavior: domain
+#     format: mrs
+#     interval: 86400
+#     proxy: DIRECT
+#     type: http
+#     url: https://gcore.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@meta/geo/geosite/youtube.mrs
+#   xAI:
+#     behavior: domain
+#     format: mrs
+#     interval: 86400
+#     proxy: DIRECT
+#     type: http
+#     url: https://gcore.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@meta/geo/geosite/xai.mrs
 
 # ==========================================================
 # rules（从源文件直接提取）
@@ -300,20 +887,66 @@
 # ==========================================================
 #
 # rules:
-# - AND,((NOT,((OR,((PROCESS-NAME,mihomo),(PROCESS-NAME,ClashMeta))))),(DST-PORT,853)),屏蔽
-# - GEOSITE,category-httpdns-cn,屏蔽
-# - RULE-SET,AWAvenue,屏蔽
-# - IP-CIDR,203.107.1.0/24,屏蔽,no-resolve
-# - GEOSITE,private,国内分流
-# - GEOSITE,connectivity-check,国内分流
-# - GEOSITE,googlefcm,国内分流
-# - GEOSITE,category-games@cn,国内分流
-# - GEOSITE,cn,国内分流
-# - GEOIP,PRIVATE,国内分流,no-resolve
-# - GEOIP,cn,国内分流,no-resolve
-# - GEOSITE,category-ai-!cn,AI分流
-# - GEOSITE,geolocation-!cn,代理设置
-# - MATCH,代理设置
+# - AND,((NOT,((OR,((PROCESS-NAME,mihomo),(PROCESS-NAME,ClashMeta))))),(DST-PORT,853)),广告拦截
+# - GEOSITE,category-httpdns-cn,广告拦截
+# - IP-CIDR,203.107.1.0/24,广告拦截,no-resolve
+# - RULE-SET,AWAvenue,广告拦截
+# - GEOSITE,private,国内直连
+# - GEOIP,private,国内直连,no-resolve
+# - GEOSITE,connectivity-check,国内直连
+# - DOMAIN-SUFFIX,pub.3gppnetwork.org,国内直连
+# - GEOSITE,googlefcm,国内直连
+# - GEOSITE,category-games@cn,国内直连
+# - RULE-SET,GameDownload,国内直连
+# - DOMAIN-SUFFIX,steamserver.net,国内直连
+# - RULE-SET,OpenAI,人工智能
+# - RULE-SET,Anthropic,人工智能
+# - RULE-SET,Gemini,人工智能
+# - RULE-SET,xAI,人工智能
+# - RULE-SET,Copilot,人工智能
+# - RULE-SET,Perplexity,人工智能
+# - RULE-SET,AI,人工智能
+# - PROCESS-NAME,com.xingin.xhs,国内社交
+# - PROCESS-NAME,com.max.xiaoheihe,国内社交
+# - PROCESS-NAME,com.ss.android.ugc.aweme,国内社交
+# - PROCESS-NAME,com.ss.android.ugc.livelite,国内社交
+# - RULE-SET,Xiaohongshu,国内社交
+# - RULE-SET,Xiaoheihe,国内社交
+# - RULE-SET,Douyin,国内社交
+# - RULE-SET,SocialCN,国内社交
+# - RULE-SET,Telegram,海外社交
+# - RULE-SET,Twitter,海外社交
+# - RULE-SET,SocialOversea,海外社交
+# - RULE-SET,YouTube,国际媒体
+# - RULE-SET,Netflix,国际媒体
+# - RULE-SET,Disney,国际媒体
+# - RULE-SET,Spotify,国际媒体
+# - RULE-SET,TikTok,国际媒体
+# - RULE-SET,Entertainment,国际媒体
+# - RULE-SET,Google,谷歌服务
+# - RULE-SET,Microsoft,微软服务
+# - RULE-SET,Crypto,金融平台
+# - RULE-SET,Finance,金融平台
+# - RULE-SET,PayPal,金融平台
+# - RULE-SET,Visa,金融平台
+# - RULE-SET,Mastercard,金融平台
+# - DOMAIN-SUFFIX,neverless.com,金融平台
+# - DOMAIN-SUFFIX,revolut.com,金融平台
+# - RULE-SET,Steam,游戏平台
+# - RULE-SET,Epic,游戏平台
+# - RULE-SET,Xbox,游戏平台
+# - RULE-SET,PlayStation,游戏平台
+# - RULE-SET,Nintendo,游戏平台
+# - RULE-SET,Games,游戏平台
+# - RULE-SET,TelegramIP,海外社交,no-resolve
+# - RULE-SET,TwitterIP,海外社交,no-resolve
+# - RULE-SET,FacebookIP,海外社交,no-resolve
+# - RULE-SET,NetflixIP,国际媒体,no-resolve
+# - RULE-SET,GoogleIP,谷歌服务,no-resolve
+# - GEOSITE,cn,国内直连
+# - GEOIP,cn,国内直连,no-resolve
+# - GEOSITE,geolocation-!cn,全局代理
+# - MATCH,兜底流量
 
 # ==========================================================
 # dns（从源文件直接提取）
@@ -326,24 +959,34 @@
 # dns:
 #   cache-algorithm: arc
 #   default-nameserver:
-#   - https://1.12.12.21/dns-query
-#   - https://223.5.5.5/dns-query
+#   - 223.5.5.5
+#   - 119.29.29.29
+#   direct-nameserver:
+#   - https://doh.pub/dns-query
+#   - https://dns.alidns.com/dns-query
 #   enable: true
 #   enhanced-mode: redir-host
+#   fake-ip-filter:
+#   - +.lan
+#   - +.local
+#   - +.market.xiaomi.com
+#   - +.push.apple.com
+#   - +.pub.3gppnetwork.org
 #   fake-ip-filter-mode: blacklist
 #   fake-ip-range: 198.18.0.1/16
-#   ipv6: false
+#   ipv6: true
 #   listen: 0.0.0.0:1053
 #   nameserver:
-#   - https://dns.alidns.com/dns-query
-#   - https://xxxxxxxxxx.cloudflare-gateway.com/dns-query
+#   - https://dns.google/dns-query
+#   - https://cloudflare-dns.com/dns-query
 #   nameserver-policy:
-#     geosite:cn,private:
-#     - https://dot.pub/dns-query
+#     geosite:cn,private,category-httpdns-cn:
 #     - https://dns.alidns.com/dns-query
-#     geosite:geolocation-!cn,gfw,!cn:
+#     - https://doh.pub/dns-query
+#     geosite:gfw,geolocation-!cn:
 #     - https://dns.google/dns-query
-#     - https://xxxxxxxxxx.cloudflare-gateway.com/dns-query
+#     - https://cloudflare-dns.com/dns-query
 #   proxy-server-nameserver:
 #   - https://doh.pub/dns-query
+#   - https://dns.alidns.com/dns-query
 #   respect-rules: true

@@ -1,6 +1,6 @@
 # OpenClash 覆写模块 - OneSmartProMCX.yaml
-# 生成日期：2026-07-21
-# 源文件：https://raw.githubusercontent.com/HenryChiao/MIHOMO_YAMLS/main/THEYAMLS/Smart_Mode/edison/OneSmartProMCX.yaml
+# 生成日期：2026-09-12
+# 源文件：https://raw.githubusercontent.com/zhangsan-nb/MIHOMO_YAMLS/main/THEYAMLS/Smart_Mode/edison/OneSmartProMCX.yaml
 # 格式：新版 OpenClash [YAML] 块覆写
 #
 # 本文件仅包含 [YAML] 块覆写内容，不含任何 [General] 插件设置。
@@ -126,7 +126,7 @@
 #     interval: 86400
 #     override:
 #       additional-suffix: ' [中]'
-#       dialer-proxy: 中转服务
+#       dialer-proxy: 链式代理
 #     proxy: 国内直连
 #     type: http
 #     url: 填写你的落地订阅源地址
@@ -158,6 +158,18 @@
 #   - 冷门节点-手选
 #   - 全部节点-手选
 #   - 国内直连
+#   type: select
+# - empty-fallback: REJECT
+#   icon: https://img.icons8.com/fluency/256/workflow.png
+#   name: 链式代理
+#   proxies:
+#   - 香港-故转
+#   - 日本-故转
+#   - 狮城-故转
+#   - 台湾-故转
+#   - 美国-故转
+#   - 冷门节点-手选
+#   - 全部节点-手选
 #   type: select
 # - icon: https://github.com/Koolson/Qure/raw/master/IconSet/Color/AI.png
 #   name: AI
@@ -226,17 +238,8 @@
 #   proxies:
 #   - DIRECT
 #   type: select
-# - filter: HK|TW
+# - empty-fallback: REJECT
 #   hidden: true
-#   icon: https://github.com/Koolson/Qure/raw/master/IconSet/Color/Round_Robin.png
-#   interval: 60
-#   lazy: true
-#   name: 中转服务
-#   type: load-balance
-#   url: https://cp.cloudflare.com/generate_204
-#   use:
-#   - 优质服务商
-# - hidden: true
 #   icon: https://github.com/Koolson/Qure/raw/master/IconSet/Color/Hong_Kong.png
 #   interval: 60
 #   lazy: true
@@ -246,7 +249,8 @@
 #   - 香港-智能
 #   type: fallback
 #   url: https://cp.cloudflare.com/generate_204
-# - hidden: true
+# - empty-fallback: REJECT
+#   hidden: true
 #   icon: https://github.com/Koolson/Qure/raw/master/IconSet/Color/Taiwan.png
 #   interval: 60
 #   lazy: true
@@ -256,7 +260,8 @@
 #   - 台湾-智能
 #   type: fallback
 #   url: https://cp.cloudflare.com/generate_204
-# - hidden: true
+# - empty-fallback: REJECT
+#   hidden: true
 #   icon: https://github.com/Koolson/Qure/raw/master/IconSet/Color/Japan.png
 #   interval: 60
 #   lazy: true
@@ -266,7 +271,8 @@
 #   - 日本-智能
 #   type: fallback
 #   url: https://cp.cloudflare.com/generate_204
-# - hidden: true
+# - empty-fallback: REJECT
+#   hidden: true
 #   icon: https://github.com/Koolson/Qure/raw/master/IconSet/Color/Singapore.png
 #   interval: 60
 #   lazy: true
@@ -276,7 +282,8 @@
 #   - 狮城-智能
 #   type: fallback
 #   url: https://cp.cloudflare.com/generate_204
-# - hidden: true
+# - empty-fallback: REJECT
+#   hidden: true
 #   icon: https://github.com/Koolson/Qure/raw/master/IconSet/Color/United_States.png
 #   interval: 60
 #   lazy: true
@@ -286,7 +293,8 @@
 #   - 美国-智能
 #   type: fallback
 #   url: https://cp.cloudflare.com/generate_204
-# - hidden: true
+# - empty-fallback: REJECT
+#   hidden: true
 #   icon: https://github.com/Koolson/Qure/raw/master/IconSet/Color/Round_Robin_1.png
 #   interval: 60
 #   lazy: true
@@ -296,7 +304,8 @@
 #   - 低倍率-智能
 #   type: fallback
 #   url: https://cp.cloudflare.com/generate_204
-# - filter: ^(?i).*(港|🇭🇰|Hong|HKG|HK[-_ ]?\d*).*$
+# - empty-fallback: REJECT
+#   filter: ^(?i)(?!.*免费).*(港|🇭🇰|Hong|HKG|\bHK\b|HK[-_]|HK\d+).*$
 #   hidden: true
 #   icon: https://github.com/Koolson/Qure/raw/master/IconSet/Color/Hong_Kong.png
 #   include-all: true
@@ -307,7 +316,8 @@
 #   type: smart
 #   url: https://cp.cloudflare.com/generate_204
 #   uselightgbm: true
-# - filter: ^(?i)(?!.*(烟台|平台)).*(台|🇼🇸|🇹🇼|TW|TW[-_ ]?\d*|tai|TPE|TSA|KHH).*$
+# - empty-fallback: REJECT
+#   filter: ^(?i)(?!.*(烟台|平台|免费)).*(台|🇼🇸|🇹🇼|\bTW\b|TW[-_]|TW\d+|tai|TPE|TSA|KHH).*$
 #   hidden: true
 #   icon: https://github.com/Koolson/Qure/raw/master/IconSet/Color/Taiwan.png
 #   include-all: true
@@ -318,7 +328,8 @@
 #   type: smart
 #   url: https://cp.cloudflare.com/generate_204
 #   uselightgbm: true
-# - filter: ^(?i)(?!.*尼日).*(日|🇯🇵|JP|JP[-_ ]?\d*|Japan|NRT|HND|KIX|CTS|FUK).*$
+# - empty-fallback: REJECT
+#   filter: ^(?i)(?!.*(尼日|免费)).*(日|🇯🇵|\bJP\b|JP[-_]|JP\d+|Japan|NRT|HND|KIX|CTS|FUK).*$
 #   hidden: true
 #   icon: https://github.com/Koolson/Qure/raw/master/IconSet/Color/Japan.png
 #   include-all: true
@@ -329,7 +340,8 @@
 #   type: smart
 #   url: https://cp.cloudflare.com/generate_204
 #   uselightgbm: true
-# - filter: ^(?i).*(坡|🇸🇬|Sing|SIN|SG[-_ ]?\d*|XSP).*$
+# - empty-fallback: REJECT
+#   filter: ^(?i)(?!.*免费).*(坡|🇸🇬|Sing|SIN|\bSG\b|SG[-_]|SG\d+|XSP).*$
 #   hidden: true
 #   icon: https://github.com/Koolson/Qure/raw/master/IconSet/Color/Singapore.png
 #   include-all: true
@@ -340,7 +352,8 @@
 #   type: smart
 #   url: https://cp.cloudflare.com/generate_204
 #   uselightgbm: true
-# - filter: ^(?i)(?!.*南美).*(美|🇺🇸|united\s?states|(?<![a-zA-Z])(US[-_ ]?\d*|USA)|SJC|JFK|LAX|ORD|ATL|DFW|SFO|MIA|SEA|IAD).*$
+# - empty-fallback: REJECT
+#   filter: ^(?i)(?!.*(南美|免费)).*(美|🇺🇸|united\s?states|(?<![a-zA-Z])(US[-_ ]?\d*|USA)|SJC|JFK|LAX|ORD|ATL|DFW|SFO|MIA|SEA|IAD).*$
 #   hidden: true
 #   icon: https://github.com/Koolson/Qure/raw/master/IconSet/Color/United_States.png
 #   include-all: true
@@ -351,7 +364,8 @@
 #   type: smart
 #   url: https://cp.cloudflare.com/generate_204
 #   uselightgbm: true
-# - filter: ^(?i).*(0\.01|0\.[1-8]|下载|实验).*$
+# - empty-fallback: REJECT
+#   filter: ^(?i).*(0\.01|0\.[1-8]|下载|实验).*$
 #   hidden: true
 #   icon: https://github.com/Koolson/Qure/raw/master/IconSet/Color/Round_Robin_1.png
 #   include-all: true
@@ -362,7 +376,8 @@
 #   type: smart
 #   url: https://cp.cloudflare.com/generate_204
 #   uselightgbm: true
-# - filter: ^(?i)(?!.*(🇭🇰|香港|hong\s?kong|HK[-_ ]?\d*|🇸🇬|新加坡|singapore|SG[-_ ]?\d*|🇯🇵|日本|japan|JP[-_
+# - empty-fallback: REJECT
+#   filter: ^(?i)(?!.*(🇭🇰|香港|hong\s?kong|HK[-_ ]?\d*|🇸🇬|新加坡|singapore|SG[-_ ]?\d*|🇯🇵|日本|japan|JP[-_
 #     ]?\d*|🇹🇼|台湾|taiwan|TW[-_ ]?\d*|🇺🇸|美国|united\s?states|usa|US[-_ ]?\d*|剩余|重置|套餐|距离|直接连接|群|邀请|返利|循环|官网|客服|网站|网址|获取|订阅|流量|到期|机场|下次|版本|官址|备用|过期|已用|联系|邮箱|工单|贩卖|通知|倒卖|防止|国内|地址|频道|无法|说明|使用|提示|特别|访问|支持|教程|关注|更新|作者|加入)).*$
 #   hidden: true
 #   icon: https://github.com/Koolson/Qure/raw/master/IconSet/Color/European_Union.png
@@ -374,7 +389,17 @@
 #   type: smart
 #   url: https://cp.cloudflare.com/generate_204
 #   uselightgbm: true
-# - filter: ^(?i).*(港|🇭🇰|Hong|HKG|HK[-_ ]?\d*).*$
+# - empty-fallback: REJECT
+#   filter: (?i)家宽
+#   icon: https://img.icons8.com/fluency/256/home.png
+#   include-all: true
+#   interval: 60
+#   lazy: true
+#   name: 家宽-手选
+#   type: select
+#   url: https://cp.cloudflare.com/generate_204
+# - empty-fallback: REJECT
+#   filter: ^(?i)(?!.*免费).*(港|🇭🇰|Hong|HKG|\bHK\b|HK[-_]|HK\d+).*$
 #   icon: https://github.com/Koolson/Qure/raw/master/IconSet/Color/Hong_Kong.png
 #   include-all: true
 #   interval: 60
@@ -382,7 +407,8 @@
 #   name: 香港-手选
 #   type: select
 #   url: https://cp.cloudflare.com/generate_204
-# - filter: ^(?i)(?!.*(烟台|平台)).*(台|🇼🇸|🇹🇼|TW|TW[-_ ]?\d*|tai|TPE|TSA|KHH).*$
+# - empty-fallback: REJECT
+#   filter: ^(?i)(?!.*(烟台|平台|免费)).*(台|🇼🇸|🇹🇼|\bTW\b|TW[-_]|TW\d+|tai|TPE|TSA|KHH).*$
 #   icon: https://github.com/Koolson/Qure/raw/master/IconSet/Color/Taiwan.png
 #   include-all: true
 #   interval: 60
@@ -390,7 +416,8 @@
 #   name: 台湾-手选
 #   type: select
 #   url: https://cp.cloudflare.com/generate_204
-# - filter: ^(?i)(?!.*尼日).*(日|🇯🇵|JP|JP[-_ ]?\d*|Japan|NRT|HND|KIX|CTS|FUK).*$
+# - empty-fallback: REJECT
+#   filter: ^(?i)(?!.*(尼日|免费)).*(日|🇯🇵|\bJP\b|JP[-_]|JP\d+|Japan|NRT|HND|KIX|CTS|FUK).*$
 #   icon: https://github.com/Koolson/Qure/raw/master/IconSet/Color/Japan.png
 #   include-all: true
 #   interval: 60
@@ -398,7 +425,8 @@
 #   name: 日本-手选
 #   type: select
 #   url: https://cp.cloudflare.com/generate_204
-# - filter: ^(?i).*(坡|🇸🇬|Sing|SIN|SG[-_ ]?\d*|XSP).*$
+# - empty-fallback: REJECT
+#   filter: ^(?i)(?!.*免费).*(坡|🇸🇬|Sing|SIN|\bSG\b|SG[-_]|SG\d+|XSP).*$
 #   icon: https://github.com/Koolson/Qure/raw/master/IconSet/Color/Singapore.png
 #   include-all: true
 #   interval: 60
@@ -406,7 +434,8 @@
 #   name: 狮城-手选
 #   type: select
 #   url: https://cp.cloudflare.com/generate_204
-# - filter: ^(?i)(?!.*南美).*(美|🇺🇸|united\s?states|(?<![a-zA-Z])(US[-_ ]?\d*|USA)|SJC|JFK|LAX|ORD|ATL|DFW|SFO|MIA|SEA|IAD).*$
+# - empty-fallback: REJECT
+#   filter: ^(?i)(?!.*(南美|免费)).*(美|🇺🇸|united\s?states|(?<![a-zA-Z])(US[-_ ]?\d*|USA)|SJC|JFK|LAX|ORD|ATL|DFW|SFO|MIA|SEA|IAD).*$
 #   icon: https://github.com/Koolson/Qure/raw/master/IconSet/Color/United_States.png
 #   include-all: true
 #   interval: 60
@@ -414,7 +443,8 @@
 #   name: 美国-手选
 #   type: select
 #   url: https://cp.cloudflare.com/generate_204
-# - filter: ^(?i).*(0\.01|0\.[1-8]|下载|实验).*$
+# - empty-fallback: REJECT
+#   filter: ^(?i).*(0\.01|0\.[1-8]|下载|实验).*$
 #   icon: https://github.com/Koolson/Qure/raw/master/IconSet/Color/Round_Robin_1.png
 #   include-all: true
 #   interval: 60
@@ -422,7 +452,8 @@
 #   name: 低倍率-手选
 #   type: select
 #   url: https://cp.cloudflare.com/generate_204
-# - filter: ^(?i).*(?<![0-9.])(x(1\.[5-9]\d*|[2-9](\.\d+)?|10(\.0+)?)|(1\.[5-9]\d*|[2-9](\.\d+)?|10(\.0+)?|高级)x).*$
+# - empty-fallback: REJECT
+#   filter: ^(?i).*(?<![0-9.])(x(1\.[5-9]\d*|[2-9](\.\d+)?|10(\.0+)?)|(1\.[5-9]\d*|[2-9](\.\d+)?|10(\.0+)?|高级)x).*$
 #   icon: https://github.com/Koolson/Qure/raw/master/IconSet/Color/Round_Robin.png
 #   include-all: true
 #   interval: 60
@@ -430,7 +461,8 @@
 #   name: 高倍率-手选
 #   type: select
 #   url: https://cp.cloudflare.com/generate_204
-# - filter: ^(?i)(?!.*(🇭🇰|香港|hong\s?kong|HK[-_ ]?\d*|🇸🇬|新加坡|singapore|SG[-_ ]?\d*|🇯🇵|日本|japan|JP[-_
+# - empty-fallback: REJECT
+#   filter: ^(?i)(?!.*(🇭🇰|香港|hong\s?kong|HK[-_ ]?\d*|🇸🇬|新加坡|singapore|SG[-_ ]?\d*|🇯🇵|日本|japan|JP[-_
 #     ]?\d*|🇹🇼|台湾|taiwan|TW[-_ ]?\d*|🇺🇸|美国|united\s?states|usa|US[-_ ]?\d*|剩余|重置|套餐|距离|直接连接|群|邀请|返利|循环|官网|客服|网站|网址|获取|订阅|流量|到期|机场|下次|版本|官址|备用|过期|已用|联系|邮箱|工单|贩卖|通知|倒卖|防止|国内|地址|频道|无法|说明|使用|提示|特别|访问|支持|教程|关注|更新|作者|加入)).*$
 #   icon: https://github.com/Koolson/Qure/raw/master/IconSet/Color/European_Union.png
 #   include-all: true
@@ -439,7 +471,8 @@
 #   name: 冷门节点-手选
 #   type: select
 #   url: https://cp.cloudflare.com/generate_204
-# - filter: ^(?!.*(DIRECT|直接连接|群|邀请|返利|循环|官网|客服|网站|网址|获取|订阅|流量|到期|机场|下次|版本|官址|备用|过期|已用|联系|邮箱|工单|贩卖|通知|倒卖|防止|国内|地址|频道|无法|说明|使用|提示|特别|访问|支持|教程|关注|更新|作者|加入|USE|USED|TOTAL|EXPIRE|EMAIL|Panel|Channel|Author)).*$
+# - empty-fallback: REJECT
+#   filter: ^(?!.*(DIRECT|直接连接|群|邀请|返利|循环|官网|客服|网站|网址|获取|订阅|流量|到期|机场|下次|版本|官址|备用|过期|已用|联系|邮箱|工单|贩卖|通知|倒卖|防止|国内|地址|频道|无法|说明|使用|提示|特别|访问|支持|教程|关注|更新|作者|加入|USE|USED|TOTAL|EXPIRE|EMAIL|Panel|Channel|Author)).*$
 #   icon: https://github.com/Koolson/Qure/raw/master/IconSet/Color/Global.png
 #   include-all: true
 #   interval: 60
@@ -952,8 +985,7 @@
 # ==========================================================
 #
 # rules:
-# - AND,(DST-PORT,443),(NETWORK,UDP),(NOT,((RULE-SET,China))),REJECT
-# - AND,(DST-PORT,443),(NETWORK,UDP),(NOT,((RULE-SET,China-IP))),REJECT
+# - AND,((NETWORK,UDP),(DST-PORT,443),(NOT,((RULE-SET,China))),(NOT,((RULE-SET,China-IP,no-resolve)))),REJECT
 # - RULE-SET,DNS-IP,REJECT,no-resolve
 # - RULE-SET,Category-DoH,REJECT
 # - RULE-SET,HTTPDNS-CN,REJECT
@@ -974,6 +1006,7 @@
 # - RULE-SET,Trackers,Tracker
 # - RULE-SET,Xunlei,Tracker
 # - RULE-SET,GameDownload,国内直连
+# - DOMAIN-SUFFIX,steamcontent.com,国内直连
 # - RULE-SET,Accelerator,国内直连
 # - RULE-SET,Blizzard,国内直连
 # - RULE-SET,Ubisoft,国内直连

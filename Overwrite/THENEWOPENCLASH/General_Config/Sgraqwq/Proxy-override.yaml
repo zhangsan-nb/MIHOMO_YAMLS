@@ -1,6 +1,6 @@
 # OpenClash 覆写模块 - Proxy-override.yaml
-# 生成日期：2026-07-21
-# 源文件：https://raw.githubusercontent.com/HenryChiao/MIHOMO_YAMLS/main/THEYAMLS/General_Config/Sgraqwq/Proxy-override.yaml
+# 生成日期：2026-09-12
+# 源文件：https://raw.githubusercontent.com/zhangsan-nb/MIHOMO_YAMLS/main/THEYAMLS/General_Config/Sgraqwq/Proxy-override.yaml
 # 格式：新版 OpenClash [YAML] 块覆写
 #
 # 本文件仅包含 [YAML] 块覆写内容，不含任何 [General] 插件设置。
@@ -262,10 +262,26 @@
 # ==========================================================
 #
 # rule-providers:
-#   anti-ad:
+#   ads-all:
 #     behavior: domain
 #     format: mrs
 #     interval: 85515
+#     path: ./ruleset/ads-all.mrs
+#     proxy: DIRECT
+#     type: http
+#     url: https://fastly.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@meta/geo/geosite/category-ads-all.mrs
+#   ai:
+#     behavior: domain
+#     format: mrs
+#     interval: 85605
+#     path: ./ruleset/ai.mrs
+#     proxy: DIRECT
+#     type: http
+#     url: https://fastly.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@meta/geo/geosite/category-ai-!cn.mrs
+#   anti-ad:
+#     behavior: domain
+#     format: mrs
+#     interval: 85500
 #     path: ./ruleset/anti-ad.mrs
 #     proxy: DIRECT
 #     type: http
@@ -273,67 +289,355 @@
 #   apple:
 #     behavior: domain
 #     format: mrs
-#     interval: 85665
-#     path: ./ruleset/meta-apple.mrs
-#     proxy: 苹果
+#     interval: 86115
+#     path: ./ruleset/apple.mrs
+#     proxy: DIRECT
 #     type: http
 #     url: https://fastly.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@meta/geo/geosite/apple.mrs
+#   bilibili:
+#     behavior: domain
+#     format: mrs
+#     interval: 86190
+#     path: ./ruleset/bilibili.mrs
+#     proxy: DIRECT
+#     type: http
+#     url: https://fastly.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@meta/geo/geosite/bilibili.mrs
+#   bluesky:
+#     behavior: domain
+#     format: mrs
+#     interval: 85785
+#     path: ./ruleset/bluesky.mrs
+#     proxy: DIRECT
+#     type: http
+#     url: https://fastly.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@meta/geo/geosite/bluesky.mrs
+#   bt-tracker:
+#     behavior: domain
+#     format: mrs
+#     interval: 85530
+#     path: ./ruleset/bt-tracker.mrs
+#     proxy: DIRECT
+#     type: http
+#     url: https://fastly.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@meta/geo/geosite/category-public-tracker.mrs
+#   cn-ip:
+#     behavior: ipcidr
+#     format: mrs
+#     interval: 85590
+#     path: ./ruleset/cn-ip.mrs
+#     proxy: DIRECT
+#     type: http
+#     url: https://fastly.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@meta/geo/geoip/cn.mrs
 #   cn_sites:
 #     behavior: domain
 #     format: mrs
-#     interval: 86430
+#     interval: 86145
 #     path: ./ruleset/cn_sites.mrs
 #     proxy: DIRECT
 #     type: http
 #     url: https://fastly.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@meta/geo/geosite/cn.mrs
+#   dailymotion:
+#     behavior: domain
+#     format: mrs
+#     interval: 86025
+#     path: ./ruleset/dailymotion.mrs
+#     proxy: DIRECT
+#     type: http
+#     url: https://fastly.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@meta/geo/geosite/dailymotion.mrs
+#   dev:
+#     behavior: domain
+#     format: mrs
+#     interval: 86085
+#     path: ./ruleset/dev.mrs
+#     proxy: DIRECT
+#     type: http
+#     url: https://fastly.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@meta/geo/geosite/category-dev.mrs
+#   disney:
+#     behavior: domain
+#     format: mrs
+#     interval: 85965
+#     path: ./ruleset/disney.mrs
+#     proxy: DIRECT
+#     type: http
+#     url: https://fastly.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@meta/geo/geosite/disney.mrs
+#   facebook:
+#     behavior: domain
+#     format: mrs
+#     interval: 85710
+#     path: ./ruleset/facebook.mrs
+#     proxy: DIRECT
+#     type: http
+#     url: https://fastly.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@meta/geo/geosite/facebook.mrs
+#   flickr:
+#     behavior: domain
+#     format: mrs
+#     interval: 85845
+#     path: ./ruleset/flickr.mrs
+#     proxy: DIRECT
+#     type: http
+#     url: https://fastly.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@meta/geo/geosite/flickr.mrs
+#   games-cn:
+#     behavior: domain
+#     format: mrs
+#     interval: 86040
+#     path: ./ruleset/games-cn.mrs
+#     proxy: DIRECT
+#     type: http
+#     url: https://fastly.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@meta/geo/geosite/category-games-cn.mrs
+#   games-global:
+#     behavior: domain
+#     format: mrs
+#     interval: 86055
+#     path: ./ruleset/games-global.mrs
+#     proxy: DIRECT
+#     type: http
+#     url: https://fastly.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@meta/geo/geosite/category-games-!cn.mrs
+#   geolocation-cn:
+#     behavior: domain
+#     format: mrs
+#     interval: 86175
+#     path: ./ruleset/geolocation-cn.mrs
+#     proxy: DIRECT
+#     type: http
+#     url: https://fastly.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@meta/geo/geosite/geolocation-cn.mrs
 #   gfw:
 #     behavior: domain
 #     format: mrs
-#     interval: 86445
-#     path: ./ruleset/meta-gfw.mrs
+#     interval: 86130
+#     path: ./ruleset/gfw.mrs
 #     proxy: DIRECT
 #     type: http
 #     url: https://fastly.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@meta/geo/geosite/gfw.mrs
 #   github:
 #     behavior: domain
 #     format: mrs
-#     interval: 85635
-#     path: ./ruleset/meta-github.mrs
+#     interval: 86070
+#     path: ./ruleset/github.mrs
 #     proxy: DIRECT
 #     type: http
 #     url: https://fastly.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@meta/geo/geosite/github.mrs
+#   google:
+#     behavior: domain
+#     format: mrs
+#     interval: 85635
+#     path: ./ruleset/google.mrs
+#     proxy: DIRECT
+#     type: http
+#     url: https://fastly.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@meta/geo/geosite/google.mrs
+#   hbo:
+#     behavior: domain
+#     format: mrs
+#     interval: 85950
+#     path: ./ruleset/hbo.mrs
+#     proxy: DIRECT
+#     type: http
+#     url: https://fastly.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@meta/geo/geosite/hbo.mrs
+#   httpdns:
+#     behavior: domain
+#     format: mrs
+#     interval: 85545
+#     path: ./ruleset/httpdns.mrs
+#     proxy: DIRECT
+#     type: http
+#     url: https://fastly.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@meta/geo/geosite/category-httpdns-cn.mrs
+#   hulu:
+#     behavior: domain
+#     format: mrs
+#     interval: 85935
+#     path: ./ruleset/hulu.mrs
+#     proxy: DIRECT
+#     type: http
+#     url: https://fastly.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@meta/geo/geosite/hulu.mrs
+#   imgur:
+#     behavior: domain
+#     format: mrs
+#     interval: 85830
+#     path: ./ruleset/imgur.mrs
+#     proxy: DIRECT
+#     type: http
+#     url: https://fastly.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@meta/geo/geosite/imgur.mrs
+#   instagram:
+#     behavior: domain
+#     format: mrs
+#     interval: 85725
+#     path: ./ruleset/instagram.mrs
+#     proxy: DIRECT
+#     type: http
+#     url: https://fastly.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@meta/geo/geosite/instagram.mrs
+#   linkedin:
+#     behavior: domain
+#     format: mrs
+#     interval: 85740
+#     path: ./ruleset/linkedin.mrs
+#     proxy: DIRECT
+#     type: http
+#     url: https://fastly.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@meta/geo/geosite/linkedin.mrs
+#   medium:
+#     behavior: domain
+#     format: mrs
+#     interval: 85815
+#     path: ./ruleset/medium.mrs
+#     proxy: DIRECT
+#     type: http
+#     url: https://fastly.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@meta/geo/geosite/medium.mrs
 #   microsoft:
 #     behavior: domain
 #     format: mrs
-#     interval: 85650
-#     path: ./ruleset/meta-microsoft.mrs
-#     proxy: 微软
+#     interval: 86100
+#     path: ./ruleset/microsoft.mrs
+#     proxy: DIRECT
 #     type: http
 #     url: https://fastly.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@meta/geo/geosite/microsoft.mrs
-#   openai:
+#   netflix:
 #     behavior: domain
 #     format: mrs
-#     interval: 85530
-#     path: ./ruleset/meta-openai.mrs
-#     proxy: AI
+#     interval: 85905
+#     path: ./ruleset/netflix.mrs
+#     proxy: DIRECT
 #     type: http
-#     url: https://fastly.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@meta/geo/geosite/openai.mrs
+#     url: https://fastly.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@meta/geo/geosite/netflix.mrs
+#   pinterest:
+#     behavior: domain
+#     format: mrs
+#     interval: 85755
+#     path: ./ruleset/pinterest.mrs
+#     proxy: DIRECT
+#     type: http
+#     url: https://fastly.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@meta/geo/geosite/pinterest.mrs
+#   pixiv:
+#     behavior: domain
+#     format: mrs
+#     interval: 85875
+#     path: ./ruleset/pixiv.mrs
+#     proxy: DIRECT
+#     type: http
+#     url: https://fastly.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@meta/geo/geosite/pixiv.mrs
+#   primevideo:
+#     behavior: domain
+#     format: mrs
+#     interval: 85980
+#     path: ./ruleset/primevideo.mrs
+#     proxy: DIRECT
+#     type: http
+#     url: https://fastly.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@meta/geo/geosite/primevideo.mrs
+#   private:
+#     behavior: domain
+#     format: mrs
+#     interval: 85560
+#     path: ./ruleset/private.mrs
+#     proxy: DIRECT
+#     type: http
+#     url: https://fastly.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@meta/geo/geosite/private.mrs
+#   private-ip:
+#     behavior: ipcidr
+#     format: mrs
+#     interval: 85575
+#     path: ./ruleset/private-ip.mrs
+#     proxy: DIRECT
+#     type: http
+#     url: https://fastly.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@meta/geo/geoip/private.mrs
 #   proxy_sites:
 #     behavior: domain
 #     format: mrs
-#     interval: 86415
+#     interval: 86160
 #     path: ./ruleset/proxy_sites.mrs
 #     proxy: DIRECT
 #     type: http
 #     url: https://fastly.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@meta/geo/geosite/geolocation-!cn.mrs
+#   quora:
+#     behavior: domain
+#     format: mrs
+#     interval: 85800
+#     path: ./ruleset/quora.mrs
+#     proxy: DIRECT
+#     type: http
+#     url: https://fastly.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@meta/geo/geosite/quora.mrs
+#   reddit:
+#     behavior: domain
+#     format: mrs
+#     interval: 85695
+#     path: ./ruleset/reddit.mrs
+#     proxy: DIRECT
+#     type: http
+#     url: https://fastly.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@meta/geo/geosite/reddit.mrs
+#   spotify:
+#     behavior: domain
+#     format: mrs
+#     interval: 85920
+#     path: ./ruleset/spotify.mrs
+#     proxy: DIRECT
+#     type: http
+#     url: https://fastly.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@meta/geo/geosite/spotify.mrs
+#   telegram:
+#     behavior: domain
+#     format: mrs
+#     interval: 85650
+#     path: ./ruleset/telegram.mrs
+#     proxy: DIRECT
+#     type: http
+#     url: https://fastly.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@meta/geo/geosite/telegram.mrs
+#   telegram-ip:
+#     behavior: ipcidr
+#     format: mrs
+#     interval: 85665
+#     path: ./ruleset/telegram-ip.mrs
+#     proxy: DIRECT
+#     type: http
+#     url: https://fastly.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@meta/geo/geoip/telegram.mrs
+#   threads:
+#     behavior: domain
+#     format: mrs
+#     interval: 85770
+#     path: ./ruleset/threads.mrs
+#     proxy: DIRECT
+#     type: http
+#     url: https://fastly.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@meta/geo/geosite/threads.mrs
 #   tiktok:
 #     behavior: domain
 #     format: mrs
-#     interval: 85575
-#     path: ./ruleset/meta-tiktok.mrs
-#     proxy: 流媒体
+#     interval: 85890
+#     path: ./ruleset/tiktok.mrs
+#     proxy: DIRECT
 #     type: http
 #     url: https://fastly.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@meta/geo/geosite/tiktok.mrs
+#   tumblr:
+#     behavior: domain
+#     format: mrs
+#     interval: 85860
+#     path: ./ruleset/tumblr.mrs
+#     proxy: DIRECT
+#     type: http
+#     url: https://fastly.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@meta/geo/geosite/tumblr.mrs
+#   twitch:
+#     behavior: domain
+#     format: mrs
+#     interval: 85995
+#     path: ./ruleset/twitch.mrs
+#     proxy: DIRECT
+#     type: http
+#     url: https://fastly.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@meta/geo/geosite/twitch.mrs
+#   twitter:
+#     behavior: domain
+#     format: mrs
+#     interval: 85680
+#     path: ./ruleset/twitter.mrs
+#     proxy: DIRECT
+#     type: http
+#     url: https://fastly.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@meta/geo/geosite/twitter.mrs
+#   vimeo:
+#     behavior: domain
+#     format: mrs
+#     interval: 86010
+#     path: ./ruleset/vimeo.mrs
+#     proxy: DIRECT
+#     type: http
+#     url: https://fastly.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@meta/geo/geosite/vimeo.mrs
+#   youtube:
+#     behavior: domain
+#     format: mrs
+#     interval: 85620
+#     path: ./ruleset/youtube.mrs
+#     proxy: DIRECT
+#     type: http
+#     url: https://fastly.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@meta/geo/geosite/youtube.mrs
 
 # ==========================================================
 # rules（从源文件直接提取）
@@ -347,11 +651,24 @@
 # ==========================================================
 #
 # rules:
+# - PROCESS-NAME,qbittorrent.exe,DIRECT
+# - PROCESS-NAME,BitComet.exe,DIRECT
+# - PROCESS-NAME,uTorrent.exe,DIRECT
+# - PROCESS-NAME,transmission-qt.exe,DIRECT
+# - PROCESS-NAME,aria2c.exe,DIRECT
+# - PROCESS-NAME,Thunder.exe,DIRECT
+# - RULE-SET,bt-tracker,DIRECT
+# - DOMAIN-SUFFIX,school-wx.qshnhealth.com,DIRECT
+# - DOMAIN-SUFFIX,xindazhilian.com,DIRECT
+# - DOMAIN-SUFFIX,chiphell.com,DIRECT
+# - DOMAIN-SUFFIX,halo.run,DIRECT
+# - DST-PORT,33068,DIRECT
+# - DST-PORT,6540,DIRECT
+# - DST-PORT,26880,DIRECT
 # - DOMAIN-SUFFIX,wxs.qq.com,DIRECT
 # - DOMAIN-SUFFIX,wx.qlogo.cn,DIRECT
 # - DOMAIN-SUFFIX,servicewechat.com,DIRECT
 # - DOMAIN-SUFFIX,mp.weixin.qq.com,DIRECT
-# - DOMAIN,school-wx.qshnhealth.com,DIRECT
 # - DOMAIN,apmplus.volces.com,DIRECT
 # - DOMAIN-SUFFIX,jpush.io,DIRECT
 # - DOMAIN-SUFFIX,jpush.cn,DIRECT
@@ -365,90 +682,69 @@
 # - DOMAIN-SUFFIX,bootcss.com,DIRECT
 # - DOMAIN-SUFFIX,staticfile.org,DIRECT
 # - DOMAIN-SUFFIX,upaiyun.com,DIRECT
+# - DOMAIN-SUFFIX,snssdk.com,DIRECT
+# - DOMAIN-SUFFIX,bytecdn.cn,DIRECT
+# - DOMAIN-SUFFIX,bytedscript.com,DIRECT
 # - DOMAIN-SUFFIX,mtalk.google.com,Google
 # - DOMAIN,clientservices.googleapis.com,Google
 # - DOMAIN,update.googleapis.com,Google
 # - DOMAIN-SUFFIX,dl.google.com,Google
 # - DOMAIN-SUFFIX,dl.l.google.com,Google
-# - GEOSITE,category-ads-all,广告拦截
-# - RULE-SET,anti-ad,广告拦截
-# - AND,((DST-PORT,443),(NETWORK,UDP),(RULE-SET,microsoft)),微软
-# - AND,((DST-PORT,443),(NETWORK,UDP),(RULE-SET,apple)),苹果
-# - AND,((DST-PORT,443),(NETWORK,UDP),(GEOSITE,youtube)),YouTube
-# - AND,((DST-PORT,443),(NETWORK,UDP),(GEOSITE,google)),Google
-# - AND,((DST-PORT,443),(NETWORK,UDP),(NOT,((RULE-SET,cn_sites)))),REJECT
+# - RULE-SET,httpdns,REJECT
 # - DST-PORT,7680,REJECT
-# - GEOSITE,private,DIRECT
-# - GEOIP,private,DIRECT,no-resolve
+# - RULE-SET,private,DIRECT
+# - RULE-SET,private-ip,DIRECT,no-resolve
 # - DOMAIN,localhost,DIRECT
 # - DOMAIN-SUFFIX,local,DIRECT
-# - PROCESS-NAME,WinStore.App.exe,DIRECT
-# - PROCESS-NAME,WinStore.Mobile.exe,DIRECT
-# - PROCESS-NAME,Weixin.exe,DIRECT
-# - PROCESS-NAME,WeChat.exe,DIRECT
-# - PROCESS-NAME,WeChatAppEx.exe,DIRECT
-# - PROCESS-NAME,QQ.exe,DIRECT
-# - PROCESS-NAME,SunloginClient.exe,DIRECT
-# - PROCESS-NAME,ToDesk.exe,DIRECT
-# - PROCESS-NAME,ToDesk_Service.exe,DIRECT
-# - PROCESS-NAME,rustdesk.exe,DIRECT
-# - PROCESS-NAME,TeamViewer.exe,DIRECT
-# - PROCESS-NAME,AnyDesk.exe,DIRECT
-# - PROCESS-NAME,tailscale.exe,DIRECT
-# - PROCESS-NAME,tailscaled.exe,DIRECT
-# - PROCESS-NAME,frpc.exe,DIRECT
-# - PROCESS-NAME,Navicat.exe,DIRECT
-# - PROCESS-NAME,cloudflared.exe,DIRECT
+# - DOMAIN-REGEX,^[a-z0-9]([a-z0-9-]*[a-z0-9])?$,DIRECT
+# - RULE-SET,cn-ip,国内直连,no-resolve
+# - DOMAIN-REGEX,^chatgpt-async-webps-prod-\S+-\d+\.webpubsub\.azure\.com$,AI
+# - RULE-SET,ads-all,广告拦截
+# - RULE-SET,anti-ad,广告拦截
+# - DOMAIN-REGEX,.+\.awsdns-cn-[0-9][0-9]\.(biz|com|net|top)$,广告拦截
+# - DOMAIN-REGEX,.+\.awsdns-cn-[0-9][a-e0-9]\.cn$,广告拦截
+# - DOMAIN-REGEX,.+\.awsdns-[0-9][0-9]\.(co\.uk|com|net|org)$,广告拦截
+# - DOMAIN-REGEX,^hses[1-7]?\.akamaized\.net$,广告拦截
+# - DOMAIN-REGEX,^r+[0-9]+(---|\.)sn-(2x3|ni5|j5o)\w{5}\.xn--ngstr-lra8j\.com$,广告拦截
+# - DOMAIN-REGEX,^r+[0-9]+(---|\.)sn-(2x3|ni5|j5o)\w{5}\.googlevideo\.com$,广告拦截
+# - DOMAIN-REGEX,^.+-mihayo\.akamaized\.net$,广告拦截
+# - DOMAIN-REGEX,^speed\.(coe|open)\.ad\.[a-z]+\.prod\.hosts\.ooklaserver\.net$,广告拦截
+# - AND,((DST-PORT,443),(NETWORK,UDP),(RULE-SET,microsoft)),微软
+# - AND,((DST-PORT,443),(NETWORK,UDP),(RULE-SET,apple)),苹果
+# - AND,((DST-PORT,443),(NETWORK,UDP),(RULE-SET,youtube)),YouTube
+# - AND,((DST-PORT,443),(NETWORK,UDP),(RULE-SET,google)),Google
+# - AND,((DST-PORT,443),(NETWORK,UDP),(NOT,((RULE-SET,cn_sites)))),REJECT
 # - DOMAIN-SUFFIX,jsdelivr.net,节点选择
 # - DOMAIN,dns.google,节点选择
 # - DOMAIN,dns.google.com,节点选择
-# - GEOSITE,youtube,YouTube
-# - RULE-SET,openai,AI
-# - DOMAIN-SUFFIX,chatgpt.com,AI
-# - DOMAIN-SUFFIX,oaistatic.com,AI
-# - DOMAIN-SUFFIX,oaiusercontent.com,AI
-# - DOMAIN-SUFFIX,sora.com,AI
-# - DOMAIN-SUFFIX,claude.ai,AI
-# - DOMAIN-SUFFIX,anthropic.com,AI
-# - DOMAIN-SUFFIX,ai.google.dev,AI
-# - DOMAIN-SUFFIX,generativelanguage.googleapis.com,AI
-# - DOMAIN-SUFFIX,mistral.ai,AI
-# - DOMAIN-SUFFIX,perplexity.ai,AI
-# - DOMAIN-SUFFIX,cohere.ai,AI
-# - DOMAIN-SUFFIX,cohere.com,AI
-# - DOMAIN-SUFFIX,midjourney.com,AI
+# - DOMAIN,dns.cloudflare.com,节点选择
+# - RULE-SET,youtube,YouTube
+# - RULE-SET,ai,AI
 # - DOMAIN-SUFFIX,stability.ai,AI
-# - DOMAIN-SUFFIX,cursor.com,AI
-# - DOMAIN-SUFFIX,cursor.sh,AI
-# - DOMAIN-SUFFIX,huggingface.co,AI
 # - DOMAIN-SUFFIX,replicate.com,AI
 # - DOMAIN-SUFFIX,together.ai,AI
 # - DOMAIN-SUFFIX,suno.ai,AI
 # - DOMAIN-SUFFIX,suno.com,AI
-# - DOMAIN-SUFFIX,openrouter.ai,AI
 # - DOMAIN-SUFFIX,runpod.io,AI
-# - DOMAIN-SUFFIX,x.ai,AI
-# - DOMAIN-SUFFIX,grok.com,AI
-# - DOMAIN-SUFFIX,copilot.microsoft.com,AI
-# - DOMAIN-SUFFIX,gstatic.com,Google
-# - DOMAIN-SUFFIX,googleapis.com,Google
-# - DOMAIN-SUFFIX,deepseek.com,国内直连
-# - GEOSITE,telegram,Telegram
-# - GEOSITE,twitter,海外社交
-# - GEOSITE,reddit,海外社交
-# - GEOSITE,facebook,海外社交
-# - GEOSITE,instagram,海外社交
-# - GEOSITE,linkedin,海外社交
+# - RULE-SET,google,Google
+# - RULE-SET,telegram,Telegram
+# - RULE-SET,telegram-ip,Telegram,no-resolve
+# - RULE-SET,twitter,海外社交
+# - RULE-SET,reddit,海外社交
+# - RULE-SET,facebook,海外社交
+# - RULE-SET,instagram,海外社交
+# - RULE-SET,linkedin,海外社交
 # - DOMAIN-SUFFIX,snapchat.com,海外社交
-# - GEOSITE,pinterest,海外社交
-# - GEOSITE,threads,海外社交
-# - GEOSITE,bluesky,海外社交
-# - GEOSITE,quora,海外社交
-# - GEOSITE,medium,海外社交
-# - GEOSITE,imgur,海外社交
-# - GEOSITE,flickr,海外社交
-# - GEOSITE,tumblr,海外社交
-# - GEOSITE,pixiv,海外社交
+# - RULE-SET,pinterest,海外社交
+# - RULE-SET,threads,海外社交
+# - RULE-SET,bluesky,海外社交
+# - RULE-SET,quora,海外社交
+# - RULE-SET,medium,海外社交
+# - RULE-SET,imgur,海外社交
+# - RULE-SET,flickr,海外社交
+# - RULE-SET,tumblr,海外社交
+# - RULE-SET,pixiv,海外社交
+# - RULE-SET,tiktok,流媒体
 # - DOMAIN-SUFFIX,byteoversea.com,节点选择
 # - DOMAIN-SUFFIX,byteoversea.net,节点选择
 # - DOMAIN-SUFFIX,ibytedtos.com,节点选择
@@ -457,81 +753,56 @@
 # - DOMAIN-SUFFIX,larksuite.com,节点选择
 # - DOMAIN-SUFFIX,lark.com,节点选择
 # - DOMAIN-SUFFIX,pangle.io,节点选择
-# - DOMAIN-SUFFIX,volces.com,节点选择
-# - RULE-SET,tiktok,流媒体
-# - GEOSITE,netflix,流媒体
-# - GEOSITE,spotify,流媒体
-# - GEOSITE,hulu,流媒体
-# - GEOSITE,hbo,流媒体
-# - GEOSITE,disney,流媒体
-# - GEOSITE,primevideo,流媒体
-# - GEOSITE,twitch,流媒体
-# - GEOSITE,vimeo,流媒体
-# - GEOSITE,dailymotion,流媒体
+# - DOMAIN-SUFFIX,volces.com,DIRECT
+# - RULE-SET,netflix,流媒体
+# - RULE-SET,spotify,流媒体
+# - RULE-SET,hulu,流媒体
+# - RULE-SET,hbo,流媒体
+# - RULE-SET,disney,流媒体
+# - RULE-SET,primevideo,流媒体
+# - RULE-SET,twitch,流媒体
+# - RULE-SET,vimeo,流媒体
+# - RULE-SET,dailymotion,流媒体
+# - DOMAIN-REGEX,(^|\.)apiproxy-device-prod-nlb-.+\.amazonaws\.com$,流媒体
+# - DOMAIN-REGEX,(^|\.)apiproxy-website-nlb-prod-.+\.amazonaws\.com$,流媒体
+# - DOMAIN-REGEX,(^|\.)dualstack\.apiproxy-.+\.amazonaws\.com$,流媒体
+# - DOMAIN-REGEX,(^|\.)dualstack\.ichnaea-web-.+\.amazonaws\.com$,流媒体
+# - DOMAIN-REGEX,^[0-9]+vod-adaptive\.akamaized\.net$,流媒体
 # - DOMAIN-SUFFIX,discoveryplus.com,流媒体
 # - DOMAIN-SUFFIX,paramountplus.com,流媒体
 # - DOMAIN-SUFFIX,peacocktv.com,流媒体
 # - DOMAIN-SUFFIX,crunchyroll.com,流媒体
-# - GEOSITE,category-games-cn,DIRECT
-# - GEOSITE,category-games-!cn,海外游戏
+# - RULE-SET,games-cn,DIRECT
+# - RULE-SET,games-global,海外游戏
+# - DOMAIN-REGEX,^epicgames-download\d\.akamaized\.net$,海外游戏
 # - RULE-SET,github,开发工具
-# - DOMAIN-SUFFIX,ghcr.io,开发工具
-# - DOMAIN-SUFFIX,github.io,开发工具
-# - DOMAIN-SUFFIX,docker.io,开发工具
-# - DOMAIN-SUFFIX,docker.com,开发工具
-# - DOMAIN-SUFFIX,repo.maven.apache.org,开发工具
 # - DOMAIN-SUFFIX,maven.apache.org,开发工具
-# - DOMAIN-SUFFIX,jetbrains.com,开发工具
-# - DOMAIN-SUFFIX,jetbrains.space,开发工具
-# - DOMAIN-SUFFIX,jetbrains.net,开发工具
-# - DOMAIN-SUFFIX,npmjs.org,开发工具
-# - DOMAIN-SUFFIX,npmjs.com,开发工具
-# - DOMAIN-SUFFIX,yarnpkg.com,开发工具
-# - DOMAIN-SUFFIX,pypi.org,开发工具
-# - DOMAIN-SUFFIX,pythonhosted.org,开发工具
-# - DOMAIN-SUFFIX,crates.io,开发工具
-# - DOMAIN-SUFFIX,rubygems.org,开发工具
-# - DOMAIN-SUFFIX,nuget.org,开发工具
-# - DOMAIN-SUFFIX,packagist.org,开发工具
-# - DOMAIN-SUFFIX,stackoverflow.com,开发工具
-# - DOMAIN-SUFFIX,stackexchange.com,开发工具
 # - DOMAIN-SUFFIX,vercel.com,开发工具
 # - DOMAIN-SUFFIX,vercel.app,开发工具
 # - DOMAIN-SUFFIX,netlify.com,开发工具
 # - DOMAIN-SUFFIX,netlify.app,开发工具
 # - DOMAIN-SUFFIX,pages.dev,开发工具
 # - DOMAIN-SUFFIX,workers.dev,开发工具
-# - DOMAIN-SUFFIX,gitlab.com,开发工具
 # - DOMAIN-SUFFIX,bitbucket.org,开发工具
 # - DOMAIN-SUFFIX,digitalocean.com,开发工具
 # - DOMAIN-SUFFIX,vultr.com,开发工具
 # - DOMAIN-SUFFIX,heroku.com,开发工具
 # - DOMAIN-SUFFIX,fly.io,开发工具
 # - DOMAIN-SUFFIX,render.com,开发工具
-# - DOMAIN-SUFFIX,sentry.io,开发工具
 # - DOMAIN-SUFFIX,postman.com,开发工具
 # - DOMAIN-SUFFIX,notion.so,开发工具
 # - DOMAIN-SUFFIX,figma.com,开发工具
 # - DOMAIN-SUFFIX,atlassian.com,开发工具
-# - DOMAIN-SUFFIX,hashicorp.com,开发工具
-# - DOMAIN-SUFFIX,terraform.io,开发工具
 # - DOMAIN-SUFFIX,fedoraproject.org,DIRECT
-# - DOMAIN-SUFFIX,almalinux.org,开发工具
 # - DOMAIN-SUFFIX,linux-mirrors.fnal.gov,开发工具
-# - GEOSITE,category-dev,开发工具
+# - RULE-SET,dev,开发工具
+# - DOMAIN-REGEX,.+\.dkr\.ecr\.[^\.]+\.amazonaws\.com$,开发工具
 # - DOMAIN-SUFFIX,icloud.com,DIRECT
 # - RULE-SET,apple,苹果
-# - DOMAIN-SUFFIX,apple.com.cn,苹果
-# - DOMAIN-SUFFIX,icloud.com.cn,苹果
-# - DOMAIN-SUFFIX,mzstatic.com,苹果
 # - DOMAIN-SUFFIX,storeedge.microsoft.com,DIRECT
 # - DOMAIN-SUFFIX,mp.microsoft.com,DIRECT
 # - RULE-SET,microsoft,微软
 # - DOMAIN-SUFFIX,microsoft.cn,微软
-# - DOMAIN-SUFFIX,msftconnecttest.com,微软
-# - DOMAIN-SUFFIX,msn.com,微软
-# - DOMAIN-SUFFIX,live.com,微软
-# - DOMAIN-SUFFIX,sfx.ms,微软
 # - DOMAIN-SUFFIX,baidu.com,DIRECT
 # - DOMAIN-SUFFIX,bdstatic.com,DIRECT
 # - DOMAIN-SUFFIX,bilibili.com,DIRECT
@@ -546,22 +817,12 @@
 # - DOMAIN-SUFFIX,163.com,DIRECT
 # - DOMAIN-SUFFIX,126.com,DIRECT
 # - DOMAIN-SUFFIX,126.net,DIRECT
-# - DOMAIN-SUFFIX,chiphell.com,DIRECT
-# - DOMAIN-SUFFIX,xindazhilian.com,DIRECT
-# - DOMAIN-SUFFIX,halo.run,DIRECT
 # - DST-PORT,123,DIRECT
 # - DST-PORT,3478,DIRECT
 # - DST-PORT,3479,DIRECT
-# - DST-PORT,33068,DIRECT
-# - DST-PORT,6540,DIRECT
-# - DST-PORT,26880,DIRECT
-# - DOMAIN-SUFFIX,services.googleapis.cn,Google
-# - DOMAIN-SUFFIX,googleapis.cn,Google
 # - RULE-SET,gfw,节点选择
 # - RULE-SET,cn_sites,国内直连
-# - GEOSITE,cn,国内直连
 # - RULE-SET,proxy_sites,节点选择
-# - GEOIP,CN,国内直连,no-resolve
 # - MATCH,漏网之鱼
 
 # ==========================================================
@@ -586,6 +847,8 @@
 #   - +.local
 #   - +.localhost
 #   - +.direct
+#   - +.home.arpa
+#   - +.internal
 #   - +.msftconnecttest.com
 #   - +.msftncsi.com
 #   - +.baidu.com
@@ -611,7 +874,9 @@
 #   - captive.apple.com
 #   - connectivitycheck.gstatic.com
 #   - id6.me
-#   - localhost.ptlogin2.qq.com
+#   - +.qq.com
+#   - +.wechat.com
+#   - +.weixinbridge.com
 #   - +.cmpassport.com
 #   - +.mcdn.bilivideo.cn
 #   - +.battlenet.com.cn
@@ -625,10 +890,7 @@
 #   - https://dns.cloudflare.com/dns-query
 #   - https://dns.google/dns-query
 #   nameserver-policy:
-#     aistudio.google.com:
-#     - https://dns.cloudflare.com/dns-query
-#     - https://dns.google/dns-query
-#     geosite:cn,geolocation-cn,bilibili,biliintl:
+#     rule-set:cn_sites,geolocation-cn,bilibili:
 #     - https://dns.alidns.com/dns-query
 #     - https://doh.pub/dns-query
 #     - tls://223.5.5.5

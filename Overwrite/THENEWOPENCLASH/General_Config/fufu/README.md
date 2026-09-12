@@ -4,7 +4,7 @@
 
 | 文件名 | proxy-providers | Raw 链接 |
 | :--- | :--- | :--- |
-| **ConfigForClash.yaml** | 机场一 | [下载/查看](https://raw.githubusercontent.com/HenryChiao/MIHOMO_YAMLS/main/Overwrite/THENEWOPENCLASH/General_Config/fufu/ConfigForClash.yaml) |
+| **ConfigForClash.yaml** | 机场一 | [下载/查看](https://raw.githubusercontent.com/zhangsan-nb/MIHOMO_YAMLS/main/Overwrite/THENEWOPENCLASH/General_Config/fufu/ConfigForClash.yaml) |
 
 ---
 [🔙 返回总览](../README.md)

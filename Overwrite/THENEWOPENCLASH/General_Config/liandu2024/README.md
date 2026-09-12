@@ -4,11 +4,11 @@
 
 | 文件名 | proxy-providers | Raw 链接 |
 | :--- | :--- | :--- |
-| **clash-all-fallback.yaml** | 机场名称 | [下载/查看](https://raw.githubusercontent.com/HenryChiao/MIHOMO_YAMLS/main/Overwrite/THENEWOPENCLASH/General_Config/liandu2024/clash-all-fallback.yaml) |
-| **clash-fallback-all.yaml** | 机场名称 | [下载/查看](https://raw.githubusercontent.com/HenryChiao/MIHOMO_YAMLS/main/Overwrite/THENEWOPENCLASH/General_Config/liandu2024/clash-fallback-all.yaml) |
-| **clash-fallback-dialer.yaml** | 机场名称 | [下载/查看](https://raw.githubusercontent.com/HenryChiao/MIHOMO_YAMLS/main/Overwrite/THENEWOPENCLASH/General_Config/liandu2024/clash-fallback-dialer.yaml) |
-| **clash-fallback-std.yaml** | 机场名称 | [下载/查看](https://raw.githubusercontent.com/HenryChiao/MIHOMO_YAMLS/main/Overwrite/THENEWOPENCLASH/General_Config/liandu2024/clash-fallback-std.yaml) |
-| **clash-fallback.yaml** | 机场名称 | [下载/查看](https://raw.githubusercontent.com/HenryChiao/MIHOMO_YAMLS/main/Overwrite/THENEWOPENCLASH/General_Config/liandu2024/clash-fallback.yaml) |
+| **clash-all-fallback.yaml** | 机场名称 | [下载/查看](https://raw.githubusercontent.com/zhangsan-nb/MIHOMO_YAMLS/main/Overwrite/THENEWOPENCLASH/General_Config/liandu2024/clash-all-fallback.yaml) |
+| **clash-fallback-all.yaml** | 机场名称 | [下载/查看](https://raw.githubusercontent.com/zhangsan-nb/MIHOMO_YAMLS/main/Overwrite/THENEWOPENCLASH/General_Config/liandu2024/clash-fallback-all.yaml) |
+| **clash-fallback-dialer.yaml** | 机场名称 | [下载/查看](https://raw.githubusercontent.com/zhangsan-nb/MIHOMO_YAMLS/main/Overwrite/THENEWOPENCLASH/General_Config/liandu2024/clash-fallback-dialer.yaml) |
+| **clash-fallback-std.yaml** | 机场名称 | [下载/查看](https://raw.githubusercontent.com/zhangsan-nb/MIHOMO_YAMLS/main/Overwrite/THENEWOPENCLASH/General_Config/liandu2024/clash-fallback-std.yaml) |
+| **clash-fallback.yaml** | 机场名称 | [下载/查看](https://raw.githubusercontent.com/zhangsan-nb/MIHOMO_YAMLS/main/Overwrite/THENEWOPENCLASH/General_Config/liandu2024/clash-fallback.yaml) |
 
 ---
 [🔙 返回总览](../README.md)

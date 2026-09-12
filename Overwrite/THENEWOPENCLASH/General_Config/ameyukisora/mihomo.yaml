@@ -1,6 +1,6 @@
 # OpenClash 覆写模块 - mihomo.yaml
-# 生成日期：2026-07-21
-# 源文件：https://raw.githubusercontent.com/HenryChiao/MIHOMO_YAMLS/main/THEYAMLS/General_Config/ameyukisora/mihomo.yaml
+# 生成日期：2026-09-12
+# 源文件：https://raw.githubusercontent.com/zhangsan-nb/MIHOMO_YAMLS/main/THEYAMLS/General_Config/ameyukisora/mihomo.yaml
 # 格式：新版 OpenClash [YAML] 块覆写
 #
 # 本文件仅包含 [YAML] 块覆写内容，不含任何 [General] 插件设置。
@@ -145,6 +145,10 @@
 #   include-all-providers: true
 #   name: Google
 #   type: select
+# - icon: https://raw.githubusercontent.com/amenorira/Clash-Rule/master/icon/OpenAI.png
+#   include-all-providers: true
+#   name: OpenAI
+#   type: select
 # - icon: https://raw.githubusercontent.com/amenorira/Clash-Rule/master/icon/AWAvenue.png
 #   name: 秋风净化
 #   proxies:
@@ -193,6 +197,12 @@
 #     path: ./rule_provider/JapanWeb.yaml
 #     type: http
 #     url: https://raw.githubusercontent.com/amenorira/Clash-Rule/master/provider/JapanWeb.yaml
+#   OpenAI:
+#     behavior: classical
+#     interval: 86400
+#     path: ./rule_provider/OpenAI.yaml
+#     type: http
+#     url: https://raw.githubusercontent.com/amenorira/Clash-Rule/master/provider/OpenAI.yaml
 #   Proxy:
 #     behavior: classical
 #     interval: 86400
@@ -264,6 +274,7 @@
 # - RULE-SET,Steam,游戏平台
 # - RULE-SET,Telegram,电报消息
 # - RULE-SET,Google,Google
+# - RULE-SET,OpenAI,OpenAI
 # - RULE-SET,Proxy,节点选择
 # - RULE-SET,gfw,节点选择
 # - RULE-SET,cn,DIRECT
@@ -288,7 +299,7 @@
 #   fake-ip-filter:
 #   - rule-set:fakeip-filter
 #   nameserver:
-#   - system
+#   - 119.29.29.29
 #   proxy-server-nameserver:
 #   - https://dns.alidns.com/dns-query
 #   - https://doh.pub/dns-query

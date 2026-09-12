@@ -4,7 +4,7 @@
 
 | 文件名 | proxy-providers | Raw 链接 |
 | :--- | :--- | :--- |
-| **OneSmartProMCX.yaml** | 优质服务商、次优服务商、备用服务商、落地服务商 | [下载/查看](https://raw.githubusercontent.com/HenryChiao/MIHOMO_YAMLS/main/Overwrite/THENEWOPENCLASH/Smart_Mode/edison/OneSmartProMCX.yaml) |
+| **OneSmartProMCX.yaml** | 优质服务商、次优服务商、备用服务商、落地服务商 | [下载/查看](https://raw.githubusercontent.com/zhangsan-nb/MIHOMO_YAMLS/main/Overwrite/THENEWOPENCLASH/Smart_Mode/edison/OneSmartProMCX.yaml) |
 
 ---
 [🔙 返回总览](../README.md)

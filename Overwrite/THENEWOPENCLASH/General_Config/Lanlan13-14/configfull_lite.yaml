@@ -1,6 +1,6 @@
 # OpenClash 覆写模块 - configfull_lite.yaml
-# 生成日期：2026-07-21
-# 源文件：https://raw.githubusercontent.com/HenryChiao/MIHOMO_YAMLS/main/THEYAMLS/General_Config/Lanlan13-14/configfull_lite.yaml
+# 生成日期：2026-09-12
+# 源文件：https://raw.githubusercontent.com/zhangsan-nb/MIHOMO_YAMLS/main/THEYAMLS/General_Config/Lanlan13-14/configfull_lite.yaml
 # 格式：新版 OpenClash [YAML] 块覆写
 #
 # 本文件仅包含 [YAML] 块覆写内容，不含任何 [General] 插件设置。
@@ -129,7 +129,7 @@
 # ==========================================================
 #
 # proxy-groups:
-# - icon: https://pub-8feead0908f649a8b94397f152fb9cba.r2.dev/select.png
+# - icon: https://raw.githubusercontent.com/Lanlan13-14/Rules/refs/heads/main/icon/select.png
 #   name: 节点选择
 #   proxies:
 #   - 香港节点
@@ -142,7 +142,7 @@
 #   - 自建/家宽节点
 #   - 故障转移
 #   type: select
-# - icon: https://pub-8feead0908f649a8b94397f152fb9cba.r2.dev/youtube.png
+# - icon: https://raw.githubusercontent.com/Lanlan13-14/Rules/refs/heads/main/icon/youtube.png
 #   name: YouTube
 #   proxies: &id001
 #   - 节点选择
@@ -156,16 +156,16 @@
 #   - 自建/家宽节点
 #   - 全球直连
 #   type: select
-# - icon: https://pub-8feead0908f649a8b94397f152fb9cba.r2.dev/google.png
+# - icon: https://raw.githubusercontent.com/Lanlan13-14/Rules/refs/heads/main/icon/google.png
 #   name: Google
 #   proxies: *id001
 #   type: select
-# - icon: https://pub-8feead0908f649a8b94397f152fb9cba.r2.dev/meta.png
+# - icon: https://raw.githubusercontent.com/Lanlan13-14/Rules/refs/heads/main/icon/meta.png
 #   name: Meta
 #   proxies: *id001
 #   type: select
 # - exclude-filter: (?i)(🟢 直连)
-#   icon: https://pub-8feead0908f649a8b94397f152fb9cba.r2.dev/ai.png
+#   icon: https://raw.githubusercontent.com/Lanlan13-14/Rules/refs/heads/main/icon/ai.png
 #   include-all: true
 #   name: AI
 #   proxies: &id002
@@ -180,39 +180,39 @@
 #   - 自建/家宽节点
 #   - 全球直连
 #   type: select
-# - icon: https://pub-8feead0908f649a8b94397f152fb9cba.r2.dev/github.png
+# - icon: https://raw.githubusercontent.com/Lanlan13-14/Rules/refs/heads/main/icon/github.png
 #   name: GitHub
 #   proxies: *id001
 #   type: select
-# - icon: https://pub-8feead0908f649a8b94397f152fb9cba.r2.dev/onedrive.png
+# - icon: https://raw.githubusercontent.com/Lanlan13-14/Rules/refs/heads/main/icon/onedrive.png
 #   name: OneDrive
 #   proxies: *id001
 #   type: select
-# - icon: https://pub-8feead0908f649a8b94397f152fb9cba.r2.dev/microsoft.png
+# - icon: https://raw.githubusercontent.com/Lanlan13-14/Rules/refs/heads/main/icon/microsoft.png
 #   name: Microsoft
 #   proxies: *id001
 #   type: select
-# - icon: https://pub-8feead0908f649a8b94397f152fb9cba.r2.dev/telegram.png
+# - icon: https://raw.githubusercontent.com/Lanlan13-14/Rules/refs/heads/main/icon/telegram.png
 #   name: Telegram
 #   proxies: *id001
 #   type: select
-# - icon: https://pub-8feead0908f649a8b94397f152fb9cba.r2.dev/tiktok.png
+# - icon: https://raw.githubusercontent.com/Lanlan13-14/Rules/refs/heads/main/icon/tiktok.png
 #   name: TikTok
 #   proxies: *id001
 #   type: select
-# - icon: https://pub-8feead0908f649a8b94397f152fb9cba.r2.dev/netflix.png
+# - icon: https://raw.githubusercontent.com/Lanlan13-14/Rules/refs/heads/main/icon/netflix.png
 #   name: NETFLIX
 #   proxies: *id001
 #   type: select
-# - icon: https://pub-8feead0908f649a8b94397f152fb9cba.r2.dev/disney.png
+# - icon: https://raw.githubusercontent.com/Lanlan13-14/Rules/refs/heads/main/icon/disney.png
 #   name: DisneyPlus
 #   proxies: *id001
 #   type: select
-# - icon: https://pub-8feead0908f649a8b94397f152fb9cba.r2.dev/hbo.png
+# - icon: https://raw.githubusercontent.com/Lanlan13-14/Rules/refs/heads/main/icon/hbo.png
 #   name: HBO
 #   proxies: *id001
 #   type: select
-# - icon: https://pub-8feead0908f649a8b94397f152fb9cba.r2.dev/apple.png
+# - icon: https://raw.githubusercontent.com/Lanlan13-14/Rules/refs/heads/main/icon/apple.png
 #   name: Apple
 #   proxies: &id003
 #   - 全球直连
@@ -227,16 +227,16 @@
 #   - 自建/家宽节点
 #   type: select
 # - exclude-filter: (?i)(🟢 直连)
-#   icon: https://pub-8feead0908f649a8b94397f152fb9cba.r2.dev/emby.png
+#   icon: https://raw.githubusercontent.com/Lanlan13-14/Rules/refs/heads/main/icon/emby.png
 #   include-all: true
 #   name: Emby
 #   proxies: *id002
 #   type: select
-# - icon: https://pub-8feead0908f649a8b94397f152fb9cba.r2.dev/bilibili.png
+# - icon: https://raw.githubusercontent.com/Lanlan13-14/Rules/refs/heads/main/icon/bilibili.png
 #   name: 哔哩哔哩
 #   proxies: *id003
 #   type: select
-# - icon: https://pub-8feead0908f649a8b94397f152fb9cba.r2.dev/bilibilit.png
+# - icon: https://raw.githubusercontent.com/Lanlan13-14/Rules/refs/heads/main/icon/bilibilit.png
 #   name: 哔哩东南亚
 #   proxies:
 #   - 节点选择
@@ -245,33 +245,33 @@
 #   - 自建/家宽节点
 #   - 全球直连
 #   type: select
-# - icon: https://pub-8feead0908f649a8b94397f152fb9cba.r2.dev/bahamut.png
+# - icon: https://raw.githubusercontent.com/Lanlan13-14/Rules/refs/heads/main/icon/bahamut.png
 #   name: 巴哈姆特
 #   proxies:
 #   - 台湾节点
 #   type: select
-# - icon: https://pub-8feead0908f649a8b94397f152fb9cba.r2.dev/spotify.png
+# - icon: https://raw.githubusercontent.com/Lanlan13-14/Rules/refs/heads/main/icon/spotify.png
 #   name: Spotify
 #   proxies: *id001
 #   type: select
-# - icon: https://pub-8feead0908f649a8b94397f152fb9cba.r2.dev/Chinese_media.png
+# - icon: https://raw.githubusercontent.com/Lanlan13-14/Rules/refs/heads/main/icon/Chinese_media.png
 #   name: 国内媒体
 #   proxies: *id003
 #   type: select
 # - exclude-filter: (?i)(🟢 直连)
-#   icon: https://pub-8feead0908f649a8b94397f152fb9cba.r2.dev/steam.png
+#   icon: https://raw.githubusercontent.com/Lanlan13-14/Rules/refs/heads/main/icon/steam.png
 #   include-all: true
 #   name: STEAM
 #   proxies: *id002
 #   type: select
-# - icon: https://pub-8feead0908f649a8b94397f152fb9cba.r2.dev/direct.png
+# - icon: https://raw.githubusercontent.com/Lanlan13-14/Rules/refs/heads/main/icon/direct.png
 #   name: 全球直连
 #   proxies:
 #   - 🟢 直连
 #   - 🔗 代理
 #   - 全部节点
 #   type: select
-# - icon: https://pub-8feead0908f649a8b94397f152fb9cba.r2.dev/block.png
+# - icon: https://raw.githubusercontent.com/Lanlan13-14/Rules/refs/heads/main/icon/block.png
 #   name: 隐私拦截
 #   proxies:
 #   - 🚫 拒绝
@@ -280,14 +280,14 @@
 #   - 🔗 代理
 #   type: select
 # - exclude-filter: (?i)(🟢 直连)
-#   icon: https://pub-8feead0908f649a8b94397f152fb9cba.r2.dev/final.png
+#   icon: https://raw.githubusercontent.com/Lanlan13-14/Rules/refs/heads/main/icon/final.png
 #   include-all: true
 #   name: Final
 #   proxies: *id002
 #   type: select
 # - exclude-filter: (?=.*(?i)(Seattle))
 #   filter: (?=.*(?i)(自建|CF|The_house|private|home|家宽|hgc|HKT|HKBN|icable|Hinet|att))
-#   icon: https://pub-8feead0908f649a8b94397f152fb9cba.r2.dev/private_node.png
+#   icon: https://raw.githubusercontent.com/Lanlan13-14/Rules/refs/heads/main/icon/private_node.png
 #   include-all: true
 #   name: 自建/家宽节点
 #   type: select
@@ -301,7 +301,7 @@
 #   type: select
 # - exclude-filter: (?=.*(?i)(新西兰))
 #   filter: (?=.*(?i)(新|🇸🇬|SG|singapore))
-#   icon: https://pub-8feead0908f649a8b94397f152fb9cba.r2.dev/Singapore.png
+#   icon: https://raw.githubusercontent.com/Lanlan13-14/Rules/refs/heads/main/icon/Singapore.png
 #   include-all: true
 #   name: 新加坡节点
 #   proxies:
@@ -309,7 +309,7 @@
 #   - 新加坡均衡
 #   type: select
 # - filter: (?=.*(?i)(日本|🇯🇵|JP|Japan))
-#   icon: https://pub-8feead0908f649a8b94397f152fb9cba.r2.dev/Japan.png
+#   icon: https://raw.githubusercontent.com/Lanlan13-14/Rules/refs/heads/main/icon/Japan.png
 #   include-all: true
 #   name: 日本节点
 #   proxies:
@@ -317,7 +317,7 @@
 #   - 日本均衡
 #   type: select
 # - filter: (?=.*(?i)(台|🇹🇼|TW|Taiwan))
-#   icon: https://pub-8feead0908f649a8b94397f152fb9cba.r2.dev/Taiwan_China.png
+#   icon: https://raw.githubusercontent.com/Lanlan13-14/Rules/refs/heads/main/icon/Taiwan_China.png
 #   include-all: true
 #   name: 台湾节点
 #   proxies:
@@ -326,7 +326,7 @@
 #   type: select
 # - exclude-filter: (?=.*(?i)(Australia|Russia|RUS))
 #   filter: (?=.*(?i)(美|🇺🇲|🇺🇸|US|America|United States|UnitedState|Los Angeles|Chicago|Ashburn|Seattle|Kansas))
-#   icon: https://pub-8feead0908f649a8b94397f152fb9cba.r2.dev/America.png
+#   icon: https://raw.githubusercontent.com/Lanlan13-14/Rules/refs/heads/main/icon/America.png
 #   include-all: true
 #   name: 美国节点
 #   proxies:
@@ -334,12 +334,12 @@
 #   - 美国均衡
 #   type: select
 # - filter: (?=.*(?i)(🇦🇱|🇦🇩|🇦🇹|🇧🇾|🇧🇪|🇧🇦|🇧🇬|🇭🇷|🇨🇾|🇨🇿|🇩🇰|🇪🇪|🇫🇮|🇫🇷|🇩🇪|🇬🇷|🇭🇺|🇮🇸|🇮🇪|🇮🇹|🇽🇰|🇱🇻|🇱🇮|🇱🇹|🇱🇺|🇲🇹|🇲🇩|🇲🇨|🇲🇪|🇳🇱|🇲🇰|🇳🇴|🇵🇱|🇵🇹|🇷🇴|🇷🇺|🇸🇲|🇷🇸|🇸🇰|🇸🇮|🇪🇸|🇸🇪|🇨🇭|🇹🇷|🇺🇦|🇬🇧|🇻🇦))
-#   icon: https://pub-8feead0908f649a8b94397f152fb9cba.r2.dev/European.png
+#   icon: https://raw.githubusercontent.com/Lanlan13-14/Rules/refs/heads/main/icon/European.png
 #   include-all: true
 #   name: 欧洲节点
 #   type: select
 # - exclude-filter: (?i)(🟢 直连)
-#   icon: https://pub-8feead0908f649a8b94397f152fb9cba.r2.dev/all.png
+#   icon: https://raw.githubusercontent.com/Lanlan13-14/Rules/refs/heads/main/icon/all.png
 #   include-all: true
 #   interval: 300
 #   name: 全部节点
@@ -398,7 +398,7 @@
 # - exclude-filter: (?=.*(?i)(The_HK_balance|wcloud|0倍|0\.1倍|0\.01倍|0\.3X|0\.2x|0\.5x|3X|2x|1\.5x|traffic|plus))
 #   filter: (?=.*(?i)(香港|hk|hongkong|Hong Kong|🇭🇰))
 #   hidden: true
-#   icon: https://pub-8feead0908f649a8b94397f152fb9cba.r2.dev/load-balance.png
+#   icon: https://raw.githubusercontent.com/Lanlan13-14/Rules/refs/heads/main/icon/load-balance.png
 #   include-all: true
 #   name: 香港均衡
 #   strategy: consistent-hashing
@@ -406,7 +406,7 @@
 # - exclude-filter: (?=.*(?i)(The_SG_balance|wcloud|0倍|0\.1倍|0\.01倍|0\.3X|0\.2x|0\.5x|3X|2x|1\.5x|traffic|plus|新西兰))
 #   filter: (?=.*(?i)(新|🇸🇬|SG|Singapore))
 #   hidden: true
-#   icon: https://pub-8feead0908f649a8b94397f152fb9cba.r2.dev/load-balance.png
+#   icon: https://raw.githubusercontent.com/Lanlan13-14/Rules/refs/heads/main/icon/load-balance.png
 #   include-all: true
 #   name: 新加坡均衡
 #   strategy: consistent-hashing
@@ -414,7 +414,7 @@
 # - exclude-filter: (?=.*(?i)(The_JP_balance|wcloud|0倍|0\.1倍|0\.01倍|0\.3X|0\.2x|0\.5x|3X|2x|1\.5x|traffic|plus))
 #   filter: (?=.*(?i)(日本|🇯🇵|JP|Japan))
 #   hidden: true
-#   icon: https://pub-8feead0908f649a8b94397f152fb9cba.r2.dev/load-balance.png
+#   icon: https://raw.githubusercontent.com/Lanlan13-14/Rules/refs/heads/main/icon/load-balance.png
 #   include-all: true
 #   name: 日本均衡
 #   strategy: consistent-hashing
@@ -422,7 +422,7 @@
 # - exclude-filter: (?=.*(?i)(The_TW_balance|wcloud|0倍|0\.1倍|0\.01倍|0\.3X|0\.2x|0\.5x|3X|2x|1\.5x|traffic|plus))
 #   filter: (?=.*(?i)(台|🇹🇼|TW|Taiwan))
 #   hidden: true
-#   icon: https://pub-8feead0908f649a8b94397f152fb9cba.r2.dev/load-balance.png
+#   icon: https://raw.githubusercontent.com/Lanlan13-14/Rules/refs/heads/main/icon/load-balance.png
 #   include-all: true
 #   name: 台湾均衡
 #   strategy: consistent-hashing
@@ -430,12 +430,12 @@
 # - exclude-filter: (?=.*(?i)(The_US_balance|wcloud|0倍|0\.1倍|0\.01倍|0\.3X|0\.2x|0\.5x|3X|2x|1\.5x|russia|austria|plus|traffic|Australia|rus|aus))
 #   filter: (?=.*(?i)(美|🇺🇲|🇺🇸|US|America|United States|UnitedState|Ashburn|Kansas|Seattle))
 #   hidden: true
-#   icon: https://pub-8feead0908f649a8b94397f152fb9cba.r2.dev/load-balance.png
+#   icon: https://raw.githubusercontent.com/Lanlan13-14/Rules/refs/heads/main/icon/load-balance.png
 #   include-all: true
 #   name: 美国均衡
 #   strategy: consistent-hashing
 #   type: load-balance
-# - icon: https://pub-8feead0908f649a8b94397f152fb9cba.r2.dev/fallback.png
+# - icon: https://raw.githubusercontent.com/Lanlan13-14/Rules/refs/heads/main/icon/fallback.png
 #   include-all: true
 #   interval: 300
 #   name: 故障转移
@@ -456,7 +456,7 @@
 #   - REJECT-DROP
 #   type: select
 # - exclude-filter: (?i)(🟢 直连)
-#   icon: https://pub-8feead0908f649a8b94397f152fb9cba.r2.dev/global.png
+#   icon: https://raw.githubusercontent.com/Lanlan13-14/Rules/refs/heads/main/icon/global.png
 #   include-all: true
 #   name: GLOBAL
 #   proxies:

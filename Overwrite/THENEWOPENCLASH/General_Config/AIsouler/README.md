@@ -4,8 +4,8 @@
 
 | 文件名 | proxy-providers | Raw 链接 |
 | :--- | :--- | :--- |
-| **mihomoConfigLite.yaml** | provider1 | [下载/查看](https://raw.githubusercontent.com/HenryChiao/MIHOMO_YAMLS/main/Overwrite/THENEWOPENCLASH/General_Config/AIsouler/mihomoConfigLite.yaml) |
-| **mihomoconfig.yaml** | provider1 | [下载/查看](https://raw.githubusercontent.com/HenryChiao/MIHOMO_YAMLS/main/Overwrite/THENEWOPENCLASH/General_Config/AIsouler/mihomoconfig.yaml) |
+| **mihomoConfigLite.yaml** | provider1 | [下载/查看](https://raw.githubusercontent.com/zhangsan-nb/MIHOMO_YAMLS/main/Overwrite/THENEWOPENCLASH/General_Config/AIsouler/mihomoConfigLite.yaml) |
+| **mihomoconfig.yaml** | provider1 | [下载/查看](https://raw.githubusercontent.com/zhangsan-nb/MIHOMO_YAMLS/main/Overwrite/THENEWOPENCLASH/General_Config/AIsouler/mihomoconfig.yaml) |
 
 ---
 [🔙 返回总览](../README.md)

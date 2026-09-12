@@ -1,6 +1,6 @@
 # OpenClash 覆写模块 - config.yaml
-# 生成日期：2026-07-21
-# 源文件：https://raw.githubusercontent.com/HenryChiao/MIHOMO_YAMLS/main/THEYAMLS/General_Config/wanswu/config.yaml
+# 生成日期：2026-09-12
+# 源文件：https://raw.githubusercontent.com/zhangsan-nb/MIHOMO_YAMLS/main/THEYAMLS/General_Config/wanswu/config.yaml
 # 格式：新版 OpenClash [YAML] 块覆写
 #
 # 本文件仅包含 [YAML] 块覆写内容，不含任何 [General] 插件设置。
@@ -94,7 +94,6 @@
 #       additional-prefix: 备-6-
 #       udp: true
 #     path: proxy_provider/back.yaml
-#     proxy: DIRECT
 #     type: file
 #   main:
 #     exclude-filter: Expire|到期|剩余|Traffic|网址|官网|过期|地址
@@ -112,7 +111,6 @@
 #       additional-prefix: 主-
 #       udp: true
 #     path: ./proxy_provider/main.yaml
-#     proxy: DIRECT
 #     type: http
 #     url: https://anyland.club/#/register?code=R7vdKxbE
 
