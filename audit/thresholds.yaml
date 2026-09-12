@@ -1,0 +1,53 @@
+# Conservative defaults. Override locally if history shows too many false FAILs.
+mihomo_version: v1.19.15
+
+rule_change:
+  warn_percent: 10
+  fail_percent: 50
+
+file_size:
+  warn_percent: 20
+  fail_percent: 70
+
+# Absolute floor: collapsing a large set is always FAIL even if percent math is noisy.
+entry_count:
+  fail_shrink_percent: 50
+  fail_if_below: 8
+
+broad_suffix:
+  critical_tlds:
+    - com
+    - net
+    - org
+    - cn
+    - info
+    - xyz
+    - top
+    - io
+    - co
+    - cc
+    - me
+    - tv
+    - app
+    - dev
+    - edu
+    - gov
+    - uk
+    - jp
+    - kr
+    - ru
+    - de
+    - fr
+    - us
+    - br
+    - in
+    - au
+  fail_on_critical: true
+
+oracle:
+  # Production must use the real kernel. fixture is test-only.
+  require_real_mihomo: true
+  mixed_port: 27890
+  api_port: 29090
+  api_secret: audit-local-not-a-production-secret
+  connect_timeout_ms: 800

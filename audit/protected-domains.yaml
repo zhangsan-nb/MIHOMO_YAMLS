@@ -1,0 +1,21 @@
+# High-risk assets. Contract violations here are FAIL, never REVIEW.
+# Matching is suffix-aware: github.com also covers api.github.com.
+domains:
+  - github.com
+  - githubusercontent.com
+  - githubassets.com
+  - openai.com
+  - chatgpt.com
+  - google.com
+  - googleapis.com
+  - gstatic.com
+  - youtube.com
+  - telegram.org
+  - t.me
+  - microsoft.com
+  - apple.com
+  - icloud.com
+
+# Default forbidden policies for every protected domain unless policy.yaml overrides.
+default_forbidden:
+  - REJECT

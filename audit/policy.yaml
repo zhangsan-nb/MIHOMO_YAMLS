@@ -1,0 +1,53 @@
+# Policy Contract for the isolated audit harness (audit/harness.yaml).
+# Group names are ASCII harness policies, not consumer emoji proxy-group names.
+# Baseline-equal is not sufficient; NEW must also satisfy this contract.
+
+domains:
+  github.com:
+    allowed: [GITHUB]
+    forbidden: [DIRECT, REJECT, CHINA, FINAL, PROXY]
+  api.github.com:
+    allowed: [GITHUB]
+    forbidden: [DIRECT, REJECT, CHINA, FINAL]
+  raw.githubusercontent.com:
+    allowed: [GITHUB]
+    forbidden: [DIRECT, REJECT, CHINA, FINAL]
+  openai.com:
+    allowed: [AI]
+    forbidden: [DIRECT, REJECT, CHINA, FINAL]
+  chatgpt.com:
+    allowed: [AI]
+    forbidden: [DIRECT, REJECT, CHINA, FINAL]
+  google.com:
+    allowed: [GOOGLE]
+    forbidden: [DIRECT, REJECT, CHINA, FINAL]
+  youtube.com:
+    allowed: [YOUTUBE]
+    forbidden: [DIRECT, REJECT, CHINA, FINAL]
+  telegram.org:
+    allowed: [TELEGRAM]
+    forbidden: [DIRECT, REJECT, CHINA, FINAL]
+  t.me:
+    allowed: [TELEGRAM]
+    forbidden: [DIRECT, REJECT, CHINA, FINAL]
+  baidu.com:
+    allowed: [CHINA, DIRECT]
+    forbidden: [REJECT]
+  qq.com:
+    allowed: [CHINA, DIRECT]
+    forbidden: [REJECT]
+  bilibili.com:
+    allowed: [CHINA, DIRECT]
+    forbidden: [REJECT]
+  microsoft.com:
+    allowed: [MICROSOFT]
+    forbidden: [REJECT, CHINA]
+  apple.com:
+    allowed: [APPLE, DIRECT]
+    forbidden: [REJECT]
+  icloud.com:
+    allowed: [APPLE, DIRECT]
+    forbidden: [REJECT]
+  doubleclick.net:
+    allowed: [REJECT]
+    forbidden: [GITHUB, AI]

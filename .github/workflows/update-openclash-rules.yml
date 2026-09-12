@@ -23,9 +23,12 @@ jobs:
       - name: Load previous rule manifest
         env:
           PREVIOUS_SOURCES: ${{ runner.temp }}/previous-SOURCES.tsv
+          BASELINE_DIR: ${{ runner.temp }}/openclash-rules-baseline
         run: |
+          mkdir -p "${BASELINE_DIR}"
           if git fetch --no-tags --depth=1 origin openclash-rules; then
             git show FETCH_HEAD:SOURCES.tsv > "${PREVIOUS_SOURCES}"
+            git archive FETCH_HEAD | tar -x -C "${BASELINE_DIR}"
           else
             : > "${PREVIOUS_SOURCES}"
           fi
@@ -45,6 +48,34 @@ jobs:
           fi
           exit "${status}"
 
+      - name: Supply-chain audit gate
+        id: audit
+        env:
+          OUTPUT_DIR: ${{ runner.temp }}/openclash-rules
+          BASELINE_DIR: ${{ runner.temp }}/openclash-rules-baseline
+        run: |
+          python -m pip install --user pyyaml
+          python audit/scripts/audit.py run \
+            --audit-dir audit \
+            --baseline "${BASELINE_DIR}" \
+            --candidate "${OUTPUT_DIR}" \
+            --out "${OUTPUT_DIR}/audit-report.json" \
+            --oracle auto \
+            --fail-closed
+          if [[ -f "${OUTPUT_DIR}/audit-report.txt" ]]; then
+            cat "${OUTPUT_DIR}/audit-report.txt" >> "${GITHUB_STEP_SUMMARY}"
+          fi
+
+      - name: Upload audit report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: routing-audit-report
+          path: |
+            ${{ runner.temp }}/openclash-rules/audit-report.json
+            ${{ runner.temp }}/openclash-rules/audit-report.txt
+          if-no-files-found: ignore
+
       - name: Publish atomically to openclash-rules branch
         id: publish
         env:
@@ -57,6 +88,9 @@ jobs:
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git checkout -b openclash-rules
           git add -- domain ip classical yaml fakeip README.md SOURCES.tsv SHA256SUMS
+          if [[ -d source ]]; then git add -- source; fi
+          if [[ -f baseline.json ]]; then git add -- baseline.json; fi
+          if [[ -d .audit ]]; then git add -- .audit; fi
           git commit -m "Update OpenClash rules $(date -u +'%Y-%m-%d')"
           git remote add origin "https://x-access-token:${GITHUB_TOKEN}@github.com/${GITHUB_REPOSITORY}.git"
           git push --force origin HEAD:openclash-rules
@@ -94,6 +128,7 @@ jobs:
           RULE_EMAIL_SMTP_USERNAME: ${{ secrets.RULE_EMAIL_SMTP_USERNAME }}
           RULE_EMAIL_SMTP_PASSWORD: ${{ secrets.RULE_EMAIL_SMTP_PASSWORD }}
           MIRROR_OUTCOME: ${{ steps.mirror.outcome }}
+          AUDIT_OUTCOME: ${{ steps.audit.outcome }}
           PUBLISH_OUTCOME: ${{ steps.publish.outcome }}
           PURGE_OUTCOME: ${{ steps.purge.outcome }}
           RUN_URL: https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}

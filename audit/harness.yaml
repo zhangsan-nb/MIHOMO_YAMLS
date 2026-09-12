@@ -1,0 +1,82 @@
+# Isolated matcher harness. Policies are dummy select groups (DIRECT/REJECT only).
+# Rule order matches qingliangban-mihomo-fork-custom.yaml among mirrored providers,
+# plus the few inline DOMAIN-* lines from that config that sit between them.
+# Personal airport/app RULE-SETs (de_*, us_paypal, ...) are omitted: they are not
+# in this mirror. That is a documented coverage boundary.
+
+policies:
+  - REJECT
+  - DIRECT
+  - LOCATION
+  - WIFI
+  - AI
+  - SPEEDTEST
+  - TWITTER
+  - TELEGRAM
+  - SOCIAL
+  - NEWS
+  - GAMES
+  - CRYPTO
+  - EMBY
+  - NETFLIX
+  - YOUTUBE
+  - STREAMING
+  - APPLE
+  - GOOGLE
+  - GITHUB
+  - MICROSOFT
+  - PROXY
+  - CHINA
+  - FINAL
+
+rules:
+  - RULE-SET,Tracking,REJECT
+  - RULE-SET,AWAvenueAds,REJECT
+  - RULE-SET,Advertising,REJECT
+  - DOMAIN-SUFFIX,mintegral.com,REJECT
+  - DOMAIN-SUFFIX,mintegral.net,REJECT
+  - DOMAIN-SUFFIX,mtgglobals.com,REJECT
+  - DOMAIN-SUFFIX,rayjump.com,REJECT
+  - DOMAIN-SUFFIX,mobvista.com,REJECT
+  - RULE-SET,LocationDKS,LOCATION
+  - RULE-SET,Private,DIRECT
+  - RULE-SET,Direct,DIRECT
+  - RULE-SET,XPTV,DIRECT
+  - DOMAIN-SUFFIX,3gppnetwork.org,WIFI
+  - RULE-SET,ukwifi,WIFI
+  - RULE-SET,Download,DIRECT
+  - RULE-SET,AppleCN,DIRECT
+  - RULE-SET,AI,AI
+  - DOMAIN-KEYWORD,speedtest,SPEEDTEST
+  - RULE-SET,Speedtest,SPEEDTEST
+  - RULE-SET,Twitter,TWITTER
+  - RULE-SET,Telegram,TELEGRAM
+  - RULE-SET,SocialMedia,SOCIAL
+  - RULE-SET,NewsMedia,NEWS
+  - DOMAIN-SUFFIX,steamserver.net,DIRECT
+  - RULE-SET,Games,GAMES
+  - RULE-SET,Crypto,CRYPTO
+  - RULE-SET,Emby,EMBY
+  - DOMAIN-SUFFIX,tmdb.org,PROXY
+  - RULE-SET,Netflix,NETFLIX
+  - RULE-SET,YouTube,YOUTUBE
+  - RULE-SET,Streaming,STREAMING
+  - RULE-SET,Apple,APPLE
+  - RULE-SET,Google,GOOGLE
+  - RULE-SET,github,GITHUB
+  - RULE-SET,Microsoft,MICROSOFT
+  - RULE-SET,Proxy,PROXY
+  - RULE-SET,China,CHINA
+  - RULE-SET,AdvertisingIP,REJECT
+  - RULE-SET,PrivateIP,DIRECT
+  - RULE-SET,XPTVIP,DIRECT
+  - RULE-SET,AIIP,AI
+  - RULE-SET,TelegramIP,TELEGRAM
+  - RULE-SET,SocialMediaIP,SOCIAL
+  - RULE-SET,EmbyIP,EMBY
+  - RULE-SET,NetflixIP,NETFLIX
+  - RULE-SET,StreamingIP,STREAMING
+  - RULE-SET,GoogleIP,GOOGLE
+  - RULE-SET,ProxyIP,PROXY
+  - RULE-SET,ChinaIP,CHINA
+  - MATCH,FINAL

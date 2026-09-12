@@ -1,0 +1,58 @@
+# Fixed cheap regression set. Always run. Not a substitute for Policy Contract.
+# Hosts are chosen from the consumer RULE-SET roles used by qingliangban
+# (GitHub / AI / Google / YouTube / Telegram / China / Direct / ads).
+
+critical:
+  - github.com
+  - api.github.com
+  - raw.githubusercontent.com
+  - openai.com
+  - chatgpt.com
+  - google.com
+  - youtube.com
+  - telegram.org
+  - baidu.com
+
+representative:
+  GITHUB:
+    - github.com
+    - api.github.com
+    - raw.githubusercontent.com
+    - gist.github.com
+    - ghcr.io
+  AI:
+    - openai.com
+    - chatgpt.com
+    - api.openai.com
+  GOOGLE:
+    - google.com
+    - gstatic.com
+    - googleapis.com
+  YOUTUBE:
+    - youtube.com
+    - ytimg.com
+  TELEGRAM:
+    - telegram.org
+    - t.me
+  CHINA:
+    - baidu.com
+    - qq.com
+    - bilibili.com
+    - 163.com
+  DIRECT:
+    - checkip.synology.com
+  REJECT:
+    - doubleclick.net
+  APPLE:
+    - apple.com
+    - icloud.com
+  MICROSOFT:
+    - microsoft.com
+    - office.com
+  NETFLIX:
+    - netflix.com
+  TWITTER:
+    - twitter.com
+    - x.com
+
+learned: []
