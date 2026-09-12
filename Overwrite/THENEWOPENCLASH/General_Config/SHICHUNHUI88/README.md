@@ -4,7 +4,7 @@
 
 | 文件名 | proxy-providers | Raw 链接 |
 | :--- | :--- | :--- |
-| **Clash-Airport.yaml** | 机场 | [下载/查看](https://raw.githubusercontent.com/HenryChiao/MIHOMO_YAMLS/main/Overwrite/THENEWOPENCLASH/General_Config/SHICHUNHUI88/Clash-Airport.yaml) |
+| **Clash-Airport.yaml** | 机场 | [下载/查看](https://raw.githubusercontent.com/zhangsan-nb/MIHOMO_YAMLS/main/Overwrite/THENEWOPENCLASH/General_Config/SHICHUNHUI88/Clash-Airport.yaml) |
 
 ---
 [🔙 返回总览](../README.md)

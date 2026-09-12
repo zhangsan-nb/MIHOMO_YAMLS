@@ -4,9 +4,9 @@
 
 | 文件名 | proxy-providers | Raw 链接 |
 | :--- | :--- | :--- |
-| **configfull.yaml** | Airport_01、Airport_02、Airport_03 | [下载/查看](https://raw.githubusercontent.com/HenryChiao/MIHOMO_YAMLS/main/Overwrite/THENEWOPENCLASH/General_Config/Lanlan13-14/configfull.yaml) |
-| **configfull_NoAd.yaml** | Airport_01、Airport_02、Airport_03 | [下载/查看](https://raw.githubusercontent.com/HenryChiao/MIHOMO_YAMLS/main/Overwrite/THENEWOPENCLASH/General_Config/Lanlan13-14/configfull_NoAd.yaml) |
-| **configfull_lite.yaml** | Airport_01、Airport_02、Airport_03 | [下载/查看](https://raw.githubusercontent.com/HenryChiao/MIHOMO_YAMLS/main/Overwrite/THENEWOPENCLASH/General_Config/Lanlan13-14/configfull_lite.yaml) |
+| **configfull.yaml** | Airport_01、Airport_02、Airport_03 | [下载/查看](https://raw.githubusercontent.com/zhangsan-nb/MIHOMO_YAMLS/main/Overwrite/THENEWOPENCLASH/General_Config/Lanlan13-14/configfull.yaml) |
+| **configfull_NoAd.yaml** | Airport_01、Airport_02、Airport_03 | [下载/查看](https://raw.githubusercontent.com/zhangsan-nb/MIHOMO_YAMLS/main/Overwrite/THENEWOPENCLASH/General_Config/Lanlan13-14/configfull_NoAd.yaml) |
+| **configfull_lite.yaml** | Airport_01、Airport_02、Airport_03 | [下载/查看](https://raw.githubusercontent.com/zhangsan-nb/MIHOMO_YAMLS/main/Overwrite/THENEWOPENCLASH/General_Config/Lanlan13-14/configfull_lite.yaml) |
 
 ---
 [🔙 返回总览](../README.md)

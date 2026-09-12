@@ -4,8 +4,8 @@
 
 | 文件名 | proxy-providers | Raw 链接 |
 | :--- | :--- | :--- |
-| **mihomo_multi.yaml** | Node-1、Node-2 | [下载/查看](https://raw.githubusercontent.com/HenryChiao/MIHOMO_YAMLS/main/Overwrite/THENEWOPENCLASH/General_Config/yyhhyyyyyy/mihomo_multi.yaml) |
-| **mihomo_single.yaml** | Node | [下载/查看](https://raw.githubusercontent.com/HenryChiao/MIHOMO_YAMLS/main/Overwrite/THENEWOPENCLASH/General_Config/yyhhyyyyyy/mihomo_single.yaml) |
+| **mihomo_multi.yaml** | Node-1、Node-2 | [下载/查看](https://raw.githubusercontent.com/zhangsan-nb/MIHOMO_YAMLS/main/Overwrite/THENEWOPENCLASH/General_Config/yyhhyyyyyy/mihomo_multi.yaml) |
+| **mihomo_single.yaml** | Node | [下载/查看](https://raw.githubusercontent.com/zhangsan-nb/MIHOMO_YAMLS/main/Overwrite/THENEWOPENCLASH/General_Config/yyhhyyyyyy/mihomo_single.yaml) |
 
 ---
 [🔙 返回总览](../README.md)
