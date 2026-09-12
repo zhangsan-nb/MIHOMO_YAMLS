@@ -328,7 +328,7 @@ jobs:
       TAGS:        ${{ needs.ref1nd_stable_version.outputs.tags }}
     steps:
       - name: Checkout reF1nd/sing-box (reF1nd-stable)
-        uses: actions/checkout@v7
+        uses: actions/checkout@v4
         with:
           repository: reF1nd/sing-box
           ref: reF1nd-stable
@@ -386,7 +386,7 @@ jobs:
       TAGS:        ${{ needs.ref1nd_test_version.outputs.tags }}
     steps:
       - name: Checkout reF1nd/sing-box (reF1nd-testing)
-        uses: actions/checkout@v7
+        uses: actions/checkout@v4
         with:
           repository: reF1nd/sing-box
           ref: reF1nd-testing
@@ -444,7 +444,7 @@ jobs:
       TAGS:        ${{ needs.sagernet_stable_version.outputs.tags }}
     steps:
       - name: Checkout SagerNet/sing-box (stable)
-        uses: actions/checkout@v7
+        uses: actions/checkout@v4
         with:
           repository: SagerNet/sing-box
           ref: stable
@@ -502,7 +502,7 @@ jobs:
       TAGS:        ${{ needs.sagernet_test_version.outputs.tags }}
     steps:
       - name: Checkout SagerNet/sing-box (testing)
-        uses: actions/checkout@v7
+        uses: actions/checkout@v4
         with:
           repository: SagerNet/sing-box
           ref: testing
@@ -701,7 +701,7 @@ jobs:
 
     steps:
       - name: Clone Repository
-        uses: actions/checkout@v7
+        uses: actions/checkout@v4
 
       - name: 下载所有产物
         uses: actions/download-artifact@v8

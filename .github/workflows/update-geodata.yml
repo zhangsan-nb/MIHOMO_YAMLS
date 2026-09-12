@@ -22,7 +22,7 @@ jobs:
     
     steps:
       - name: Checkout Code
-        uses: actions/checkout@v7
+        uses: actions/checkout@v4
 
       # --- 步骤 0: 准备历史数据 (用于差异对比) ---
       - name: Fetch old stats

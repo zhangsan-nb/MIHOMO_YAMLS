@@ -4,8 +4,8 @@
 
 | 文件名 | proxy-providers | Raw 链接 |
 | :--- | :--- | :--- |
-| **Seven1_fallback_Geo.yaml** | 机场名 | [下载/查看](https://raw.githubusercontent.com/HenryChiao/MIHOMO_YAMLS/main/Overwrite/THENEWOPENCLASH/General_Config/Seven1echo/Seven1_fallback_Geo.yaml) |
-| **Seven1_fallback_Rule-Set.yaml** | 机场名 | [下载/查看](https://raw.githubusercontent.com/HenryChiao/MIHOMO_YAMLS/main/Overwrite/THENEWOPENCLASH/General_Config/Seven1echo/Seven1_fallback_Rule-Set.yaml) |
+| **Seven1_fallback_Geo.yaml** | 机场名 | [下载/查看](https://raw.githubusercontent.com/zhangsan-nb/MIHOMO_YAMLS/main/Overwrite/THENEWOPENCLASH/General_Config/Seven1echo/Seven1_fallback_Geo.yaml) |
+| **Seven1_fallback_Rule-Set.yaml** | 机场名 | [下载/查看](https://raw.githubusercontent.com/zhangsan-nb/MIHOMO_YAMLS/main/Overwrite/THENEWOPENCLASH/General_Config/Seven1echo/Seven1_fallback_Rule-Set.yaml) |
 
 ---
 [🔙 返回总览](../README.md)

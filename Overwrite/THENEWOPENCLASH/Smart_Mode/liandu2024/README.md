@@ -4,9 +4,9 @@
 
 | 文件名 | proxy-providers | Raw 链接 |
 | :--- | :--- | :--- |
-| **clash-all-fallback-smart.yaml** | 机场名称 | [下载/查看](https://raw.githubusercontent.com/HenryChiao/MIHOMO_YAMLS/main/Overwrite/THENEWOPENCLASH/Smart_Mode/liandu2024/clash-all-fallback-smart.yaml) |
-| **clash-all-smart.yaml** | 机场名称 | [下载/查看](https://raw.githubusercontent.com/HenryChiao/MIHOMO_YAMLS/main/Overwrite/THENEWOPENCLASH/Smart_Mode/liandu2024/clash-all-smart.yaml) |
-| **clash-fallback-smart-std.yaml** | 机场名称 | [下载/查看](https://raw.githubusercontent.com/HenryChiao/MIHOMO_YAMLS/main/Overwrite/THENEWOPENCLASH/Smart_Mode/liandu2024/clash-fallback-smart-std.yaml) |
+| **clash-all-fallback-smart.yaml** | 机场名称 | [下载/查看](https://raw.githubusercontent.com/zhangsan-nb/MIHOMO_YAMLS/main/Overwrite/THENEWOPENCLASH/Smart_Mode/liandu2024/clash-all-fallback-smart.yaml) |
+| **clash-all-smart.yaml** | 机场名称 | [下载/查看](https://raw.githubusercontent.com/zhangsan-nb/MIHOMO_YAMLS/main/Overwrite/THENEWOPENCLASH/Smart_Mode/liandu2024/clash-all-smart.yaml) |
+| **clash-fallback-smart-std.yaml** | 机场名称 | [下载/查看](https://raw.githubusercontent.com/zhangsan-nb/MIHOMO_YAMLS/main/Overwrite/THENEWOPENCLASH/Smart_Mode/liandu2024/clash-fallback-smart-std.yaml) |
 
 ---
 [🔙 返回总览](../README.md)

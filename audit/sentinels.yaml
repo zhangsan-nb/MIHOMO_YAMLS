@@ -1,0 +1,29 @@
+# Seed sentinels. Audit may add more from readable sources after verifying
+# they actually hit this RULE-SET in the harness (not an earlier one).
+providers:
+  github:
+    - github.com
+    - api.github.com
+  AI:
+    - openai.com
+    - chatgpt.com
+  Google:
+    - google.com
+  YouTube:
+    - youtube.com
+  Telegram:
+    - telegram.org
+  Microsoft:
+    - microsoft.com
+  Apple:
+    - apple.com
+  China:
+    - baidu.com
+    - qq.com
+  Direct:
+    - checkip.synology.com
+  Private:
+    - printer.lan
+    - nas.local
+  Tracking: []
+  Advertising: []

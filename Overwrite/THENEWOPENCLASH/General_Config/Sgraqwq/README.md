@@ -4,7 +4,7 @@
 
 | 文件名 | proxy-providers | Raw 链接 |
 | :--- | :--- | :--- |
-| **Proxy-override.yaml** | sub | [下载/查看](https://raw.githubusercontent.com/HenryChiao/MIHOMO_YAMLS/main/Overwrite/THENEWOPENCLASH/General_Config/Sgraqwq/Proxy-override.yaml) |
+| **Proxy-override.yaml** | sub | [下载/查看](https://raw.githubusercontent.com/zhangsan-nb/MIHOMO_YAMLS/main/Overwrite/THENEWOPENCLASH/General_Config/Sgraqwq/Proxy-override.yaml) |
 
 ---
 [🔙 返回总览](../README.md)

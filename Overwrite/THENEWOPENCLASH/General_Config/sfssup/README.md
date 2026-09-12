@@ -4,7 +4,7 @@
 
 | 文件名 | proxy-providers | Raw 链接 |
 | :--- | :--- | :--- |
-| **mihomo.yaml** | Miaona、魔戒、飞鸟云、淘气兔、极速云、顶级机场 | [下载/查看](https://raw.githubusercontent.com/HenryChiao/MIHOMO_YAMLS/main/Overwrite/THENEWOPENCLASH/General_Config/sfssup/mihomo.yaml) |
+| **mihomo.yaml** | Miaona、魔戒、飞鸟云、淘气兔、极速云、顶级机场 | [下载/查看](https://raw.githubusercontent.com/zhangsan-nb/MIHOMO_YAMLS/main/Overwrite/THENEWOPENCLASH/General_Config/sfssup/mihomo.yaml) |
 
 ---
 [🔙 返回总览](../README.md)

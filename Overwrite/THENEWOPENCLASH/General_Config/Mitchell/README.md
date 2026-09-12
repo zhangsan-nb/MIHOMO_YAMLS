@@ -4,7 +4,7 @@
 
 | 文件名 | proxy-providers | Raw 链接 |
 | :--- | :--- | :--- |
-| **config.yaml** | 1.p1、2.p2、3.p3、4.p4 | [下载/查看](https://raw.githubusercontent.com/HenryChiao/MIHOMO_YAMLS/main/Overwrite/THENEWOPENCLASH/General_Config/Mitchell/config.yaml) |
+| **config.yaml** | 1.p1、2.p2、3.p3、4.p4 | [下载/查看](https://raw.githubusercontent.com/zhangsan-nb/MIHOMO_YAMLS/main/Overwrite/THENEWOPENCLASH/General_Config/Mitchell/config.yaml) |
 
 ---
 [🔙 返回总览](../README.md)

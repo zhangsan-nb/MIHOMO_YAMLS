@@ -1,6 +1,6 @@
 # OpenClash 覆写模块 - mihomo.yaml
-# 生成日期：2026-07-21
-# 源文件：https://raw.githubusercontent.com/HenryChiao/MIHOMO_YAMLS/main/THEYAMLS/General_Config/YiXuanZX/mihomo.yaml
+# 生成日期：2026-09-12
+# 源文件：https://raw.githubusercontent.com/zhangsan-nb/MIHOMO_YAMLS/main/THEYAMLS/General_Config/YiXuanZX/mihomo.yaml
 # 格式：新版 OpenClash [YAML] 块覆写
 #
 # 本文件仅包含 [YAML] 块覆写内容，不含任何 [General] 插件设置。
@@ -86,12 +86,13 @@
 #   provider1:
 #     header:
 #       User-Agent:
-#       - clash-verge/v2.5.0
+#       - clash-verge/v2.5.2
 #     health-check:
 #       enable: true
-#       interval: 300
+#       interval: 600
 #       lazy: false
-#       url: https://www.gstatic.com/generate_204
+#       timeout: 3000
+#       url: https://www.apple.com/library/test/success.html
 #     interval: 86400
 #     path: ./proxy_providers/provider1.yaml
 #     proxy: DIRECT
@@ -107,49 +108,55 @@
 # ==========================================================
 #
 # proxy-groups:
-# - filter: (?i)香港|hk
+# - filter: (?i)香港|hk|hongkong|hong kong
 #   icon: https://fastly.jsdelivr.net/gh/Koolson/Qure/IconSet/Color/Hong_Kong.png
 #   include-all: true
-#   interval: 300
+#   interval: 600
 #   lazy: false
 #   name: 香港
+#   timeout: 3000
 #   type: select
-#   url: https://www.gstatic.com/generate_204
-# - filter: (?i)新加坡|sg
+#   url: https://www.apple.com/library/test/success.html
+# - filter: (?i)新加坡|sg|singapore
 #   icon: https://fastly.jsdelivr.net/gh/Koolson/Qure/IconSet/Color/Singapore.png
 #   include-all: true
-#   interval: 300
+#   interval: 600
 #   lazy: false
 #   name: 新加坡
+#   timeout: 3000
 #   type: select
-#   url: https://www.gstatic.com/generate_204
-# - filter: (?i)日本|jp
+#   url: https://www.apple.com/library/test/success.html
+# - filter: (?i)日本|jp|japan
 #   icon: https://fastly.jsdelivr.net/gh/Koolson/Qure/IconSet/Color/Japan.png
 #   include-all: true
-#   interval: 300
+#   interval: 600
 #   lazy: false
 #   name: 日本
+#   timeout: 3000
 #   type: select
-#   url: https://www.gstatic.com/generate_204
-# - filter: (?i)美国|us
+#   url: https://www.apple.com/library/test/success.html
+# - filter: (?i)美国|us|unitedstates|united states
 #   icon: https://fastly.jsdelivr.net/gh/Koolson/Qure/IconSet/Color/United_States.png
 #   include-all: true
-#   interval: 300
+#   interval: 600
 #   lazy: false
 #   name: 美国
+#   timeout: 3000
 #   type: select
-#   url: https://www.gstatic.com/generate_204
-# - exclude-filter: (?i)剩余|到期|香港|hk|新加坡|sg|日本|jp|美国|us
+#   url: https://www.apple.com/library/test/success.html
+# - exclude-filter: (?i)剩余|到期|香港|hk|hongkong|hong kong|新加坡|sg|singapore|日本|jp|japan|美国|us|unitedstates|united
+#     states
 #   icon: https://fastly.jsdelivr.net/gh/Koolson/Qure/IconSet/Color/Server.png
 #   include-all: true
-#   interval: 300
+#   interval: 600
 #   lazy: false
 #   name: 其他
+#   timeout: 3000
 #   type: select
-#   url: https://www.gstatic.com/generate_204
+#   url: https://www.apple.com/library/test/success.html
 # - default-selected: 香港
 #   icon: https://fastly.jsdelivr.net/gh/Koolson/Qure/IconSet/Color/Proxy.png
-#   interval: 300
+#   interval: 600
 #   lazy: false
 #   name: 代理
 #   proxies: &id001
@@ -158,24 +165,27 @@
 #   - 日本
 #   - 美国
 #   - 其他
+#   timeout: 3000
 #   type: select
-#   url: https://www.gstatic.com/generate_204
+#   url: https://www.apple.com/library/test/success.html
 # - default-selected: 美国
 #   icon: https://fastly.jsdelivr.net/gh/Koolson/Qure/IconSet/Color/ChatGPT.png
-#   interval: 300
+#   interval: 600
 #   lazy: false
 #   name: AI
 #   proxies: *id001
+#   timeout: 3000
 #   type: select
-#   url: https://www.gstatic.com/generate_204
+#   url: https://www.apple.com/library/test/success.html
 # - default-selected: 香港
 #   icon: https://fastly.jsdelivr.net/gh/Koolson/Qure/IconSet/Color/Telegram_X.png
-#   interval: 300
+#   interval: 600
 #   lazy: false
 #   name: TG
 #   proxies: *id001
+#   timeout: 3000
 #   type: select
-#   url: https://www.gstatic.com/generate_204
+#   url: https://www.apple.com/library/test/success.html
 
 # ==========================================================
 # rule-providers（从源文件直接提取）
@@ -330,18 +340,21 @@
 #
 # dns:
 #   default-nameserver:
-#   - https://223.6.6.6/dns-query
+#   - 223.5.5.5
 #   enable: true
 #   enhanced-mode: fake-ip
 #   fake-ip-filter:
+#   - '*'
 #   - +.market.xiaomi.com
 #   - lancache.steamcontent.com
 #   - rule-set:private
-#   fake-ip-range: 198.18.0.1/16
+#   fake-ip-range: 28.0.0.0/8
 #   ipv6: true
 #   nameserver:
 #   - 223.5.5.5
 #   nameserver-policy:
+#     '*':
+#     - system
 #     rule-set:china-list,cn:
 #     - 223.5.5.5
 #     rule-set:gfw:
