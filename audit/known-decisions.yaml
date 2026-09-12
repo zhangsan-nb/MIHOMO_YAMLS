@@ -1,0 +1,7 @@
+# Human-approved routing outcomes. Same NEW policy later is PASS, not REVIEW.
+# expected must be a harness policy name from harness.yaml.
+decisions: []
+# Example:
+# - domain: foo.example.com
+#   expected: DIRECT
+#   approved_reason: "publisher CDN, confirmed 2026-09-12"

@@ -22,7 +22,7 @@ jobs:
 
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v7
+        uses: actions/checkout@v4
 
       - name: Install Tree Tool (for INI docs)
         if: ${{ github.event.inputs.category == 'all' || github.event.inputs.category == 'ini' || github.event_name == 'schedule' }}

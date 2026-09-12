@@ -1,0 +1,21 @@
+# DNS Policy Contract for fake-ip vs real-ip.
+# qingliangban fake-ip-filter uses: Direct, Private, China, fakeip-filter, plus inlines.
+fake_ip_range: 198.18.0.1/16
+
+# These must stay real-ip (skip fake-ip). Chosen from the actual filter lists.
+must_real_ip:
+  - printer.lan
+  - nas.local
+  - gateway.home.arpa
+  - baidu.com
+  - qq.com
+
+# These must stay fake-ip (not in the skip filter).
+must_fake_ip:
+  - github.com
+  - openai.com
+  - youtube.com
+
+# MODE C fakeip-filter.mrs hash change + all DNS goldens unchanged:
+# review = do not auto-PASS unexplained binary edits.
+mode_c_unchanged_dns: review

@@ -20,6 +20,7 @@ def load_report(path: Path) -> list[dict[str, str]]:
 def stage_summary() -> tuple[bool, list[str]]:
     stages = [
         ("下载校验", os.getenv("MIRROR_OUTCOME", "unknown")),
+        ("供应链审计", os.getenv("AUDIT_OUTCOME", "unknown")),
         ("发布分支", os.getenv("PUBLISH_OUTCOME", "unknown")),
         ("刷新 CDN", os.getenv("PURGE_OUTCOME", "unknown")),
     ]

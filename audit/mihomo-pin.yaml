@@ -1,0 +1,10 @@
+# Pinned MetaCubeX/mihomo release. Bump only with an explicit FULL REGRESSION.
+version: v1.19.15
+release_base: https://github.com/MetaCubeX/mihomo/releases/download/v1.19.15
+assets:
+  linux-amd64-compatible:
+    file: mihomo-linux-amd64-compatible-v1.19.15.gz
+    sha256: 07636e3d7dadb5b5a1a6eaff4d8980059f3013d1f74bd2b0112fce7817a93832
+  windows-amd64-compatible:
+    file: mihomo-windows-amd64-compatible-v1.19.15.zip
+    sha256: e9251191e459816c1aca55d495eabd50d525e83aff0cd445608d69da7e0f470c
