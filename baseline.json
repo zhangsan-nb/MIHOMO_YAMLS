@@ -1,0 +1,264 @@
+{
+  "mihomo_version": "v1.19.15",
+  "rules_section_sha256": "45d9cb8e58ad726ea1576adf7b9d6e9c5d3f8335b2003961de29f911646f7305",
+  "providers": {
+    "Tracking": {
+      "sha256": "bfc2c1f50c92d3ce8211c82ab2dbb8e165d067d6abf04c474022d551697f2644",
+      "size": 5465,
+      "entry_count": 527,
+      "trust_mode": "B"
+    },
+    "Advertising": {
+      "sha256": "6b9cc313a90e3e2b440c147c2e017ed9174d13c0ffdda93fe7fc6edbdc67f7f5",
+      "size": 7958,
+      "entry_count": 965,
+      "trust_mode": "B"
+    },
+    "Direct": {
+      "sha256": "705afb7af8cee7b504e97af75c56e6e3c63cbf4e38b7a1c6c71e76a371c82257",
+      "size": 510,
+      "entry_count": 33,
+      "trust_mode": "B"
+    },
+    "LocationDKS": {
+      "sha256": "0f2cff4dd87688749f5747ae9e0e40dd6b1cd9e3735b59b76a31db74beeb6a08",
+      "size": 133,
+      "entry_count": 5,
+      "trust_mode": "B"
+    },
+    "Private": {
+      "sha256": "670e209f363de3877bfba68ff8de479a0e565186e69039b29414f8474b31e9d7",
+      "size": 1319,
+      "entry_count": 229,
+      "trust_mode": "B"
+    },
+    "Download": {
+      "sha256": "3e006c67b3cc17cc913736292e62c266d80c947fa6c7b57e9aec4fb6bb7d50a7",
+      "size": 1812,
+      "entry_count": 192,
+      "trust_mode": "B"
+    },
+    "Speedtest": {
+      "sha256": "650aad911eb778a6d2a6556936910fbb25a7dbf2e1e2ec67a4b319777c7d54f2",
+      "size": 40261,
+      "entry_count": 4371,
+      "trust_mode": "B"
+    },
+    "AI": {
+      "sha256": "42ae1035768e42885ea073552a0e851353ff8651df18332564a929ed10b62e43",
+      "size": 2634,
+      "entry_count": 273,
+      "trust_mode": "B"
+    },
+    "Telegram": {
+      "sha256": "3ae566e74d923f71b43f4048f8e62149c10d7e8f2f6a36301d8e27fe3eb6520b",
+      "size": 401,
+      "entry_count": 36,
+      "trust_mode": "B"
+    },
+    "Twitter": {
+      "sha256": "b287eac1d2a97da62e17cffddf55e0296665a289a41fba774fdba7397e6ea3f7",
+      "size": 324,
+      "entry_count": 24,
+      "trust_mode": "B"
+    },
+    "SocialMedia": {
+      "sha256": "36a0cea9b25a6c9a14a1a1334a0c65b1e02fdee27dff1304c10d146d2d23443e",
+      "size": 5733,
+      "entry_count": 634,
+      "trust_mode": "B"
+    },
+    "NewsMedia": {
+      "sha256": "4d70ab2fe7f0ef99ab7f05088e4b99b261c62374cd8ce416ca5c52092e1219eb",
+      "size": 14381,
+      "entry_count": 1580,
+      "trust_mode": "B"
+    },
+    "Games": {
+      "sha256": "6789fe2d4cb0c6b4b2e3355b4963f5043c47da8dc8e102705c79fd0214a0c006",
+      "size": 10624,
+      "entry_count": 1123,
+      "trust_mode": "B"
+    },
+    "Crypto": {
+      "sha256": "68591032e5bd14cb9cfa181e09619367f6521dc8f1c5d26cd9254e4224fc0f74",
+      "size": 4910,
+      "entry_count": 490,
+      "trust_mode": "B"
+    },
+    "Netflix": {
+      "sha256": "a6fea26ce2168e069fe865f269e86e5e031a51b5b3855fe297e1bc004a3170bd",
+      "size": 292,
+      "entry_count": 24,
+      "trust_mode": "B"
+    },
+    "YouTube": {
+      "sha256": "e212b2ce9f39b30f4e2ab57da9ed0937673606bc56bb46e5d55ad7dd9af00aef",
+      "size": 1366,
+      "entry_count": 178,
+      "trust_mode": "B"
+    },
+    "XPTV": {
+      "sha256": "5b20c7eb9b87bb151942d70bd32a301b3e9dfd0f2018e2c34e53af33dc1b5e9b",
+      "size": 2972,
+      "entry_count": 333,
+      "trust_mode": "B"
+    },
+    "Emby": {
+      "sha256": "ee502421f3f8fdb2e4f73fe2c90419efdb610fc841d0dd9b646eb7006e796608",
+      "size": 1993,
+      "entry_count": 218,
+      "trust_mode": "B"
+    },
+    "Streaming": {
+      "sha256": "dad71a4d61faa78d380a436a831e4488f6336064660a3f149bfd9c2103e00cf0",
+      "size": 6831,
+      "entry_count": 697,
+      "trust_mode": "B"
+    },
+    "AppleCN": {
+      "sha256": "c930b184236d10cc784a4e91cf4944dda8fa693cc6ffcbdd39b12075725c85a8",
+      "size": 463,
+      "entry_count": 39,
+      "trust_mode": "B"
+    },
+    "Apple": {
+      "sha256": "59669deb5c765e992f68fa5495db95608c3574ce75d3e2a5ff023744cdc0c775",
+      "size": 17998,
+      "entry_count": 1815,
+      "trust_mode": "B"
+    },
+    "Google": {
+      "sha256": "c00b128d6dc427be195d98b2c5cc6de0b0da31673ee9ff2427725cf166cf845a",
+      "size": 8871,
+      "entry_count": 1071,
+      "trust_mode": "B"
+    },
+    "Microsoft": {
+      "sha256": "c25434b40c01ec5cbe13fccc647b433d4ee8c0af74369c9bc79ae0e43975fccd",
+      "size": 8025,
+      "entry_count": 751,
+      "trust_mode": "B"
+    },
+    "Facebook": {
+      "sha256": "ee0638fd7b7c9748a299606c297a98ac225e10c248f76473ed4c8374ad70e874",
+      "size": 4248,
+      "entry_count": 470,
+      "trust_mode": "B"
+    },
+    "Proxy": {
+      "sha256": "f57e01789acab12f3b2f801c1a130505e5a2e79d20250f163b2e23c797d53fa7",
+      "size": 199214,
+      "entry_count": 27347,
+      "trust_mode": "B"
+    },
+    "China": {
+      "sha256": "70127ab5529cfcd6add4dd9cedbaefa62b3b364e18459d9936304118cb40540d",
+      "size": 539038,
+      "entry_count": 111036,
+      "trust_mode": "B"
+    },
+    "AdvertisingIP": {
+      "sha256": "e7e0c783d3d4641428780ec00529af5421b6a837dd90fde83e5b22c60132210e",
+      "size": 60,
+      "entry_count": 4,
+      "trust_mode": "B"
+    },
+    "PrivateIP": {
+      "sha256": "a4a5e01525e7ab9603b2254248ccb45620cedbd42a73e265eefe0cc2798ac378",
+      "size": 157,
+      "entry_count": 29,
+      "trust_mode": "B"
+    },
+    "AIIP": {
+      "sha256": "1b23d1fd271003f7ece56f213b5e9ada122f77848a111a9d4bd6c1d7ea927bde",
+      "size": 62,
+      "entry_count": 4,
+      "trust_mode": "B"
+    },
+    "TelegramIP": {
+      "sha256": "1c59d44f56fc80466ad4e8fedcb284b0c22ebbf0e57d9297c553af449a0e6c4d",
+      "size": 170,
+      "entry_count": 31,
+      "trust_mode": "B"
+    },
+    "SocialMediaIP": {
+      "sha256": "5d7e31f4ca32d63a27b69c94613032e0e3b5f5094c14765680c9e95160bc79dd",
+      "size": 145,
+      "entry_count": 16,
+      "trust_mode": "B"
+    },
+    "XPTVIP": {
+      "sha256": "a6f2ab63f93613c2f6b803148ffeedc5dcad9bd429d3abac3593b894ceea80bb",
+      "size": 112,
+      "entry_count": 18,
+      "trust_mode": "B"
+    },
+    "EmbyIP": {
+      "sha256": "9888497cda18a6afbd337622ed3f0a6422a24497fd62d35b6cb46c4195288a65",
+      "size": 92,
+      "entry_count": 9,
+      "trust_mode": "B"
+    },
+    "NetflixIP": {
+      "sha256": "d4f46990f4bf2c71e95caf13a25ffcd664a0097676a9b5f4be3fa5aa3fcb5255",
+      "size": 317,
+      "entry_count": 120,
+      "trust_mode": "B"
+    },
+    "StreamingIP": {
+      "sha256": "a8ce3ed4a4fbe89d06d642365976461986c4956844503a65d404cdeb3bf629b0",
+      "size": 113,
+      "entry_count": 16,
+      "trust_mode": "B"
+    },
+    "GoogleIP": {
+      "sha256": "577be79905704196ec6a6efdcd38561cffc20913c38efb02b2eca5304f202e84",
+      "size": 8134,
+      "entry_count": 8142,
+      "trust_mode": "B"
+    },
+    "FacebookIP": {
+      "sha256": "df81befa3d4062678be93aecb050ec8a9b10ea3091f3d2765acf07212d742ae6",
+      "size": 545,
+      "entry_count": 121,
+      "trust_mode": "B"
+    },
+    "ProxyIP": {
+      "sha256": "4c3dde4026ab9d277a706d5a2ca7e2eca2c059aef6255ed268f6708c53dad745",
+      "size": 127,
+      "entry_count": 19,
+      "trust_mode": "B"
+    },
+    "ChinaIP": {
+      "sha256": "ce1269798a9819d5e3227fcbbe8af232508d7411659a6c0abba6daf3b36bfd16",
+      "size": 37784,
+      "entry_count": 9624,
+      "trust_mode": "B"
+    },
+    "ukwifi": {
+      "sha256": "d432668f906b3e807d0b636b5883aa9fd6fd7e90131d8b883d5a1cee90c6c1f5",
+      "size": 424,
+      "entry_count": 11,
+      "trust_mode": "A"
+    },
+    "AWAvenueAds": {
+      "sha256": "8117528e3a4bb648afd7b8dc33cb256c5cf1be918dcdadc1b65b54311a1504e5",
+      "size": 25709,
+      "entry_count": 948,
+      "trust_mode": "A"
+    },
+    "github": {
+      "sha256": "a2641ce2f10857831b600623f97d354e6f8db7b20dff175c5313c2c46e0b6867",
+      "size": 1250,
+      "entry_count": 31,
+      "trust_mode": "A"
+    },
+    "fakeip-filter": {
+      "sha256": "1499646829c716a7fd5fb2714f16ba12045d30e7258f0f6a169bb97c32fecc80",
+      "size": 1074,
+      "entry_count": null,
+      "trust_mode": "C"
+    }
+  }
+}
