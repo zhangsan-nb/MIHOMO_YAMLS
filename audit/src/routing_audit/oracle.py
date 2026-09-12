@@ -19,11 +19,15 @@ _LOG_MATCH = re.compile(
     re.I,
 )
 
+SYNTHETIC_DIRECT = "__AUDIT_DIRECT__"
+
 
 def _normalize_policy(policy: str) -> str:
     policy = (policy or "").strip().strip('"').strip("'")
     if "[" in policy:
         policy = policy.split("[", 1)[0].strip()
+    if policy == SYNTHETIC_DIRECT:
+        return "DIRECT"
     return policy
 
 
@@ -166,15 +170,28 @@ class MihomoOracle:
     def __exit__(self, *exc: object) -> None:
         self.close()
 
+    def _snapshot_connections(self) -> set[str]:
+        try:
+            data = self._api("GET", "/connections")
+        except Exception:
+            return set()
+        conns = data.get("connections") if isinstance(data, dict) else data
+        if not isinstance(conns, list):
+            return set()
+        return {str(item.get("id")) for item in conns if isinstance(item, dict) and item.get("id")}
+
     def match(self, host: str, ip: str | None = None) -> MatchResult:
         # Matcher runs on the HTTP-proxy request line. Groups select REJECT so
         # there is no real outbound. HTTP status is never the oracle.
         target = ip or host
+        start_offset = self.log_path.stat().st_size if self.log_path.is_file() else 0
+        existing_conns = self._snapshot_connections()
+
         opener = urllib.request.build_opener(
             urllib.request.ProxyHandler({"http": f"http://127.0.0.1:{self.mixed_port}"})
         )
         try:
-            opener.open(f"http://{target}/", timeout=0.8)
+            opener.open(f"http://{target}/", timeout=0.4)
         except Exception:
             pass
         if self.hitcount_supported:
@@ -183,12 +200,12 @@ class MihomoOracle:
 
                 before = snapshot_hits(self._api("GET", "/rules"))
                 try:
-                    opener.open(f"http://{target}/", timeout=0.8)
+                    opener.open(f"http://{target}/", timeout=0.4)
                 except Exception:
                     pass
                 after = snapshot_hits(self._api("GET", "/rules"))
                 api_match = match_from_hitcount(before, after, host if not ip else target)
-                logged = self._match_from_log(host if not ip else target)
+                logged = self._match_from_log(host if not ip else target, start_offset=start_offset)
                 if api_match and logged:
                     cross_check(api_match, logged)
                     return api_match
@@ -198,15 +215,23 @@ class MihomoOracle:
                 raise
             except Exception:
                 pass
-        logged = self._match_from_log(host if not ip else target)
-        if logged:
-            return logged
-        conn = self._match_from_connections(host, ip)
-        if conn:
-            return conn
+
+        # Bounded observation polling window
+        deadline = time.monotonic() + 1.5
+        while time.monotonic() < deadline:
+            logged = self._match_from_log(host if not ip else target, start_offset=start_offset)
+            if logged:
+                return logged
+            conn = self._match_from_connections(host, ip, exclude_ids=existing_conns)
+            if conn:
+                return conn
+            time.sleep(0.04)
+
         raise OracleError(f"no match observed for {host}")
 
-    def _match_from_connections(self, host: str, ip: str | None) -> MatchResult | None:
+    def _match_from_connections(
+        self, host: str, ip: str | None, exclude_ids: set[str] | None = None
+    ) -> MatchResult | None:
         try:
             data = self._api("GET", "/connections")
         except Exception:
@@ -215,7 +240,13 @@ class MihomoOracle:
         if not isinstance(connections, list):
             return None
         host_l = host.lower()
+        exclude = exclude_ids or set()
         for item in reversed(connections):
+            if not isinstance(item, dict):
+                continue
+            cid = str(item.get("id") or "")
+            if cid and cid in exclude:
+                continue
             meta = (item or {}).get("metadata") or {}
             h = str(meta.get("host") or meta.get("sniffHost") or "").lower()
             dest = str(meta.get("destinationIP") or "")
@@ -236,10 +267,16 @@ class MihomoOracle:
             )
         return None
 
-    def _match_from_log(self, host: str) -> MatchResult | None:
+    def _match_from_log(self, host: str, start_offset: int = 0) -> MatchResult | None:
         if not self.log_path.is_file():
             return None
-        text = self.log_path.read_text(encoding="utf-8", errors="replace")
+        with self.log_path.open("rb") as handle:
+            if start_offset > 0:
+                handle.seek(start_offset)
+            raw = handle.read()
+        if not raw:
+            return None
+        text = raw.decode("utf-8", errors="replace")
         host_l = host.lower().rstrip(".")
         for line in reversed(text.splitlines()):
             m = _LOG_MATCH.search(line)
@@ -267,6 +304,19 @@ class MihomoOracle:
         return json.loads(raw)
 
 
+def _rewrite_rule_direct(rule: str) -> str:
+    parts = [p.strip() for p in str(rule).split(",")]
+    if len(parts) >= 2:
+        kind = parts[0].upper()
+        if kind == "MATCH" and len(parts) >= 2 and parts[1].upper() == "DIRECT":
+            parts[1] = SYNTHETIC_DIRECT
+            return ",".join(parts)
+        if len(parts) >= 3 and parts[2].upper() == "DIRECT":
+            parts[2] = SYNTHETIC_DIRECT
+            return ",".join(parts)
+    return str(rule)
+
+
 def build_harness_config(
     *,
     harness: dict,
@@ -284,6 +334,10 @@ def build_harness_config(
         if str(name).upper() in reserved:
             continue
         groups.append({"name": name, "type": "select", "proxies": ["REJECT", "DIRECT"]})
+
+    # Synthetic DIRECT isolation group: REJECT only (no outbound TCP connection)
+    groups.append({"name": SYNTHETIC_DIRECT, "type": "select", "proxies": ["REJECT"]})
+
     providers = {}
     for name, spec in provider_files.items():
         providers[name] = {
@@ -292,6 +346,10 @@ def build_harness_config(
             "format": spec.get("format") or "text",
             "path": spec["path"],
         }
+
+    raw_rules = list(harness.get("rules") or [])
+    isolated_rules = [_rewrite_rule_direct(r) for r in raw_rules]
+
     cfg = {
         "mixed-port": mixed_port,
         "allow-lan": False,
@@ -309,7 +367,7 @@ def build_harness_config(
         },
         "proxy-groups": groups,
         "rule-providers": providers,
-        "rules": list(harness.get("rules") or []),
+        "rules": isolated_rules,
     }
     path = workdir / "harness.yaml"
     path.write_text(yaml.safe_dump(cfg, sort_keys=False, allow_unicode=True), encoding="utf-8")
