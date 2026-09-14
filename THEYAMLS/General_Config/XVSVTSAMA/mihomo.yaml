@@ -86,7 +86,6 @@ ntp:
 
 sniffer:
   enable: true
-  force-dns-mapping: true
   parse-pure-ip: true
   override-destination: true
   sniff:
@@ -392,6 +391,7 @@ rules:
   - RULE-SET,HijackingPlus,REJECT
 
   - SUB-RULE,(PROCESS-NAME,com.dragon.read.oversea.gp),fanqie
+  - DOMAIN-KEYWORD,ikuuu,🌍 PROXY
   - RULE-SET,applications,DIRECT
   - RULE-SET,echs_cn,DIRECT
   - RULE-SET,echs_cn_ip,DIRECT,no-resolve
@@ -423,6 +423,8 @@ rules:
   - "PROCESS-NAME-REGEX,.*telegram.*,📲 Telegram"
   - RULE-SET,telegramcidr,📲 Telegram,no-resolve
   - RULE-SET,telegram_domain,📲 Telegram
+  # Manus AI：覆盖 Manus Desktop、Manus Helper 等客户端进程
+  - PROCESS-NAME-REGEX,(?i).*manus.*,🤖 AI大模型
   # Claude / Anthropic：进程命中优先，覆盖 Claude Desktop、Claude Code 等客户端
   - PROCESS-NAME-REGEX,(?i).*claude.*,🤖 AI大模型
   - PROCESS-NAME-REGEX,(?i).*anthropic.*,🤖 AI大模型
