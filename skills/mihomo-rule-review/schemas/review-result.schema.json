@@ -1,0 +1,107 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "MIHOMO Rule Review Result",
+  "type": "object",
+  "required": [
+    "user_state",
+    "technical_decision",
+    "summary",
+    "items"
+  ],
+  "properties": {
+    "user_state": {
+      "enum": [
+        "NO_ACTION",
+        "APPROVAL_REQUIRED",
+        "SECURITY_BLOCKED",
+        "SYSTEM_ERROR"
+      ]
+    },
+    "technical_decision": {
+      "enum": [
+        "PASS",
+        "REVIEW",
+        "FAIL",
+        "ERROR"
+      ]
+    },
+    "summary": {
+      "type": "string"
+    },
+    "run_id": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "head_sha": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "items": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "policy_unit",
+          "old_policy",
+          "new_policy",
+          "recommendation"
+        ],
+        "properties": {
+          "policy_unit": {
+            "type": "string"
+          },
+          "unit_type": {
+            "enum": [
+              "domain",
+              "cidr",
+              "system"
+            ]
+          },
+          "old_policy": {
+            "type": "string"
+          },
+          "new_policy": {
+            "type": "string"
+          },
+          "recommendation": {
+            "enum": [
+              "ACCEPT_NEW_POLICY",
+              "KEEP_OLD_POLICY",
+              "HOLD",
+              "FIX_SYSTEM"
+            ]
+          },
+          "evidence_consistency": {
+            "enum": [
+              "HIGH",
+              "MEDIUM",
+              "LOW",
+              "NOT_APPLICABLE"
+            ]
+          },
+          "risk": {
+            "enum": [
+              "LOW",
+              "MEDIUM",
+              "HIGH",
+              "CRITICAL"
+            ]
+          },
+          "requires_user_approval": {
+            "type": "boolean"
+          },
+          "evidence": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        }
+      }
+    }
+  }
+}

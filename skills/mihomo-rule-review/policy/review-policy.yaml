@@ -1,0 +1,73 @@
+version: 1
+
+user_states:
+  PASS:
+    user_state: NO_ACTION
+    publish_allowed: true
+  REVIEW:
+    user_state: APPROVAL_REQUIRED
+    publish_allowed: false
+  FAIL:
+    user_state: SECURITY_BLOCKED
+    publish_allowed: false
+  SYSTEM_ERROR:
+    user_state: SYSTEM_ERROR
+    publish_allowed: false
+
+normalization:
+  domains:
+    policy_unit: exact_source_rule
+    collapse_witnesses: true
+    suffix_rule_collapses_subdomains: true
+  ips:
+    policy_unit: exact_cidr
+    never_persist_single_witness_ip: true
+    ipv4_supported: true
+    ipv6_supported: true
+
+evidence_priority:
+  source_change:
+    - exact_semantic_diff
+    - side_added_or_removed
+    - old_effective_route
+    - new_effective_route
+  ip_attribution:
+    - rir_rdap_or_whois
+    - exact_allocation
+    - registered_org_and_country
+    - bgp_origin
+    - reputable_network_metadata
+    - geolocation
+
+approval:
+  require_explicit_user_approval_for_review: true
+  blanket_upstream_commit_approval: false
+  blanket_provider_approval: false
+  known_decision_semantics: expected_policy
+  reverse_change_requires_review: true
+
+fail_closed:
+  unmatched_is_unchanged: false
+  invalid_known_cidr_matches: false
+  technical_fail_can_be_business_approved: false
+  missing_baseline_publish: false
+  oracle_error_publish: false
+  source_mrs_mismatch_publish: false
+
+local_override:
+  edit_upstream_mrs: false
+  require_real_config_override: true
+  require_harness_equivalent: true
+  require_real_config_deployment_before_release: true
+
+feature_branch:
+  production_publish_allowed: false
+  production_purge_allowed: false
+
+loop_breaker:
+  repeat_full_tests_without_code_change: false
+  after_feature_ci_pass:
+    next_if_real_config_required: REAL_CONFIG_DEPLOYMENT
+    next_if_no_real_config_required: PRODUCTION_RELEASE
+  after_real_config_deployed: PRODUCTION_RELEASE
+  production_ci_runs_per_release_target: 1

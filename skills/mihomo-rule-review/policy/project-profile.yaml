@@ -1,0 +1,45 @@
+version: 1
+
+repository:
+  full_name: zhangsan-nb/MIHOMO_YAMLS
+  main_branch: main
+  production_branch: openclash-rules
+  workflow_path: .github/workflows/update-openclash-rules.yml
+  workflow_name: Update OpenClash Rule Mirror
+
+audit:
+  known_decisions: audit/known-decisions.yaml
+  harness: audit/harness.yaml
+  source_root: audit/src/routing_audit
+  artifact_name: routing-audit-report
+  report_json: audit-report.json
+  report_text: audit-report.txt
+
+publishing:
+  require_main_only_guard: true
+  expected_guard_occurrences: 2
+  guarded_steps:
+    - Publish
+    - Purge
+
+policy_mapping:
+  harness_to_real:
+    FINAL: "🧩 兜底流量"
+    CHINA: "🇨🇳 国内流量"
+    PROXY: "🌍 国外流量"
+
+real_config:
+  location: external_local_file
+  tracked_in_public_repo: false
+  may_contain_secrets: true
+  never_commit: true
+  deployment_confirmation_phrase: "已经部署并启用"
+
+source_integrity:
+  immutable_upstream_pairing_required: true
+  source_mrs_lockstep_required: true
+  binary_only_semantic_diff_trust: downgraded
+
+notes:
+  - 不在本文件复制当前业务 known decisions，避免与仓库权威状态漂移。
+  - 每次审核都从当前 branch/report 重新读取实际 policy。
