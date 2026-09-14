@@ -263,7 +263,8 @@ def run_engine(
         exercised=exercised_new,
         harness_names=harness_names,
     )
-    unex = changed_unexercised(changed, exercised_changed, ip_witnesses_by_provider)
+    harness_changed = [c for c in changed if c in harness_names]
+    unex = changed_unexercised(harness_changed, exercised_changed, ip_witnesses_by_provider)
 
     result = decide(
         load_errors=load_errors,

@@ -365,22 +365,27 @@ class Phase2IpWitnessAndIpv6Oracle(unittest.TestCase):
 
     # L. 真正没有 OLD/NEW provider match: 仍然 CHANGED_BUT_UNEXERCISED, 保持 fail-closed
     def test_l_unmatched_provider_remains_unexercised_fail_closed(self):
-        harness = {
-            "policies": ["GITHUB", "PROXY", "FINAL"],
-            "rules": [
-                "RULE-SET,github,GITHUB",
-                "MATCH,FINAL",
-            ],
-        }
+        shadow_rule = Rule("IP-CIDR", "0.0.0.0/0", "IP-CIDR,0.0.0.0/0")
         r1 = Rule("IP-CIDR", "192.0.2.0/24", "IP-CIDR,192.0.2.0/24")
         r2 = Rule("IP-CIDR", "192.0.2.0/23", "IP-CIDR,192.0.2.0/23")
         old = {
             "github": snap("github", "payload:\n  - DOMAIN-SUFFIX,github.com\n"),
+            "Shadow": snap("Shadow", "0.0.0.0/0\n", behavior="ipcidr", rules=(shadow_rule,), sha256="same-s"),
             "UnreachableIP": snap("UnreachableIP", "192.0.2.0/24\n", behavior="ipcidr", rules=(r1,), sha256="old"),
         }
         new = {
             "github": old["github"],
+            "Shadow": old["Shadow"],
             "UnreachableIP": snap("UnreachableIP", "192.0.2.0/23\n", behavior="ipcidr", rules=(r2,), sha256="new"),
+        }
+        harness = {
+            "policies": ["GITHUB", "SHADOW", "PROXY", "FINAL"],
+            "rules": [
+                "RULE-SET,github,GITHUB",
+                "RULE-SET,Shadow,SHADOW",
+                "RULE-SET,UnreachableIP,PROXY",
+                "MATCH,FINAL",
+            ],
         }
         res = engine(old, new, harness)
         self.assertIn("UnreachableIP", res.report.get("changed_unexercised", []))
