@@ -4,6 +4,9 @@ decisions:
   - domain: nodeseek.org
     expected: PROXY
     approved_reason: "User approved upstream Proxy routing after review of candidate 05def5a on 2026-09-14"
+  - cidr: 103.238.46.0/23
+    expected: CHINA
+    approved_reason: "User approved FINAL -> CHINA after APNIC/CNNIC review of upstream 05def5a on 2026-09-14"
 # Example:
 # - domain: foo.example.com
 #   expected: DIRECT
