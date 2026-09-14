@@ -58,8 +58,10 @@ def blast_radius(rule: Rule, critical_tlds: Iterable[str] | None = None) -> str:
             return "CRITICAL"
         if net.version == 4 and net.prefixlen <= 12:
             return "HIGH"
-        if net.version == 6 and net.prefixlen <= 32:
+        if net.version == 6 and net.prefixlen <= 16:
             return "CRITICAL"
+        if net.version == 6 and net.prefixlen <= 32:
+            return "HIGH"
         if net.num_addresses >= 65536:
             return "HIGH"
         return "LOW"
