@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 
 import csv
+import json
 import os
 import smtplib
 import ssl
@@ -17,13 +18,66 @@ def load_report(path: Path) -> list[dict[str, str]]:
         return list(csv.DictReader(handle, delimiter="\t"))
 
 
-def stage_summary() -> tuple[bool, list[str]]:
-    stages = [
-        ("下载校验", os.getenv("MIRROR_OUTCOME", "unknown")),
-        ("供应链审计", os.getenv("AUDIT_OUTCOME", "unknown")),
-        ("发布分支", os.getenv("PUBLISH_OUTCOME", "unknown")),
-        ("刷新 CDN", os.getenv("PURGE_OUTCOME", "unknown")),
-    ]
+def load_audit_decision(path: Path | None) -> tuple[str, str, list[str]]:
+    if path is None or not path.is_file():
+        return "UNKNOWN", "", []
+
+    try:
+        data = json.loads(path.read_text(encoding="utf-8"))
+    except Exception as exc:
+        return "ERROR", f"cannot read audit report: {exc}", []
+
+    decision = str(data.get("decision") or "").upper()
+
+    if decision not in {"PASS", "REVIEW", "FAIL"}:
+        return "ERROR", f"invalid audit decision: {decision!r}", []
+
+    risk = str(data.get("risk") or "")
+    reasons = [str(x) for x in (data.get("reasons") or [])]
+
+    return decision, risk, reasons
+
+
+def determine_overall_status(
+    mirror_outcome: str,
+    audit_outcome: str,
+    publish_outcome: str,
+    purge_outcome: str,
+    decision: str,
+    failed_count: int,
+) -> str:
+    if mirror_outcome != "success" or failed_count > 0:
+        return "运行失败"
+
+    if publish_outcome == "failure" or purge_outcome == "failure":
+        return "运行失败"
+
+    if decision == "REVIEW":
+        if publish_outcome in {"skipped", "unknown", "success"} and purge_outcome in {"skipped", "unknown", "success"}:
+            return "需审核"
+        return "运行失败"
+
+    if decision == "FAIL":
+        if publish_outcome in {"skipped", "unknown", "success"} and purge_outcome in {"skipped", "unknown", "success"}:
+            return "安全阻断"
+        return "运行失败"
+
+    if decision == "PASS":
+        if audit_outcome == "success" and publish_outcome in {"success", "skipped"} and purge_outcome in {"success", "skipped"}:
+            return "成功"
+        return "运行失败"
+
+    return "运行失败"
+
+
+def stage_summary(
+    mirror_outcome: str,
+    audit_outcome: str,
+    publish_outcome: str,
+    purge_outcome: str,
+    overall_status: str,
+    decision: str,
+) -> list[str]:
     outcome_names = {
         "success": "成功",
         "failure": "失败",
@@ -31,28 +85,93 @@ def stage_summary() -> tuple[bool, list[str]]:
         "cancelled": "取消",
         "unknown": "未知",
     }
-    successful = all(outcome in {"success", "skipped"} for _, outcome in stages)
-    return successful, [f"- {name}：{outcome_names.get(outcome, outcome)}" for name, outcome in stages]
+
+    mirror_label = outcome_names.get(mirror_outcome, mirror_outcome)
+
+    if overall_status == "需审核" or decision == "REVIEW":
+        audit_label = "需人工审核"
+    elif overall_status == "安全阻断" or decision == "FAIL":
+        audit_label = "安全阻断"
+    elif decision == "PASS" and audit_outcome == "success":
+        audit_label = "通过"
+    else:
+        audit_label = outcome_names.get(audit_outcome, audit_outcome)
+
+    if overall_status in {"需审核", "安全阻断"} and publish_outcome in {"skipped", "unknown"}:
+        publish_label = "已阻断"
+    else:
+        publish_label = outcome_names.get(publish_outcome, publish_outcome)
+
+    if overall_status in {"需审核", "安全阻断"} and purge_outcome in {"skipped", "unknown"}:
+        purge_label = "已跳过"
+    else:
+        purge_label = outcome_names.get(purge_outcome, purge_outcome)
+
+    return [
+        f"- 下载校验：{mirror_label}",
+        f"- 供应链审计：{audit_label}",
+        f"- 发布分支：{publish_label}",
+        f"- 刷新 CDN：{purge_label}",
+    ]
 
 
-def build_message(rows: list[dict[str, str]]) -> tuple[str, str]:
+def build_message(
+    rows: list[dict[str, str]],
+    audit_report_path: Path | None = None,
+) -> tuple[str, str]:
+    if audit_report_path is None:
+        env_path = os.getenv("AUDIT_REPORT", "").strip()
+        if env_path:
+            audit_report_path = Path(env_path)
+
     new = [row for row in rows if row.get("status") == "NEW"]
     updated = [row for row in rows if row.get("status") == "UPDATED"]
     unchanged = [row for row in rows if row.get("status") == "UNCHANGED"]
     failed = [row for row in rows if row.get("status") == "FAILED"]
-    stages_ok, stage_lines = stage_summary()
-    overall_ok = stages_ok and not failed
-    result = "成功" if overall_ok else "失败"
+
+    mirror_outcome = os.getenv("MIRROR_OUTCOME", "unknown")
+    audit_outcome = os.getenv("AUDIT_OUTCOME", "unknown")
+    publish_outcome = os.getenv("PUBLISH_OUTCOME", "unknown")
+    purge_outcome = os.getenv("PURGE_OUTCOME", "unknown")
+
+    decision, risk, reasons = load_audit_decision(audit_report_path)
+
+    overall_status = determine_overall_status(
+        mirror_outcome=mirror_outcome,
+        audit_outcome=audit_outcome,
+        publish_outcome=publish_outcome,
+        purge_outcome=purge_outcome,
+        decision=decision,
+        failed_count=len(failed),
+    )
+
+    stage_lines = stage_summary(
+        mirror_outcome=mirror_outcome,
+        audit_outcome=audit_outcome,
+        publish_outcome=publish_outcome,
+        purge_outcome=purge_outcome,
+        overall_status=overall_status,
+        decision=decision,
+    )
+
     changed = new + updated
     validated = len(new) + len(updated) + len(unchanged)
 
-    subject = (
-        f"[MIHOMO YAMLS规则] {result} | 校验成功 {validated} | "
-        f"变化 {len(changed)} | 失败 {len(failed)}"
-    )
+    if overall_status == "成功":
+        subject = f"[MIHOMO YAMLS规则] 成功 | 校验 {validated} | 变化 {len(changed)}"
+    elif overall_status == "需审核":
+        subject = f"[MIHOMO YAMLS规则] 需审核 | 变化 {len(changed)} | 发布已阻断"
+    elif overall_status == "安全阻断":
+        subject = f"[MIHOMO YAMLS规则] 安全阻断 | 变化 {len(changed)} | 发布已阻断"
+    else:
+        if failed:
+            subject = f"[MIHOMO YAMLS规则] 运行失败 | 校验失败 {len(failed)}"
+        else:
+            subject = "[MIHOMO YAMLS规则] 运行失败 | 阶段异常"
+
     china_time = datetime.now(timezone.utc).astimezone(timezone(timedelta(hours=8)))
     lines = [
-        f"MIHOMO YAMLS规则镜像：{result}",
+        f"MIHOMO YAMLS规则镜像：{overall_status}",
         f"北京时间：{china_time.strftime('%Y-%m-%d %H:%M:%S %z')}",
         f"校验成功：{validated}",
         f"变化：{len(changed)}（新增 {len(new)}，更新 {len(updated)}）",
@@ -62,6 +181,20 @@ def build_message(rows: list[dict[str, str]]) -> tuple[str, str]:
         "阶段：",
         *stage_lines,
     ]
+
+    if decision in {"REVIEW", "FAIL"}:
+        lines.extend([
+            "",
+            "审计：",
+            f"Decision: {decision}",
+            f"Risk: {risk}",
+            "",
+            "原因：",
+        ])
+        if reasons:
+            lines.extend(f"- {r}" for r in reasons)
+        else:
+            lines.append("- 无")
 
     lines.extend(["", "本次有变化："])
     if changed:
@@ -87,8 +220,11 @@ def main() -> int:
         print("usage: send-rule-report.py REPORT_TSV [--preview]", file=sys.stderr)
         return 2
 
+    audit_report_env = os.getenv("AUDIT_REPORT", "").strip()
+    audit_report_path = Path(audit_report_env) if audit_report_env else None
+
     rows = load_report(Path(sys.argv[1]))
-    subject, body = build_message(rows)
+    subject, body = build_message(rows, audit_report_path)
     if "--preview" in sys.argv[2:]:
         print(subject)
         print(body)
