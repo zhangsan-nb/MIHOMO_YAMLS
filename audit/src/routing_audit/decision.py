@@ -1,5 +1,7 @@
 from __future__ import annotations
 
+import ipaddress
+
 from .models import AuditResult, Decision, MatchResult, RoutingChange
 
 _RANK = {"PASS": 0, "REVIEW": 1, "FAIL": 2}
@@ -59,6 +61,23 @@ def evaluate_contract(host: str, policy: str, policy_doc: dict, protected_doc: d
 
 def known_expected(host: str, known_doc: dict) -> str | None:
     host_l = host.lower().rstrip(".")
+    try:
+        addr = ipaddress.ip_address(host_l)
+    except ValueError:
+        addr = None
+
+    if addr is not None:
+        for item in known_doc.get("decisions") or []:
+            cidr = item.get("cidr")
+            if not cidr:
+                continue
+            try:
+                net = ipaddress.ip_network(str(cidr).strip(), strict=False)
+            except ValueError:
+                continue
+            if addr.version == net.version and addr in net:
+                return str(item.get("expected") or "") or None
+
     for item in known_doc.get("decisions") or []:
         domain = str(item.get("domain") or "").lower().rstrip(".")
         if not domain:

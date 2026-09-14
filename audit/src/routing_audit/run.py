@@ -21,6 +21,7 @@ from .oracle import FixtureOracle, MihomoOracle, OracleError, _free_port, build_
 from .report import routing_change_dict, write_reports
 
 IP_WITNESS_LIMIT_PER_SIDE = 3
+IP_PROVIDER_COVERAGE_FALLBACK_LIMIT = 8
 
 
 def _fetch(url: str, dest: Path, timeout: int = 45) -> None:
@@ -94,6 +95,7 @@ def run_engine(
 
     domain_witnesses: list[str] = []
     ip_witnesses_by_provider: dict[str, list[str]] = {}
+    coverage_ip_candidates_by_provider: dict[str, list[str]] = {}
     for name, new in candidate.items():
         old = baseline.get(name)
         if new.load_error:
@@ -157,6 +159,16 @@ def run_engine(
                 provider_ip_witnesses.extend(side_ip_witnesses)
             if provider_ip_witnesses:
                 ip_witnesses_by_provider[name] = provider_ip_witnesses
+
+            all_diff_rules = list(diff["added"]) + list(diff["removed"])
+            sorted_all_rules = sorted(all_diff_rules, key=lambda r: (r.kind, r.value))
+            all_candidates: list[str] = []
+            for rule in sorted_all_rules:
+                for w in generate_witnesses(rule):
+                    if _looks_ip(w) and w not in all_candidates:
+                        all_candidates.append(w)
+            if all_candidates:
+                coverage_ip_candidates_by_provider[name] = all_candidates
 
     source_mrs_mismatch: list[str] = []
     for name, new in candidate.items():
@@ -247,6 +259,80 @@ def run_engine(
                     routing_changes.append(
                         RoutingChange(host=ip, old=old_m, new=new_m, reason="policy changed")
                     )
+        executed_ips = set(unique_ip_witnesses)
+        coverage_fallback_report: dict[str, dict] = {}
+        if not oracle_error:
+            current_exercised = collect_exercised(old_matches) | collect_exercised(new_matches)
+            harness_names_temp = set()
+            for line in harness.get("rules") or []:
+                if str(line).upper().startswith("RULE-SET,"):
+                    parts = [p.strip() for p in str(line).split(",")]
+                    if len(parts) >= 2:
+                        harness_names_temp.add(parts[1])
+
+            harness_changed_temp = [c for c in changed if c in harness_names_temp]
+            needs_penetration = [
+                name for name in harness_changed_temp if name not in current_exercised
+            ]
+
+            for name in needs_penetration:
+                attempted_ips: list[str] = []
+                candidates = coverage_ip_candidates_by_provider.get(name, [])
+                hit_side = None
+                hit_provider = None
+                success = False
+
+                for ip in candidates:
+                    if ip in executed_ips:
+                        continue
+                    if len(attempted_ips) >= IP_PROVIDER_COVERAGE_FALLBACK_LIMIT:
+                        break
+
+                    attempted_ips.append(ip)
+                    executed_ips.add(ip)
+
+                    try:
+                        old_m = oracle_old.match(ip, ip=ip)
+                    except Exception as exc:  # noqa: BLE001
+                        if "no match observed" not in str(exc):
+                            oracle_error = str(exc)
+                            break
+                        old_m = MatchResult(ip, -1, "UNMATCHED", "UNMATCHED")
+
+                    try:
+                        new_m = oracle_new.match(ip, ip=ip)
+                    except Exception as exc:  # noqa: BLE001
+                        if "no match observed" not in str(exc):
+                            oracle_error = str(exc)
+                            break
+                        new_m = MatchResult(ip, -1, "UNMATCHED", "UNMATCHED")
+
+                    old_matches.append(old_m)
+                    new_matches.append(new_m)
+
+                    if old_m.policy != new_m.policy:
+                        routing_changes.append(
+                            RoutingChange(host=ip, old=old_m, new=new_m, reason="policy changed")
+                        )
+
+                    old_hit = provider_from_match(old_m) == name
+                    new_hit = provider_from_match(new_m) == name
+
+                    if old_hit or new_hit:
+                        success = True
+                        hit_side = "BOTH" if (old_hit and new_hit) else ("OLD" if old_hit else "NEW")
+                        hit_provider = name
+                        break
+
+                coverage_fallback_report[name] = {
+                    "attempted": attempted_ips,
+                    "count": len(attempted_ips),
+                    "result": "EXERCISED" if success else "NOT_EXERCISED",
+                    "hit_side": hit_side,
+                    "hit_provider": hit_provider,
+                }
+                if oracle_error:
+                    break
     except Exception as exc:  # noqa: BLE001
         oracle_error = str(exc)
 
@@ -306,6 +392,7 @@ def run_engine(
             "changed_unexercised": unex,
             "routing_scope": "mirror-covered rulesets",
             "full_config_equivalence": False,
+            "coverage_fallback": coverage_fallback_report,
         }
     )
     return result

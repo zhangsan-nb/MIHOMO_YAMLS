@@ -49,6 +49,19 @@ def render_text(result: AuditResult) -> str:
         f"{ (r.get('coverage') or {}).get('providers_total', 0) } "
         f"({ (r.get('coverage') or {}).get('coverage_percent', 0) }%)",
         "  UNCOVERED: " + (", ".join((r.get('coverage') or {}).get('uncovered') or [])[:300] or "(none)"),
+    ]
+    fb = r.get("coverage_fallback") or {}
+    if fb:
+        lines += ["", "Coverage fallback:"]
+        for prov, info in fb.items():
+            res_str = info.get("result", "UNKNOWN")
+            cnt = info.get("count", 0)
+            if res_str == "EXERCISED":
+                side = info.get("hit_side", "")
+                lines.append(f"  - {prov}: EXERCISED after {cnt} additional probe(s) ({side})")
+            else:
+                lines.append(f"  - {prov}: NOT_EXERCISED after {cnt} additional probe(s)")
+    lines += [
         "",
         f"Broad rules: {r.get('broad_critical', 0)}",
         f"Effective routing changes: {r.get('routing_changes', 0)}",
