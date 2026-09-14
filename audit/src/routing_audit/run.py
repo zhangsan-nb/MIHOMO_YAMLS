@@ -20,6 +20,8 @@ from .models import AuditResult, MatchResult, ProviderSnapshot, RoutingChange
 from .oracle import FixtureOracle, MihomoOracle, OracleError, _free_port, build_harness_config, probe_match_api
 from .report import routing_change_dict, write_reports
 
+IP_WITNESS_LIMIT_PER_SIDE = 3
+
 
 def _fetch(url: str, dest: Path, timeout: int = 45) -> None:
     dest.parent.mkdir(parents=True, exist_ok=True)
@@ -90,7 +92,8 @@ def run_engine(
     critical_tlds = ((thresholds.get("broad_suffix") or {}).get("critical_tlds")) or None
     fail_on_critical = bool((thresholds.get("broad_suffix") or {}).get("fail_on_critical", True))
 
-    witness_hosts: list[str] = []
+    domain_witnesses: list[str] = []
+    ip_witnesses_by_provider: dict[str, list[str]] = {}
     for name, new in candidate.items():
         old = baseline.get(name)
         if new.load_error:
@@ -135,7 +138,25 @@ def run_engine(
                 level = blast_radius(rule, critical_tlds)
                 if level == "CRITICAL" and fail_on_critical:
                     broad_critical.append(f"{name} {rule.raw}")
-                witness_hosts.extend(generate_witnesses(rule))
+                for w in generate_witnesses(rule):
+                    if not _looks_ip(w):
+                        domain_witnesses.append(w)
+
+            provider_ip_witnesses: list[str] = []
+            for side_rules in (diff["added"], diff["removed"]):
+                side_ip_witnesses: list[str] = []
+                sorted_rules = sorted(side_rules, key=lambda r: (r.kind, r.value))
+                for rule in sorted_rules:
+                    for w in generate_witnesses(rule):
+                        if _looks_ip(w) and w not in side_ip_witnesses and w not in provider_ip_witnesses:
+                            side_ip_witnesses.append(w)
+                            if len(side_ip_witnesses) >= IP_WITNESS_LIMIT_PER_SIDE:
+                                break
+                    if len(side_ip_witnesses) >= IP_WITNESS_LIMIT_PER_SIDE:
+                        break
+                provider_ip_witnesses.extend(side_ip_witnesses)
+            if provider_ip_witnesses:
+                ip_witnesses_by_provider[name] = provider_ip_witnesses
 
     source_mrs_mismatch: list[str] = []
     for name, new in candidate.items():
@@ -154,20 +175,29 @@ def run_engine(
             source_mrs_mismatch.append(f"{name}")
 
         if name in changed and new.rules:
-            witness_hosts.extend(propose_sentinels(new.rules, limit=2))
+            for s in propose_sentinels(new.rules, limit=2):
+                if not _looks_ip(s):
+                    domain_witnesses.append(s)
 
     hosts = collect_golden_hosts(golden_doc)
     for host in extra_hosts or []:
-        if host not in hosts:
-            hosts.append(host)
-    for host in witness_hosts:
         if host not in hosts and not _looks_ip(host):
             hosts.append(host)
+    for host in domain_witnesses:
+        if host not in hosts and not _looks_ip(host):
+            hosts.append(host)
+
+    unique_ip_witnesses: list[str] = []
+    for ips in ip_witnesses_by_provider.values():
+        for ip in ips:
+            if ip not in unique_ip_witnesses:
+                unique_ip_witnesses.append(ip)
 
     oracle_error = None
     routing_changes: list[RoutingChange] = []
     golden_results: list = []
-    new_matches: list = []
+    old_matches: list[MatchResult] = []
+    new_matches: list[MatchResult] = []
     try:
         golden_set = set(collect_golden_hosts(golden_doc))
         for host in hosts:
@@ -185,6 +215,7 @@ def run_engine(
                     oracle_error = str(exc)
                     break
                 new_m = MatchResult(host, -1, "UNMATCHED", "UNMATCHED")
+            old_matches.append(old_m)
             new_matches.append(new_m)
             if old_m.policy != new_m.policy:
                 routing_changes.append(
@@ -193,10 +224,34 @@ def run_engine(
             if host in golden_set:
                 verdict = evaluate_contract(host, new_m.policy, policy_doc, protected_doc)
                 golden_results.append((host, new_m, verdict if verdict else "PASS"))
+
+        if not oracle_error:
+            for ip in unique_ip_witnesses:
+                try:
+                    old_m = oracle_old.match(ip, ip=ip)
+                except Exception as exc:  # noqa: BLE001
+                    if "no match observed" not in str(exc):
+                        oracle_error = str(exc)
+                        break
+                    old_m = MatchResult(ip, -1, "UNMATCHED", "UNMATCHED")
+                try:
+                    new_m = oracle_new.match(ip, ip=ip)
+                except Exception as exc:  # noqa: BLE001
+                    if "no match observed" not in str(exc):
+                        oracle_error = str(exc)
+                        break
+                    new_m = MatchResult(ip, -1, "UNMATCHED", "UNMATCHED")
+                old_matches.append(old_m)
+                new_matches.append(new_m)
+                if old_m.policy != new_m.policy:
+                    routing_changes.append(
+                        RoutingChange(host=ip, old=old_m, new=new_m, reason="policy changed")
+                    )
     except Exception as exc:  # noqa: BLE001
         oracle_error = str(exc)
 
-    exercised = collect_exercised(new_matches)
+    exercised_new = collect_exercised(new_matches)
+    exercised_changed = collect_exercised(old_matches) | collect_exercised(new_matches)
     harness_names = set()
     for line in harness.get("rules") or []:
         if str(line).upper().startswith("RULE-SET,"):
@@ -205,10 +260,11 @@ def run_engine(
                 harness_names.add(parts[1])
     cov = coverage_report(
         provider_names=list(candidate.keys()),
-        exercised=exercised,
+        exercised=exercised_new,
         harness_names=harness_names,
     )
-    unex = changed_unexercised(changed, exercised, {})
+    harness_changed = [c for c in changed if c in harness_names]
+    unex = changed_unexercised(harness_changed, exercised_changed, ip_witnesses_by_provider)
 
     result = decide(
         load_errors=load_errors,
@@ -246,7 +302,7 @@ def run_engine(
             "trust": {name: snap.trust_mode for name, snap in candidate.items()},
             "semantic_diff_flag": {name: snap.semantic_diff for name, snap in candidate.items()},
             "coverage": cov,
-            "exercised": sorted(exercised),
+            "exercised": sorted(exercised_new),
             "changed_unexercised": unex,
             "routing_scope": "mirror-covered rulesets",
             "full_config_equivalence": False,
