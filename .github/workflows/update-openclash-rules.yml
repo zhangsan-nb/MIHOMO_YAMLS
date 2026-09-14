@@ -78,6 +78,7 @@ jobs:
 
       - name: Publish atomically to openclash-rules branch
         id: publish
+        if: ${{ success() && github.ref == 'refs/heads/main' }}
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           OUTPUT_DIR: ${{ runner.temp }}/openclash-rules
@@ -106,7 +107,7 @@ jobs:
 
       - name: Purge mirrored files from jsDelivr
         id: purge
-        if: success()
+        if: ${{ success() && github.ref == 'refs/heads/main' }}
         env:
           OUTPUT_DIR: ${{ runner.temp }}/openclash-rules
         run: |
@@ -140,6 +141,7 @@ jobs:
           AUDIT_OUTCOME: ${{ steps.audit.outcome }}
           PUBLISH_OUTCOME: ${{ steps.publish.outcome }}
           PURGE_OUTCOME: ${{ steps.purge.outcome }}
+          AUDIT_REPORT: ${{ runner.temp }}/openclash-rules/audit-report.json
           RUN_URL: https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}
           OUTPUT_DIR: ${{ runner.temp }}/openclash-rules
         run: python .github/scripts/send-rule-report.py "${OUTPUT_DIR}/REPORT.tsv"
