@@ -78,5 +78,7 @@ rules:
   - RULE-SET,StreamingIP,STREAMING
   - RULE-SET,GoogleIP,GOOGLE
   - RULE-SET,ProxyIP,PROXY
+  - IP-CIDR,103.144.41.0/24,FINAL,no-resolve
+  - IP-CIDR,103.177.70.0/23,CHINA,no-resolve
   - RULE-SET,ChinaIP,CHINA
   - MATCH,FINAL

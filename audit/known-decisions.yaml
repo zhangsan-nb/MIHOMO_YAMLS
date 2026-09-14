@@ -1,6 +1,9 @@
 # Human-approved routing outcomes. Same NEW policy later is PASS, not REVIEW.
 # expected must be a harness policy name from harness.yaml.
-decisions: []
+decisions:
+  - domain: nodeseek.org
+    expected: PROXY
+    approved_reason: "User approved upstream Proxy routing after review of candidate 05def5a on 2026-09-14"
 # Example:
 # - domain: foo.example.com
 #   expected: DIRECT
