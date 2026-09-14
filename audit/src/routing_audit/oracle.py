@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import ipaddress
 import json
 import os
 import re
@@ -20,6 +21,18 @@ _LOG_MATCH = re.compile(
 )
 
 SYNTHETIC_DIRECT = "__AUDIT_DIRECT__"
+
+
+def _http_probe_url(target: str) -> str:
+    try:
+        addr = ipaddress.ip_address(target)
+    except ValueError:
+        return f"http://{target}/"
+
+    if addr.version == 6:
+        return f"http://[{addr.compressed}]/"
+
+    return f"http://{addr.compressed}/"
 
 
 def _normalize_policy(policy: str) -> str:
@@ -184,6 +197,7 @@ class MihomoOracle:
         # Matcher runs on the HTTP-proxy request line. Groups select REJECT so
         # there is no real outbound. HTTP status is never the oracle.
         target = ip or host
+        probe_url = _http_probe_url(target)
         start_offset = self.log_path.stat().st_size if self.log_path.is_file() else 0
         existing_conns = self._snapshot_connections()
 
@@ -191,7 +205,7 @@ class MihomoOracle:
             urllib.request.ProxyHandler({"http": f"http://127.0.0.1:{self.mixed_port}"})
         )
         try:
-            opener.open(f"http://{target}/", timeout=0.4)
+            opener.open(probe_url, timeout=0.4)
         except Exception:
             pass
         if self.hitcount_supported:
@@ -200,7 +214,7 @@ class MihomoOracle:
 
                 before = snapshot_hits(self._api("GET", "/rules"))
                 try:
-                    opener.open(f"http://{target}/", timeout=0.4)
+                    opener.open(probe_url, timeout=0.4)
                 except Exception:
                     pass
                 after = snapshot_hits(self._api("GET", "/rules"))
