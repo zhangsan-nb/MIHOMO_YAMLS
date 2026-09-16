@@ -89,6 +89,17 @@ class TestPhase6Policy(unittest.TestCase):
         self.assertEqual(mapping["CHINA"], "🇨🇳 国内流量")
         self.assertEqual(mapping["PROXY"], "🌍 国外流量")
 
+    def test_g_spst2_known_decision(self):
+        """G: spst2.com known expected = FINAL"""
+        expected = known_expected("spst2.com", self.known_doc)
+        self.assertEqual(expected, "FINAL")
+
+    def test_h_spst2_subdomains_inherited(self):
+        """H: spst2.com subdomains inherit FINAL"""
+        for host in ["www.spst2.com", "api.spst2.com", "x.test.spst2.com"]:
+            expected = known_expected(host, self.known_doc)
+            self.assertEqual(expected, "FINAL", f"{host} should inherit FINAL")
+
 
 if __name__ == "__main__":
     unittest.main()

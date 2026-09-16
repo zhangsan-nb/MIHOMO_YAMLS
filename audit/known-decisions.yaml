@@ -7,6 +7,9 @@ decisions:
   - cidr: 103.238.46.0/23
     expected: CHINA
     approved_reason: "User approved FINAL -> CHINA after APNIC/CNNIC review of upstream 05def5a on 2026-09-14"
+  - domain: spst2.com
+    expected: FINAL
+    approved_reason: "User approved CHINA -> FINAL after review of upstream c55e0ee on 2026-09-16"
 # Example:
 # - domain: foo.example.com
 #   expected: DIRECT
