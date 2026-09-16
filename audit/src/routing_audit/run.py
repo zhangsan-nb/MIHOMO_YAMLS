@@ -655,16 +655,28 @@ def run_audit(
             dns_path = audit_dir / "dns-policy.yaml"
             if dns_path.is_file():
                 dns_doc = load_yaml(dns_path)
-            from .dns_oracle import evaluate_dns, lookup
+            from .dns_oracle import evaluate_dns, lookup, lookup_with_retry, wait_dns_ready
 
-            for host in list(dns_doc.get("must_real_ip") or []) + list(dns_doc.get("must_fake_ip") or []):
-                old_d = lookup(host, "127.0.0.1", int(oracle_old.dns_listen))
-                new_d = lookup(host, "127.0.0.1", int(oracle_new.dns_listen))
+            must_real_list = list(dns_doc.get("must_real_ip") or [])
+            must_fake_list = list(dns_doc.get("must_fake_ip") or [])
+            must_real_set = {h.lower().rstrip(".") for h in must_real_list}
+            must_fake_set = {h.lower().rstrip(".") for h in must_fake_list}
+
+            # Warmup and wait for ruleset compilation/readiness on both oracles
+            warmup_hosts = must_real_list[:3]
+            for port in [int(oracle_old.dns_listen), int(oracle_new.dns_listen)]:
+                wait_dns_ready("127.0.0.1", port, warmup_hosts, max_wait=5.0)
+
+            for host in must_real_list + must_fake_list:
+                h_norm = host.lower().rstrip(".")
+                expected = "REAL_IP" if h_norm in must_real_set else ("FAKE_IP" if h_norm in must_fake_set else None)
+                old_d = lookup_with_retry(host, "127.0.0.1", int(oracle_old.dns_listen), expected_kind=expected)
+                new_d = lookup_with_retry(host, "127.0.0.1", int(oracle_new.dns_listen), expected_kind=expected)
                 verd = evaluate_dns(
                     old=old_d,
                     new=new_d,
-                    must_real_ip=list(dns_doc.get("must_real_ip") or []),
-                    must_fake_ip=list(dns_doc.get("must_fake_ip") or []),
+                    must_real_ip=must_real_list,
+                    must_fake_ip=must_fake_list,
                 )
                 if verd == "FAIL":
                     dns_fails.append(f"{host} {old_d.kind}->{new_d.kind} ({new_d.address})")
