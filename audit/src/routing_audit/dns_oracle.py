@@ -6,6 +6,7 @@ import random
 import socket
 import struct
 import threading
+import time
 from dataclasses import dataclass
 
 
@@ -175,3 +176,48 @@ def evaluate_dns(
     if old.kind != new.kind:
         return "REVIEW"
     return "PASS"
+
+
+def lookup_with_retry(
+    name: str,
+    server: str,
+    port: int,
+    expected_kind: str | None = None,
+    *,
+    timeout: float = 1.5,
+    max_retries: int = 5,
+    retry_interval: float = 0.2,
+) -> DnsLookup:
+    """Lookup DNS with bounded retries if expected_kind is specified and not met.
+    If expected_kind is met, return immediately.
+    If still not met after max_retries, return the last DnsLookup (fail-closed)."""
+    last_res = DnsLookup(host=name, kind="ERROR")
+    for _ in range(max_retries):
+        res = lookup(name, server, port, timeout=timeout)
+        last_res = res
+        if expected_kind is None or res.kind == expected_kind:
+            return res
+        time.sleep(retry_interval)
+    return last_res
+
+
+def wait_dns_ready(
+    server: str,
+    port: int,
+    warmup_hosts: list[str],
+    *,
+    max_wait: float = 5.0,
+    poll_interval: float = 0.2,
+) -> bool:
+    """Wait for DNS server to initialize rulesets and return REAL_IP for warmup_hosts.
+    Returns True if at least one warmup host returns REAL_IP within max_wait, False otherwise."""
+    if not warmup_hosts:
+        return True
+    deadline = time.time() + max_wait
+    while time.time() < deadline:
+        for host in warmup_hosts:
+            res = lookup(host, server, port, timeout=0.8)
+            if res.kind == "REAL_IP":
+                return True
+        time.sleep(poll_interval)
+    return False
