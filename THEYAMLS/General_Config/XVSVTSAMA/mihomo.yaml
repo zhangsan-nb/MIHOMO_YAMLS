@@ -169,7 +169,6 @@ dns:
   direct-nameserver: 
     - https://dns.alidns.com/dns-query#DIRECT
     - https://doh.pub/dns-query#DIRECT
-  direct-nameserver-follow-policy: true
   nameserver:
     - https://cloudflare-dns.com/dns-query#👉 手动切换
   # - https://dns.adguard-dns.com/dns-query     # AdGuard 公共 DNS  # 94.140.14.14        94.140.15.15
@@ -178,6 +177,9 @@ dns:
   # - https://doh.opendns.com/dns-query         # OpenDNS 公共 DNS  # 208.67.220.220      208.67.222.222
   # - https://doh.dns.sb/dns-query              # DNS.SB 公共 DNS   # 185.222.222.222     45.11.45.11
   # - https://dns.twnic.tw/dns-query            # Quad101 公共 DNS  # 101.101.101.10      101.102.103.10
+  nameserver-policy:
+    'rule-set:private,direct,proxy@direct,cn,echs_cn,echs_direct':
+    - https://dns.alidns.com/dns-query#DIRECT
   prefer-h3: false
   respect-rules: false                                            
   enhanced-mode: fake-ip                  
@@ -194,8 +196,6 @@ dns:
     - rule-set:applications
     - rule-set:pixiv
     - pixshaft.com
-  nameserver-policy: 
-    'rule-set:private,direct,proxy@direct,cn,echs_cn,echs_direct': https://dns.alidns.com/dns-query#DIRECT
 
 hosts                             :                                            
   '+.clash.dev'               : [ '127.0.0.1'          ]                
@@ -423,8 +423,8 @@ rules:
   - "PROCESS-NAME-REGEX,.*telegram.*,📲 Telegram"
   - RULE-SET,telegramcidr,📲 Telegram,no-resolve
   - RULE-SET,telegram_domain,📲 Telegram
-  # Manus AI：覆盖 Manus Desktop、Manus Helper 等客户端进程
-  - PROCESS-NAME-REGEX,(?i).*manus.*,🤖 AI大模型
+  # Manus AI：覆盖 Manus Desktop、Manus Helper 及 Android 客户端进程
+  - PROCESS-NAME-REGEX,(?i).*(manus|tech\.butterfly\.app).*,🤖 AI大模型
   # Claude / Anthropic：进程命中优先，覆盖 Claude Desktop、Claude Code 等客户端
   - PROCESS-NAME-REGEX,(?i).*claude.*,🤖 AI大模型
   - PROCESS-NAME-REGEX,(?i).*anthropic.*,🤖 AI大模型
