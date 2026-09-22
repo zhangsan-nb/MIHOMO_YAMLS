@@ -26,8 +26,7 @@ profile:
 
 tun:
   enable: true
-  stack: system  # 如有问题可使用gvisor
-  mtu: 1500
+  stack: mips  # 如有问题可使用gvisor
   dns-hijack:
     - "udp://any:53"
     - "tcp://any:53"
