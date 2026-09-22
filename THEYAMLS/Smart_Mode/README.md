@@ -8,13 +8,13 @@
 
 | 特性 | `mihomo_smart.yaml` | `smart.yaml` | `clash-fallback-smart-std.yaml` | `clash-all-fallback-smart.yaml` | `clash-all-smart.yaml` | `OneSmartProMCX.yaml` | `OneSmart_Lite_Config.yaml` | `OneSmart_Config.yaml` | `THESmart.yaml` | `MihomoSmartProPlus.yaml` | `MihomoSmartProMax.yaml` | `MihomoSmartAIO.yaml` |
 | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- |
-| **大小** | 15.1 KB | 12.1 KB | 17.7 KB | 18.2 KB | 15.1 KB | 38.9 KB | 12.4 KB | 20.1 KB | 37.3 KB | 24.1 KB | 23.6 KB | 30.2 KB |
+| **大小** | 15.1 KB | 13.7 KB | 17.7 KB | 18.2 KB | 15.1 KB | 38.9 KB | 12.4 KB | 20.1 KB | 37.3 KB | 24.1 KB | 23.6 KB | 30.2 KB |
 | **混合端口** | 0 | 7890 | 7893 | 7893 | 7893 | 7893 | 7893 | 7893 | 7893 | 7893 | 7893 | 7893 |
 | **面板地址** | - | 0.0.0.0:9090 | 0.0.0.0:9090 | 0.0.0.0:9090 | 0.0.0.0:9090 | 0.0.0.0:9090 | 127.0.0.1:9090 | 127.0.0.1:9090 | 0.0.0.0:9090 | 127.0.0.1:9090 | 127.0.0.1:9090 | 127.0.0.1:9090 |
 | **运行模式** | rule | rule | rule | rule | rule | rule | rule | rule | rule | rule | rule | rule |
 | **TUN** | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | 🚫 | 🚫 | ✅ | 🚫 | 🚫 | 🚫 |
 | **策略组** | **35** | **28** | **36** | **57** | **38** | **40** | **16** | **31** | **66** | **41** | **41** | **69** |
-| **规则数** | **17** | **22** | **42** | **48** | **43** | **90** | **20** | **35** | **49** | **44** | **45** | **52** |
+| **规则数** | **17** | **28** | **42** | **48** | **43** | **90** | **20** | **35** | **49** | **44** | **45** | **52** |
 
 ## 📄 配置详情
 
@@ -372,7 +372,7 @@
 ### 👤 qichiyuhub
 
 #### 📝 smart.yaml
-- **路径**: `qichiyuhub/smart.yaml` | **大小**: 12.1 KB | [查看源码](https://github.com/zhangsan-nb/MIHOMO_YAMLS/blob/main/THEYAMLS/Smart_Mode/qichiyuhub/smart.yaml)
+- **路径**: `qichiyuhub/smart.yaml` | **大小**: 13.7 KB | [查看源码](https://github.com/zhangsan-nb/MIHOMO_YAMLS/blob/main/THEYAMLS/Smart_Mode/qichiyuhub/smart.yaml)
 - **模式**: rule | **TUN**: ✅ | **IPv6**: 🚫
 <details>
 <summary>🔍 策略组 (28个)</summary>
@@ -382,15 +382,15 @@
 | 👆 🚀 默认代理 | `select` |
 | 👆 📹 YouTube | `select` |
 | 👆 🍀 Google | `select` |
-| 👆 🤖 ChatGPT | `select` |
+| 👆 🤖 AI | `select` |
 | 👆 👨🏿‍💻 GitHub | `select` |
 | 👆 🐬 OneDrive | `select` |
 | 👆 🪟 Microsoft | `select` |
 | 👆 🎵 TikTok | `select` |
 | 👆 📲 Telegram | `select` |
 | 👆 🎥 NETFLIX | `select` |
-| 👆 ✈️ Speedtest | `select` |
-| 👆 💶 PayPal | `select` |
+| 👆 💶 Wallet | `select` |
+| 👆 🎮 Steam | `select` |
 | 👆 🍎 Apple | `select` |
 | 👆 🐟 漏网之鱼 | `select` |
 | 👆 🇭🇰 香港节点 | `select` |

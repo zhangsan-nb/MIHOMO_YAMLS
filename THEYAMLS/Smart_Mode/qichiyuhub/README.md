@@ -7,7 +7,7 @@
 ## 📄 配置详情
 
 #### 📝 smart.yaml
-- **路径**: `smart.yaml` | **大小**: 12.1 KB | [查看源码](https://github.com/zhangsan-nb/MIHOMO_YAMLS/blob/main/THEYAMLS/Smart_Mode/qichiyuhub/smart.yaml)
+- **路径**: `smart.yaml` | **大小**: 13.7 KB | [查看源码](https://github.com/zhangsan-nb/MIHOMO_YAMLS/blob/main/THEYAMLS/Smart_Mode/qichiyuhub/smart.yaml)
 - **模式**: rule | **TUN**: ✅ | **IPv6**: 🚫
 <details>
 <summary>🔍 策略组 (28个)</summary>
@@ -17,15 +17,15 @@
 | 👆 🚀 默认代理 | `select` |
 | 👆 📹 YouTube | `select` |
 | 👆 🍀 Google | `select` |
-| 👆 🤖 ChatGPT | `select` |
+| 👆 🤖 AI | `select` |
 | 👆 👨🏿‍💻 GitHub | `select` |
 | 👆 🐬 OneDrive | `select` |
 | 👆 🪟 Microsoft | `select` |
 | 👆 🎵 TikTok | `select` |
 | 👆 📲 Telegram | `select` |
 | 👆 🎥 NETFLIX | `select` |
-| 👆 ✈️ Speedtest | `select` |
-| 👆 💶 PayPal | `select` |
+| 👆 💶 Wallet | `select` |
+| 👆 🎮 Steam | `select` |
 | 👆 🍎 Apple | `select` |
 | 👆 🐟 漏网之鱼 | `select` |
 | 👆 🇭🇰 香港节点 | `select` |
