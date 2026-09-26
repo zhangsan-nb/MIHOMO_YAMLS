@@ -6,15 +6,15 @@
 
 ## ⚔️ 配置横向对比
 
-| 特性 | `THESmart.yaml` | `MihomoSmartProPlus.yaml` | `MihomoSmartProMax.yaml` | `MihomoSmartAIO.yaml` |
+| 特性 | `THESmart.yaml` | `MihomoSmartProMax.yaml` | `MihomoSmartAIO.yaml` | `MihomoSmartProPlus.yaml` |
 | :--- | :--- | :--- | :--- | :--- |
-| **大小** | 37.3 KB | 24.1 KB | 23.6 KB | 30.2 KB |
+| **大小** | 37.3 KB | 23.6 KB | 30.2 KB | 24.1 KB |
 | **混合端口** | 7893 | 7893 | 7893 | 7893 |
 | **面板地址** | 0.0.0.0:9090 | 127.0.0.1:9090 | 127.0.0.1:9090 | 127.0.0.1:9090 |
 | **运行模式** | rule | rule | rule | rule |
 | **TUN** | ✅ | 🚫 | 🚫 | 🚫 |
-| **策略组** | **66** | **41** | **41** | **69** |
-| **规则数** | **49** | **44** | **45** | **52** |
+| **策略组** | **66** | **41** | **69** | **41** |
+| **规则数** | **49** | **45** | **52** | **44** |
 
 ## 📄 配置详情
 
@@ -47,37 +47,6 @@
 | 👆 电报消息 | `select` |
 | 👆 推特社交 | `select` |
 | ... | 还有 46 个 |
-</details>
-
-#### 📝 MihomoSmartProPlus.yaml
-- **路径**: `MihomoSmartProPlus.yaml` | **大小**: 24.1 KB | [查看源码](https://github.com/zhangsan-nb/MIHOMO_YAMLS/blob/main/THEYAMLS/Smart_Mode/HenryChiao/MihomoSmartProPlus.yaml)
-- **模式**: rule | **TUN**: 🚫 | **IPv6**: ✅
-<details>
-<summary>🔍 策略组 (41个)</summary>
-
-| 名称 | 类型 |
-| :--- | :--- |
-| 👆 默认代理 | `select` |
-| 🔧 故障转移 | `fallback` |
-| 👆 国外流量 | `select` |
-| 👆 国内流量 | `select` |
-| 👆 兜底流量 | `select` |
-| 👆 直接连接 | `select` |
-| 👆 网络测试 | `select` |
-| 👆 UKwifi | `select` |
-| 👆 抖快书定位 | `select` |
-| 👆 Emby服 | `select` |
-| 👆 油管视频 | `select` |
-| 👆 奈飞视频 | `select` |
-| 👆 国际媒体 | `select` |
-| 👆 新闻媒体 | `select` |
-| 👆 电报消息 | `select` |
-| 👆 推特社交 | `select` |
-| 👆 社交平台 | `select` |
-| 👆 人工智能 | `select` |
-| 👆 货币平台 | `select` |
-| 👆 游戏平台 | `select` |
-| ... | 还有 21 个 |
 </details>
 
 #### 📝 MihomoSmartProMax.yaml
@@ -140,4 +109,35 @@
 | 👆 Spotify | `select` |
 | 👆 国外媒体 | `select` |
 | ... | 还有 49 个 |
+</details>
+
+#### 📝 MihomoSmartProPlus.yaml
+- **路径**: `MihomoSmartProPlus.yaml` | **大小**: 24.1 KB | [查看源码](https://github.com/zhangsan-nb/MIHOMO_YAMLS/blob/main/THEYAMLS/Smart_Mode/HenryChiao/MihomoSmartProPlus.yaml)
+- **模式**: rule | **TUN**: 🚫 | **IPv6**: ✅
+<details>
+<summary>🔍 策略组 (41个)</summary>
+
+| 名称 | 类型 |
+| :--- | :--- |
+| 👆 默认代理 | `select` |
+| 🔧 故障转移 | `fallback` |
+| 👆 国外流量 | `select` |
+| 👆 国内流量 | `select` |
+| 👆 兜底流量 | `select` |
+| 👆 直接连接 | `select` |
+| 👆 网络测试 | `select` |
+| 👆 UKwifi | `select` |
+| 👆 抖快书定位 | `select` |
+| 👆 Emby服 | `select` |
+| 👆 油管视频 | `select` |
+| 👆 奈飞视频 | `select` |
+| 👆 国际媒体 | `select` |
+| 👆 新闻媒体 | `select` |
+| 👆 电报消息 | `select` |
+| 👆 推特社交 | `select` |
+| 👆 社交平台 | `select` |
+| 👆 人工智能 | `select` |
+| 👆 货币平台 | `select` |
+| 👆 游戏平台 | `select` |
+| ... | 还有 21 个 |
 </details>

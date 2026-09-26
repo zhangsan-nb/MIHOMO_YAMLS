@@ -6,51 +6,20 @@
 
 ## ⚔️ 配置横向对比
 
-| 特性 | `mihomoconfig.yaml` | `mihomoConfigLite.yaml` |
+| 特性 | `mihomoConfigLite.yaml` | `mihomoconfig.yaml` |
 | :--- | :--- | :--- |
-| **大小** | 26.9 KB | 17.8 KB |
+| **大小** | 18.2 KB | 27.6 KB |
 | **混合端口** | 7890 | 7890 |
 | **面板地址** | 127.0.0.1:9090 | 127.0.0.1:9090 |
 | **运行模式** | rule | rule |
 | **TUN** | ✅ | ✅ |
-| **策略组** | **41** | **26** |
-| **规则数** | **55** | **21** |
+| **策略组** | **26** | **42** |
+| **规则数** | **21** | **56** |
 
 ## 📄 配置详情
 
-#### 📝 mihomoconfig.yaml
-- **路径**: `mihomoconfig.yaml` | **大小**: 26.9 KB | [查看源码](https://github.com/zhangsan-nb/MIHOMO_YAMLS/blob/main/THEYAMLS/General_Config/AIsouler/mihomoconfig.yaml)
-- **模式**: rule | **TUN**: ✅ | **IPv6**: ✅
-<details>
-<summary>🔍 策略组 (41个)</summary>
-
-| 名称 | 类型 |
-| :--- | :--- |
-| 👆 默认代理 | `select` |
-| 👆 手动选择 | `select` |
-| ♻️ 自动选择 | `url-test` |
-| ⚖️ 负载均衡 | `load-balance` |
-| 👆 FCM | `select` |
-| 👆 YouTube | `select` |
-| 👆 Google | `select` |
-| 👆 AI | `select` |
-| 👆 Microsoft | `select` |
-| 👆 Apple | `select` |
-| 👆 Telegram | `select` |
-| 👆 Steam | `select` |
-| 👆 TikTok | `select` |
-| 👆 Twitter | `select` |
-| 👆 Meta | `select` |
-| 👆 Line | `select` |
-| 👆 Netflix | `select` |
-| 👆 Emby | `select` |
-| 👆 PikPak | `select` |
-| 👆 Spotify | `select` |
-| ... | 还有 21 个 |
-</details>
-
 #### 📝 mihomoConfigLite.yaml
-- **路径**: `mihomoConfigLite.yaml` | **大小**: 17.8 KB | [查看源码](https://github.com/zhangsan-nb/MIHOMO_YAMLS/blob/main/THEYAMLS/General_Config/AIsouler/mihomoConfigLite.yaml)
+- **路径**: `mihomoConfigLite.yaml` | **大小**: 18.2 KB | [查看源码](https://github.com/zhangsan-nb/MIHOMO_YAMLS/blob/main/THEYAMLS/General_Config/AIsouler/mihomoConfigLite.yaml)
 - **模式**: rule | **TUN**: ✅ | **IPv6**: ✅
 <details>
 <summary>🔍 策略组 (26个)</summary>
@@ -78,4 +47,35 @@
 | 👆 台湾省 | `select` |
 | ♻️ 台湾省-自动选择 | `url-test` |
 | ... | 还有 6 个 |
+</details>
+
+#### 📝 mihomoconfig.yaml
+- **路径**: `mihomoconfig.yaml` | **大小**: 27.6 KB | [查看源码](https://github.com/zhangsan-nb/MIHOMO_YAMLS/blob/main/THEYAMLS/General_Config/AIsouler/mihomoconfig.yaml)
+- **模式**: rule | **TUN**: ✅ | **IPv6**: ✅
+<details>
+<summary>🔍 策略组 (42个)</summary>
+
+| 名称 | 类型 |
+| :--- | :--- |
+| 👆 默认代理 | `select` |
+| 👆 手动选择 | `select` |
+| ♻️ 自动选择 | `url-test` |
+| ⚖️ 负载均衡 | `load-balance` |
+| 👆 FCM | `select` |
+| 👆 YouTube | `select` |
+| 👆 Google | `select` |
+| 👆 AI | `select` |
+| 👆 Microsoft | `select` |
+| 👆 Apple | `select` |
+| 👆 Telegram | `select` |
+| 👆 Steam | `select` |
+| 👆 TikTok | `select` |
+| 👆 Twitter | `select` |
+| 👆 Meta | `select` |
+| 👆 Line | `select` |
+| 👆 Netflix | `select` |
+| 👆 Emby | `select` |
+| 👆 PikPak | `select` |
+| 👆 Spotify | `select` |
+| ... | 还有 22 个 |
 </details>
